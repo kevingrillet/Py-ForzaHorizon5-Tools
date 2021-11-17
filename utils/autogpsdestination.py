@@ -27,7 +27,7 @@ class AutoGPSDestination:
 
     def run(self):
         common.debug("Start AutoGPSDestination")
-        time.sleep(1)
+        time.sleep(2)
         pyautogui.press('esc')
         time.sleep(2)
         pyautogui.keyDown('z')

@@ -34,6 +34,7 @@ class AutoWheelspins:
 
     def run(self):
         common.debug("Start AutoWheelspins")
+        time.sleep(2)
         self.running = True
         while self.running:
             common.debug("Step: " + self.step.name + "; Count: " + str(self.count))
