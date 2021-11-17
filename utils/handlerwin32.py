@@ -29,6 +29,10 @@ class HandlerWin32:
         self.set_region(region)
 
     def screenshot(self):
+        """
+        Take a screenshot of region / hwin
+        :return: image: ndarray
+        """
         hwindc = win32gui.GetWindowDC(self.hwin)
         srcdc = win32ui.CreateDCFromHandle(hwindc)
         memdc = srcdc.CreateCompatibleDC()
@@ -52,6 +56,10 @@ class HandlerWin32:
         return img
 
     def set_region(self, region: (int, int, int, int) = None):
+        """
+        Define the capture region
+        :param region: rect
+        """
         self.region = region
 
         if self.region:
