@@ -35,6 +35,7 @@ class AutoWheelspins:
     def run(self):
         common.debug("Start AutoWheelspins (after 2 secs)")
         time.sleep(2)
+        self.next_step()
         self.running = True
         while self.running:
             self.hcv2.require_new_capture = True
