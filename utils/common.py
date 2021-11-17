@@ -9,7 +9,7 @@ def debug(msg: str = "", debug_level: int = 0):
         print debug if enough level
     """
     if debug_level >= constant.DEBUG_LEVEL:
-        print("[DEBUG] " + str(datetime.now().strftime("%d/%m/%Y %H:%M:%S")) + " " + msg)
+        print("[DEBUG] " + str(datetime.now().strftime("%d/%m/%Y %H:%M:%S")) + " - " + msg)
 
 
 def fps() -> float:
