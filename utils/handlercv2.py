@@ -22,6 +22,12 @@ class HandlerCv2:
 
     def check_color(self, crl: (int, int, int) = None, cru: (int, int, int) = None,
                     rect: (int, int, int, int) = None) -> bool:
+        """
+            Take capture & check if image match
+        :param crl: color_range_lower (B,G,R)
+        :param cru: color_range_upper (B,G,R)
+        :param rect: rect
+        """
         self.get_image()
         for x in range(rect[0], rect[2]):
             for y in range(rect[1], rect[3]):
@@ -30,12 +36,14 @@ class HandlerCv2:
                     return True
         return False
 
-    def check_match(self, data_image):
+    def check_match(self, data_image) -> bool:
         """
             Take capture & check if image match
-            return true / false
             coordinates can be accessed with find_start / find_end or directly tap with tap_find
+        :param data_image: Image to find
+        :return: true / false
         """
+
         self.get_image()
         return self.match(data_image)
 
@@ -68,6 +76,7 @@ class HandlerCv2:
     def get_image(self, force: bool = False):
         """
             take capture & show
+        :param force: force capture, else use require_new_capture
         """
         if self.require_new_capture or force:
             self.require_new_capture = False
@@ -77,7 +86,8 @@ class HandlerCv2:
     def load_images(self, images_list: list[str] = None) -> dict:
         """
             Load images and return dictionary
-                dict[path]={image, h, w}
+        :param images_list: [path_to_image, ...]
+        :return: dict[path]={image, h, w}
         """
         if images_list is None:
             images_list = []
@@ -90,15 +100,19 @@ class HandlerCv2:
                 res[image] = (img, h, w)
         return res
 
-    def match_template(self, find_image):
+    def match_template(self, find_image) -> bool:
         """
             return true if image match
+        :param find_image: Image to find
+        :return: true / false
         """
         return cv2.matchTemplate(self.target_image, find_image, self.method)
 
     def match(self, data_image) -> bool:
         """
             return true if image match & set find_start & find_end
+        :param data_image: Image to find
+        :return: true / false
         """
         find_image, h, w = data_image
         min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(self.match_template(find_image))
@@ -114,6 +128,7 @@ class HandlerCv2:
     def show_image(self, image=None):
         """
             show image if show_debug_image is set to True
+        :param image: Image to show
         """
         if not self.show_debug_image:
             return
