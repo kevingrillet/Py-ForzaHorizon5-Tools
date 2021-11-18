@@ -2,7 +2,7 @@ import time
 
 import pyautogui
 
-from game.constant import AutoLabReplayStep
+from game.constant import AutoLabReplayStep, AutoSpinAlreadyOwnedChoice
 from utils import common
 from utils.handlercv2 import HandlerCv2
 
@@ -12,12 +12,14 @@ class AutoLabReplay:
     step = None
 
     def __init__(self, hcv2: HandlerCv2 = None):
+        self.already_owned_choice = AutoSpinAlreadyOwnedChoice.SELL
         common.debug("Create AutoLabReplay")
         if hcv2:
             self.hcv2 = hcv2
         else:
             self.hcv2 = HandlerCv2()
-        self.images = self.hcv2.load_images(["continue",
+        self.images = self.hcv2.load_images(["car_already_owned",
+                                             "continue",
                                              "race_quit",
                                              "race_reward",
                                              "race_skip",
@@ -61,6 +63,11 @@ class AutoLabReplay:
                         or self.hcv2.check_match(self.images["race_skip"]) \
                         or self.hcv2.check_match(self.images["race_reward"]):
                     common.press_then_sleep("enter")
+                    if self.hcv2.check_match(self.images["car_already_owned"]):
+                        if self.already_owned_choice == AutoSpinAlreadyOwnedChoice.SELL:
+                            common.press_then_sleep("down", .25)
+                            common.press_then_sleep("down", .25)
+                        pyautogui.press("enter")
                     self.count = 0
                 else:
                     if self.step == AutoLabReplayStep.REWARDS:

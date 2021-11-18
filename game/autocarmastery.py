@@ -71,7 +71,7 @@ class AutoCarMastery:
                 common.press_then_sleep("enter", 1)
                 common.press_then_sleep("enter", 10)
                 if not self.hcv2.check_match(self.images["my_cars"], True):
-                    common.press_then_sleep("esc", 1)
+                    common.press_then_sleep("esc", 2)
                 # Boost
                 common.press_then_sleep("left", 1.5)
                 common.press_then_sleep("enter", 2)

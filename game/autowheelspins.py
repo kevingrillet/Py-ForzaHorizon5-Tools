@@ -35,14 +35,14 @@ class AutoWheelspins:
                 self.count += 1
                 common.debug("Collect [" + str(self.count) + " in " + str(round(time.time() - timer, 2)) + "s]")
                 timer = time.time()
-            if self.hcv2.check_match(self.images["skip"]):
+            elif self.hcv2.check_match(self.images["skip"]):
                 pyautogui.press("enter")
-            if self.hcv2.check_match(self.images["car_already_owned"]):
+            elif self.hcv2.check_match(self.images["car_already_owned"]):
                 if self.already_owned_choice == AutoSpinAlreadyOwnedChoice.SELL:
                     common.press_then_sleep("down", .25)
                     common.press_then_sleep("down", .25)
                 pyautogui.press("enter")
-            if self.hcv2.check_match(self.images["0_spins_remaining"]):
+            elif self.hcv2.check_match(self.images["0_spins_remaining"]):
                 pyautogui.press("enter")
                 self.running = False
         common.debug("Done AutoWheelspins")
