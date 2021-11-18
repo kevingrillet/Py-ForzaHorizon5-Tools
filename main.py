@@ -1,4 +1,9 @@
+import time
+
+import pyautogui
+
 from game.autocarbuy import AutoCarBuy
+from game.autocarmastery import AutoCarMastery
 from game.autogpsdestination import AutoGPSDestination
 from game.autolabreplay import AutoLabReplay
 from game.autowheelspins import AutoWheelspins
@@ -14,6 +19,7 @@ if __name__ == "__main__":
     print(" ┃ 2 - AutoGPSDestination    ┃")
     print(" ┃ 3 - AutoLabReplay         ┃")
     print(" ┃ 4 - AutoCarBuy            ┃")
+    print(" ┃ 5 - ⚠ AutoCarMastery ⚠    ┃")
     print(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛")
     print("Your choice:")
     intinput = int(input())
@@ -25,8 +31,20 @@ if __name__ == "__main__":
         AutoLabReplay(hcv2).run()
     elif intinput == 4:
         AutoCarBuy(hcv2).run()
+    elif intinput == 5:
+        AutoCarMastery(hcv2).run()
     elif intinput == 0:
         hcv2.hwin32.list_window_names()
         hcv2.dev()
+    elif intinput == 99:
+        pyautogui.keyDown("alt")
+        time.sleep(.2)
+        pyautogui.keyDown("tab")
+        time.sleep(.2)
+        pyautogui.keyUp("alt")
+        time.sleep(.2)
+        pyautogui.press("esc")
+        time.sleep(.2)
+        pyautogui.keyDown("z")
     else:
         raise NameError("Not an option")

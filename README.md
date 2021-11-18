@@ -8,6 +8,7 @@
  ┃ 2 - AutoGPSDestination    ┃
  ┃ 3 - AutoLabReplay         ┃
  ┃ 4 - AutoCarBuy            ┃
+ ┃ 5 - AutoCarMastery        ┃
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 Your choice:
 ```
@@ -40,6 +41,15 @@ Can be started from menu or race.
 ### AutoCarBuy
 
 - Place on the car you want to buy in car collection
+- Launch the script
+- Set focus on Forza
+
+### AutoCarMastery
+
+Delete car after mastery, it's **RISKY**!
+
+- At the home page of the house
+- Only works for `1987 Pontiac Firebird Trans Am GTA`
 - Launch the script
 - Set focus on Forza
 

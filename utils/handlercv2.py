@@ -4,8 +4,8 @@ from datetime import datetime
 import cv2
 
 from game import constant
-from utils.handlerwin32 import HandlerWin32
 from utils.common import debug, fps
+from utils.handlerwin32 import HandlerWin32
 
 
 class HandlerCv2:
@@ -37,15 +37,16 @@ class HandlerCv2:
                     return True
         return False
 
-    def check_match(self, data_image) -> bool:
+    def check_match(self, data_image, force: bool = False) -> bool:
         """
             Take capture & check if image match
             coordinates can be accessed with find_start / find_end or directly tap with tap_find
         :param data_image: Image to find
+        :param force: force capture
         :return: true / false
         """
 
-        self.get_image()
+        self.get_image(force)
         return self.match(data_image)
 
     def dev(self):

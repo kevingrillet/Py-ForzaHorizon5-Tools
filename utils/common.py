@@ -6,7 +6,7 @@ import pyautogui
 from game import constant
 
 
-def click(location: (int, int) = (0, 0), sleep: float = .5):
+def click_then_sleep(location: (int, int) = (0, 0), sleep: float = .5):
     pyautogui.moveTo(location)
     pyautogui.mouseDown()
     time.sleep(sleep)

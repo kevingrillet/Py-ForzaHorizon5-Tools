@@ -20,14 +20,6 @@ class AutoSpinAlreadyOwnedChoice(SuperIntEnum):
     SELL = auto()
 
 
-class AutoSpinStep(SuperIntEnum):
-    INIT = auto()
-    WAITING = auto()
-    SPINNING = auto()
-    REWARD = auto()
-    END = auto()
-
-
 class Lang(Enum):
     FRENCH = "fr"
 

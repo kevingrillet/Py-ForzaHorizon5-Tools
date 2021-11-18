@@ -2,8 +2,8 @@ import time
 
 import pyautogui
 
-from utils import common
 from game.constant import AutoLabReplayStep
+from utils import common
 from utils.handlercv2 import HandlerCv2
 
 
@@ -45,7 +45,7 @@ class AutoLabReplay:
             if self.step == AutoLabReplayStep.PREPARING:
                 if self.hcv2.check_match(self.images["race_start"]):
                     # common.press_then_sleep("enter")
-                    common.click(self.hcv2.random_find())
+                    common.click_then_sleep(self.hcv2.random_find())
                     pyautogui.keyDown("z")
                     self.next_step()
             if self.step == AutoLabReplayStep.RACING:
