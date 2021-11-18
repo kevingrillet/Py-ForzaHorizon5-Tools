@@ -33,7 +33,7 @@ class AutoWheelspins:
             if self.hcv2.check_match(self.images["collect_prize_and_spin_again"]):
                 pyautogui.press("enter")
                 self.count += 1
-                common.debug("Collect [" + str(self.count) + " in " + str(time.time() - timer) + "]")
+                common.debug("Collect [" + str(self.count) + " in " + str(round(time.time() - timer, 2)) + "s]")
                 timer = time.time()
             if self.hcv2.check_match(self.images["skip"]):
                 pyautogui.press("enter")

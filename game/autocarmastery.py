@@ -100,6 +100,6 @@ class AutoCarMastery:
             else:
                 raise NameError("Not in home")
             self.count += 1
-            common.debug("Car done! [" + str(self.count) + " in " + str(time.time() - timer) + "]")
+            common.debug("Car done! [" + str(self.count) + " in " + str(round(time.time() - timer, 2)) + "s]")
             timer = time.time()
         common.debug("Done AutoCarMastery")
