@@ -25,14 +25,16 @@ class AutoLabReplay:
                                              "race_type"])
         self.running = False
         self.step = AutoLabReplayStep.INIT
+        self.timer = time.time()
 
     def next_step(self, step: AutoLabReplayStep = None):
-        self.count = 0
         if step:
             self.step = step
         else:
             self.step = self.step.next()
-        common.debug("Step: " + self.step.name)
+        common.debug("Step: " + self.step.name + "[" + str(self.count) + " in " + str(time.time() - self.timer) + "]")
+        self.count = 0
+        self.timer = time.time()
 
     def run(self):
         common.debug("Start AutoLabReplay (after 5 secs)")
@@ -72,18 +74,18 @@ class AutoLabReplay:
                 # Open menu
                 common.press_then_sleep("esc", default_sleep)
                 # GoTo Creation
-                common.press_then_sleep("pagedown")
-                common.press_then_sleep("pagedown")
-                common.press_then_sleep("pagedown")
-                common.press_then_sleep("pagedown")
+                common.press_then_sleep("pagedown", .25)
+                common.press_then_sleep("pagedown", .25)
+                common.press_then_sleep("pagedown", .25)
+                common.press_then_sleep("pagedown", .25)
                 # Enter Lab
                 common.press_then_sleep("enter", default_sleep)
                 # Enter my races
-                common.press_then_sleep("right")
+                common.press_then_sleep("right", .25)
                 common.press_then_sleep("enter", default_sleep)
                 # GoTo History
-                common.press_then_sleep("pagedown")
-                common.press_then_sleep("pagedown")
+                common.press_then_sleep("pagedown", .25)
+                common.press_then_sleep("pagedown", default_sleep)
                 # Select last race
                 common.press_then_sleep("enter", default_sleep)
                 # Solo

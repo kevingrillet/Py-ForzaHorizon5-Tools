@@ -8,6 +8,7 @@ from utils.handlercv2 import HandlerCv2
 
 
 class AutoWheelspins:
+
     def __init__(self, hcv2: HandlerCv2 = None):
         common.debug("Create AutoWheelspins")
         self.already_owned_choice = AutoSpinAlreadyOwnedChoice.SELL
@@ -26,10 +27,15 @@ class AutoWheelspins:
         common.debug("Start AutoWheelspins (after 5 secs)")
         time.sleep(5)
         self.running = True
+        timer = time.time()
         while self.running:
             self.hcv2.require_new_capture = True
-            if self.hcv2.check_match(self.images["collect_prize_and_spin_again"]) \
-                    or self.hcv2.check_match(self.images["skip"]):
+            if self.hcv2.check_match(self.images["collect_prize_and_spin_again"]):
+                pyautogui.press("enter")
+                self.count += 1
+                common.debug("Collect [" + str(self.count) + " in " + str(time.time() - timer) + "]")
+                timer = time.time()
+            if self.hcv2.check_match(self.images["skip"]):
                 pyautogui.press("enter")
             if self.hcv2.check_match(self.images["car_already_owned"]):
                 if self.already_owned_choice == AutoSpinAlreadyOwnedChoice.SELL:
