@@ -3,7 +3,7 @@ from datetime import datetime
 
 import cv2
 
-from utils import constant
+from game import constant
 from utils.handlerwin32 import HandlerWin32
 from utils.common import debug, fps
 

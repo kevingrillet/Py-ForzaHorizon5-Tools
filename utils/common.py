@@ -3,7 +3,7 @@ from datetime import datetime
 
 import pyautogui
 
-from utils import constant
+from game import constant
 
 
 def click(location: (int, int) = (0, 0), sleep: float = .5):

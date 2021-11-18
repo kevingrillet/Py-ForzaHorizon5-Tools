@@ -3,7 +3,7 @@ import time
 import pyautogui
 
 from utils import common
-from utils.constant import AutoLabReplayStep
+from game.constant import AutoLabReplayStep
 from utils.handlercv2 import HandlerCv2
 
 

@@ -1,7 +1,7 @@
-from utils.autocarbuy import AutoCarBuy
-from utils.autogpsdestination import AutoGPSDestination
-from utils.autolabreplay import AutoLabReplay
-from utils.autowheelspins import AutoWheelspins
+from game.autocarbuy import AutoCarBuy
+from game.autogpsdestination import AutoGPSDestination
+from game.autolabreplay import AutoLabReplay
+from game.autowheelspins import AutoWheelspins
 from utils.handlercv2 import HandlerCv2
 
 if __name__ == "__main__":

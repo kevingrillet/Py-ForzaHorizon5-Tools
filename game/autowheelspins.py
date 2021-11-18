@@ -3,7 +3,7 @@ import time
 import pyautogui
 
 from utils import common
-from utils.constant import AutoSpinAlreadyOwnedChoice, AutoSpinStep
+from game.constant import AutoSpinAlreadyOwnedChoice, AutoSpinStep
 from utils.handlercv2 import HandlerCv2
 
 
