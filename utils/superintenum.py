@@ -27,7 +27,7 @@ class SuperIntEnum(IntEnum):
         cls = self.__class__
         members = list(cls)
         if len(members) == 0:
-            raise ValueError('Enumeration has no values')
+            raise ValueError("Enumeration has no values")
         return members[0]
 
     def last(self):
@@ -37,7 +37,7 @@ class SuperIntEnum(IntEnum):
         cls = self.__class__
         members = list(cls)
         if len(members) == 0:
-            raise ValueError('Enumeration has no values')
+            raise ValueError("Enumeration has no values")
         return members[-1]
 
     def prev(self, step: int = 1):
@@ -48,7 +48,7 @@ class SuperIntEnum(IntEnum):
         members = list(cls)
         index = members.index(self) - step
         if index < 0:
-            raise StopIteration('Enumeration ended')
+            raise StopIteration("Enumeration ended")
         return members[index]
 
     def next(self, step: int = 1):
@@ -59,5 +59,5 @@ class SuperIntEnum(IntEnum):
         members = list(cls)
         index = members.index(self) + step
         if index >= len(members):
-            raise StopIteration('Enumeration ended')
+            raise StopIteration("Enumeration ended")
         return members[index]

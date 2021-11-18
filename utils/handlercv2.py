@@ -1,3 +1,4 @@
+import random
 from datetime import datetime
 
 import cv2
@@ -59,10 +60,10 @@ class HandlerCv2:
             cv2.imshow("dev", self.target_image)  # Show image in window
             debug(str(fps()))  # Print FPS (crappy rate yeah)
             k = cv2.waitKey(25)  # Get key pressed every 25ms
-            if k == ord('s'):  # If 's' is pressed
+            if k == ord("s"):  # If "s" is pressed
                 # Save the image in .temp/
                 cv2.imwrite(".temp/" + str(datetime.now()).replace(":", ".") + ".jpg", self.target_image)
-            elif k == ord('q'):  # If 'q' is pressed
+            elif k == ord("q"):  # If "q" is pressed
                 cv2.destroyWindow("dev")  # Destroy the window
                 break
 
@@ -94,7 +95,7 @@ class HandlerCv2:
         res = {}
         for image in images_list:
             # global_utils.debug("load_images > " + image, -1)
-            img = cv2.imread(image, self.image_read_flag)
+            img = cv2.imread("./images/" + constant.LANG.value + "/" + image + ".jpg", self.image_read_flag)
             if img is not None:
                 h, w = img.shape[:2]
                 res[image] = (img, h, w)
@@ -125,6 +126,14 @@ class HandlerCv2:
         self.draw_debug()
         return True
 
+    def random_find(self) -> (int, int):
+        """
+            return random coords (x,y) between find_start & find_end
+        """
+        x1, y1 = self.find_start
+        x2, y2 = self.find_end
+        return random.randint(x1, x2), random.randint(y1, y2)
+
     def show_image(self, image=None):
         """
             show image if show_debug_image is set to True
@@ -138,6 +147,6 @@ class HandlerCv2:
         cv2.resizeWindow("show_image", 1600, 900)
         cv2.imshow("show_image", image)
         k = cv2.waitKey(0)
-        if k == ord('s'):
+        if k == ord("s"):
             cv2.imwrite(".temp/" + str(datetime.now()).replace(":", ".") + ".jpg", self.target_image)
         cv2.destroyWindow("show_image")

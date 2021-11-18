@@ -19,7 +19,7 @@ class HandlerWin32:
         if window_name:
             self.hwin = win32gui.FindWindow(None, window_name)
             if not self.hwin:
-                raise Exception('Window not found: {}'.format(window_name))
+                raise Exception("Window not found: {}".format(window_name))
             self.fullscreen = fullscreen
             region = win32gui.GetWindowRect(self.hwin)
             if sos:
@@ -42,7 +42,7 @@ class HandlerWin32:
         memdc.BitBlt((0, 0), (self.width, self.height), srcdc, (self.left, self.top), win32con.SRCCOPY)
 
         signedIntsArray = bmp.GetBitmapBits(True)
-        img = np.fromstring(signedIntsArray, dtype='uint8')
+        img = np.fromstring(signedIntsArray, dtype="uint8")
         img.shape = (self.height, self.width, 4)
 
         srcdc.DeleteDC()

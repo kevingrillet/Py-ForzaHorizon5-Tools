@@ -30,12 +30,11 @@ class AutoGPSDestination:
         self.running = False
 
     def run(self):
-        common.debug("Start AutoGPSDestination (after 2 secs)")
+        common.debug("Start AutoGPSDestination (after 5 secs)")
+        time.sleep(5)
+        common.press_then_sleep("esc")
+        pyautogui.keyDown("z")
         time.sleep(2)
-        pyautogui.press('esc')
-        time.sleep(.5)
-        pyautogui.keyDown('z')
-        time.sleep(.5)
         self.count = 0
         self.running = True
         while self.running:
@@ -49,6 +48,6 @@ class AutoGPSDestination:
             else:
                 self.count = 0
             time.sleep(.25)
-        pyautogui.keyUp('z')
-        pyautogui.press('esc')
+        pyautogui.keyUp("z")
+        pyautogui.press("esc")
         common.debug("Done AutoGPSDestination")
