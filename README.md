@@ -1,5 +1,18 @@
 # Py-ForzaHorizon5-Tools 
 
+```cmd
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ ┃  Py-ForzaHorizon5-Tools   ┃
+ ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+ ┃ 1 - AutoWheelspins        ┃
+ ┃ 2 - AutoGPSDestination    ┃
+ ┃ 3 - AutoLabReplay         ┃
+ ┃ 4 - AutoCarBuy            ┃
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+Your choice:
+```
+
+
 ## How to use:
 
 ### AutoWheelSpins
@@ -12,6 +25,21 @@
 
 - SetUp full assist
 - Set your destination
+- Launch the script
+- Set focus on Forza
+
+### AutoLabReplay
+
+Will redo the last lab race done.
+Can be started from menu or race.
+
+- SetUp full assist
+- Launch the script
+- Set focus on Forza
+
+### AutoCarBuy
+
+- Place on the car you want to buy in car collection
 - Launch the script
 - Set focus on Forza
 
