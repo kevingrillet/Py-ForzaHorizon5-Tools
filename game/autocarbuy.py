@@ -32,7 +32,8 @@ class AutoCarBuy:
             elif self.hcv2.check_match(self.images["buy_car"]):
                 common.press_then_sleep("enter")
                 self.count += 1
-                common.debug("Car bought! [" + str(self.count) + "/" + str(self.max) + " in " + str(round(time.time() - timer, 2)) + "s]")
+                common.debug("Car bought! [" + str(self.count) + "/" + str(self.max) + " in " + str(
+                    round(time.time() - timer, 2)) + "s]")
                 timer = time.time()
             else:
                 common.press_then_sleep("y")

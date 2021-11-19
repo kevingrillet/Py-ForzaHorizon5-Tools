@@ -1,5 +1,3 @@
-import time
-
 import pyautogui
 
 from game.autocarbuy import AutoCarBuy
@@ -8,6 +6,7 @@ from game.autocarmastery import AutoCarMastery
 from game.autogpsdestination import AutoGPSDestination
 from game.autolabreplay import AutoLabReplay
 from game.autowheelspins import AutoWheelspins
+from utils import common
 from utils.handlercv2 import HandlerCv2
 
 if __name__ == "__main__":
@@ -41,10 +40,7 @@ if __name__ == "__main__":
         hcv2.hwin32.list_window_names()
         hcv2.dev()
     elif intinput == 99:
-        pyautogui.keyDown("alt")
-        time.sleep(.125)
-        pyautogui.press("tab")
-        pyautogui.keyUp("alt")
+        common.alt_tab()
         pyautogui.press("esc")
         pyautogui.keyDown("z")
     else:

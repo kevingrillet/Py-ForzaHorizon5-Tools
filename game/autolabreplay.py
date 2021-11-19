@@ -30,7 +30,8 @@ class AutoLabReplay:
         self.timer = time.time()
 
     def next_step(self, step: AutoLabReplayStep = None):
-        common.debug("Step: " + self.step.name + " [" + str(self.count) + " in " + str(round(time.time() - self.timer, 2)) + "s]")
+        common.debug("Step: " + self.step.name + " [" + str(self.count) + " in " + str(
+            round(time.time() - self.timer, 2)) + "s]")
         if step:
             self.step = step
         else:
