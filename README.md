@@ -57,7 +57,7 @@ The `1987 Pontiac Firebird Trans Am GTA` needs to be the 3rd car of the `pontiac
 - Only works for `1987 Pontiac Firebird Trans Am GTA`
 - Launch the script
 - Set focus on Forza
-- 
+
 ### AutoCarBuyLeastExpensive
 
 - At the home page of the house

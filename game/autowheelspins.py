@@ -39,10 +39,12 @@ class AutoWheelspins:
                 pyautogui.press("enter")
             elif self.hcv2.check_match(self.images["car_already_owned"]):
                 if self.already_owned_choice == AutoSpinAlreadyOwnedChoice.SELL:
-                    common.press_then_sleep("down", .25)
-                    common.press_then_sleep("down", .25)
+                    common.press_then_sleep("down", .125)
+                    common.press_then_sleep("down", .125)
                 pyautogui.press("enter")
             elif self.hcv2.check_match(self.images["0_spins_remaining"]):
-                pyautogui.press("enter")
-                self.running = False
+                time.sleep(1)
+                if self.hcv2.check_match(self.images["0_spins_remaining"], True):
+                    pyautogui.press("enter")
+                    self.running = False
         common.debug("Done AutoWheelspins")
