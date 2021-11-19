@@ -32,23 +32,23 @@ class AutoCarMastery:
                 common.press_then_sleep("enter", 2)
                 # Constructor
                 common.press_then_sleep("backspace", 1)
-                if self.hcv2.check_match(self.images["pontiac_name"], True):
-                    common.click_then_sleep(self.hcv2.random_find(), 1)
-                    if self.hcv2.check_match(self.images["pontiac_name_selected"], True):
-                        common.press_then_sleep("enter", 1)
-                else:
-                    raise NameError("Pontiac name not found")
+                if not self.hcv2.check_match(self.images["pontiac_name"], True):
+                    common.press_then_sleep("up", 1)
+                    if not self.hcv2.check_match(self.images["pontiac_name"], True):
+                        raise NameError("Pontiac name not found")
+                common.click_then_sleep(self.hcv2.random_find(), 1)
+                if self.hcv2.check_match(self.images["pontiac_name_selected"], True):
+                    common.press_then_sleep("enter", 1)
                 time.sleep(1)
                 # Find car to delete
                 if self.count > 1:  # Need to skip it 2 times to begin
-                    if self.hcv2.check_match(self.images["pontiac"], True):
-                        # common.click_then_sleep(self.hcv2.random_find())
-                        # common.debug("Choose car to delete (in 3 secs)")
-                        # time.sleep(3)
-                        # common.click_then_sleep((1180, 530))
-                        common.press_then_sleep("right", .25)
-                    else:
+                    if not self.hcv2.check_match(self.images["pontiac"], True):
                         raise NameError("Pontiac to delete not found")
+                    # common.click_then_sleep(self.hcv2.random_find())
+                    # common.debug("Choose car to delete (in 3 secs)")
+                    # time.sleep(3)
+                    # common.click_then_sleep((1180, 530))
+                    common.press_then_sleep("right", .25)
                     common.press_then_sleep("enter")
                     # Delete button
                     common.press_then_sleep("down", .25)
@@ -59,15 +59,15 @@ class AutoCarMastery:
                     # Confirm
                     common.press_then_sleep("enter", 2)
                 # Find car to use
-                if self.hcv2.check_match(self.images["pontiac"], True):
-                    # common.click_then_sleep(self.hcv2.random_find())
-                    # common.debug("Choose car to use (in 3 secs)")
-                    # time.sleep(3)
-                    # common.click_then_sleep((1180, 530))
-                    common.press_then_sleep("up", .25)
-                    common.press_then_sleep("right", .25)
-                else:
+                if not self.hcv2.check_match(self.images["pontiac"], True):
                     raise NameError("Pontiac to drive not found")
+                # common.click_then_sleep(self.hcv2.random_find())
+                # common.debug("Choose car to use (in 3 secs)")
+                # time.sleep(3)
+                # common.click_then_sleep((1180, 530))
+                common.press_then_sleep("up", .25)
+                common.press_then_sleep("right", .25)
+                # Enter car
                 common.press_then_sleep("enter", 1)
                 common.press_then_sleep("enter", 10)
                 if not self.hcv2.check_match(self.images["my_cars"], True):
