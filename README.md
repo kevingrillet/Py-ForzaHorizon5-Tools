@@ -1,15 +1,16 @@
 # Py-ForzaHorizon5-Tools 
 
 ```cmd
- ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
- ┃  Py-ForzaHorizon5-Tools   ┃
- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
- ┃ 1 - AutoWheelspins        ┃
- ┃ 2 - AutoGPSDestination    ┃
- ┃ 3 - AutoLabReplay         ┃
- ┃ 4 - AutoCarBuy            ┃
- ┃ 5 - AutoCarMastery        ┃
- ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ ┃  Py-ForzaHorizon5-Tools      ┃
+ ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+ ┃ 1 - AutoWheelspins           ┃
+ ┃ 2 - AutoGPSDestination       ┃
+ ┃ 3 - AutoLabReplay            ┃
+ ┃ 4 - AutoCarBuy               ┃
+ ┃ 5 - AutoCarMastery           ┃
+ ┃ 6 - AutoCarBuyLeastExpensive ┃
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 Your choice:
 ```
 
