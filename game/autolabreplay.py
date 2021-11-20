@@ -45,9 +45,9 @@ class AutoLabReplay:
         self.max_try = max_try
         time.sleep(5)
         pyautogui.moveTo(10, 10)
+        self.ht.start()
         self.whereami()
         self.count_try = 0
-        self.ht.start()
         self.running = True
         while self.running and self.count_try < max_try:
             self.hcv2.require_new_capture = True

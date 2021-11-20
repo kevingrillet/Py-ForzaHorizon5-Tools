@@ -4,7 +4,7 @@ from string import Formatter
 
 
 class HandlerTime:
-    my_timer = None
+    my_timer = time.time()
 
     def get_timer(self) -> float:
         return time.time() - self.my_timer

@@ -1,5 +1,6 @@
 import random
 from datetime import datetime
+from pathlib import Path
 
 import cv2
 
@@ -63,6 +64,7 @@ class HandlerCv2:
             k = cv2.waitKey(25)  # Get key pressed every 25ms
             if k == ord("s"):  # If "s" is pressed
                 # Save the image in .temp/
+                Path(".temp/").mkdir(parents=True, exist_ok=True)
                 cv2.imwrite(".temp/" + str(datetime.now()).replace(":", ".") + ".jpg", self.target_image)
             elif k == ord("q"):  # If "q" is pressed
                 cv2.destroyWindow("dev")  # Destroy the window
