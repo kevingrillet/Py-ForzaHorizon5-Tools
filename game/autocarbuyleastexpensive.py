@@ -2,19 +2,22 @@ import time
 
 from utils import common
 from utils.handlercv2 import HandlerCv2
+from utils.handlertime import HandlerTime
 
 
 class AutoCarBuyLeastExpensive:
     count = 0
-    max = 25
+    max_try = 25
     nb_row = 1
 
-    def __init__(self, hcv2: HandlerCv2 = None):
+    def __init__(self, hcv2: HandlerCv2 = None, nb_row: int = nb_row):
         common.debug("Create AutoCarBuyLeastExpensive")
+        self.nb_row = nb_row
         if hcv2:
             self.hcv2 = hcv2
         else:
             self.hcv2 = HandlerCv2()
+        self.ht = HandlerTime()
         self.images = self.hcv2.load_images(["color",
                                              "not_buy",
                                              "not_enaugh_cr",
@@ -24,12 +27,13 @@ class AutoCarBuyLeastExpensive:
                                              "valor_selected"])
         self.running = False
 
-    def run(self):
+    def run(self, max_try: int = max_try):
+        self.max_try = max_try
         common.debug("Start AutoCarBuyLeastExpensive (after 5 secs)")
         time.sleep(5)
         self.running = True
-        timer = time.time()
-        while self.running and self.count < self.max:
+        self.ht.start()
+        while self.running and self.count < self.max_try:
             # Enter salon
             if not self.hcv2.check_match(self.images["salon_auto"], True):
                 raise NameError("Not at salon")
@@ -72,8 +76,7 @@ class AutoCarBuyLeastExpensive:
             common.press_then_sleep("esc", 3)
 
             self.count += 1
-            common.debug("Car bought! [" + str(self.count) + "/" + str(self.max) + " in " + str(
-                round(time.time() - timer, 2)) + "s]")
-            timer = time.time()
+            common.debug(
+                "Car bought! [" + str(self.count) + "/" + str(self.max_try) + " in " + self.ht.stringify() + "]")
             time.sleep(1)
         common.debug("Done AutoCarBuyLeastExpensive")

@@ -1,3 +1,5 @@
+import time
+
 import pyautogui
 
 from game.autocarbuy import AutoCarBuy
@@ -8,6 +10,7 @@ from game.autolabreplay import AutoLabReplay
 from game.autowheelspins import AutoWheelspins
 from utils import common
 from utils.handlercv2 import HandlerCv2
+from utils.handlertime import HandlerTime
 
 if __name__ == "__main__":
     hcv2 = HandlerCv2()
@@ -43,5 +46,16 @@ if __name__ == "__main__":
         common.alt_tab()
         pyautogui.press("esc")
         pyautogui.keyDown("z")
+    elif intinput == 98:
+        AutoCarBuy(hcv2).run(70)
+        common.press_then_sleep("left")
+        AutoCarMastery(hcv2).run(70)
+        # Select car
+        # Filter -> Favoris
+        # See constructor -> Lamborghini
+        # Drive car
+        # common.press_then_sleep("esc", 10)
+        # common.press_then_sleep("esc", 1)
+        # AutoLabReplay(hcv2).run()
     else:
         raise NameError("Not an option")

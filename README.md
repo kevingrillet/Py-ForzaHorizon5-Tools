@@ -76,3 +76,4 @@ The `1987 Pontiac Firebird Trans Am GTA` needs to be the 3rd car of the `pontiac
  - Learn Code By Gaming: <https://github.com/learncodebygaming/opencv_tutorials>
  - Sentdex: <https://github.com/Sentdex/pygta5>
  - Stoodjarguar6577: <https://youtu.be/VcoNpBTnuSg> & <https://youtu.be/OvAPc2LiDi0>
+ - `strfdelta`: <https://stackoverflow.com/a/63198084>

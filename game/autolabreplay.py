@@ -5,10 +5,13 @@ import pyautogui
 from game.constant import AutoLabReplayStep, AutoSpinAlreadyOwnedChoice
 from utils import common
 from utils.handlercv2 import HandlerCv2
+from utils.handlertime import HandlerTime
 
 
 class AutoLabReplay:
     count = 0
+    count_try = 0
+    max_try = 10
     step = None
 
     def __init__(self, hcv2: HandlerCv2 = None):
@@ -18,6 +21,7 @@ class AutoLabReplay:
             self.hcv2 = hcv2
         else:
             self.hcv2 = HandlerCv2()
+        self.ht = HandlerTime()
         self.images = self.hcv2.load_images(["car_already_owned",
                                              "continue",
                                              "race_quit",
@@ -27,25 +31,25 @@ class AutoLabReplay:
                                              "race_type"])
         self.running = False
         self.step = AutoLabReplayStep.INIT
-        self.timer = time.time()
 
     def next_step(self, step: AutoLabReplayStep = None):
-        common.debug("Step: " + self.step.name + " [" + str(self.count) + " in " + str(
-            round(time.time() - self.timer, 2)) + "s]")
+        common.debug("Step: " + self.step.name + " [" + str(self.count) + " in " + self.ht.stringify() + "]")
         if step:
             self.step = step
         else:
             self.step = self.step.next()
         self.count = 0
-        self.timer = time.time()
 
-    def run(self):
+    def run(self, max_try: int = max_try):
         common.debug("Start AutoLabReplay (after 5 secs)")
+        self.max_try = max_try
         time.sleep(5)
         pyautogui.moveTo(10, 10)
         self.whereami()
+        self.count_try = 0
+        self.ht.start()
         self.running = True
-        while self.running:
+        while self.running and self.count_try < max_try:
             self.hcv2.require_new_capture = True
             if self.step == AutoLabReplayStep.PREPARING:
                 if self.hcv2.check_match(self.images["race_start"]):
@@ -75,6 +79,8 @@ class AutoLabReplay:
                         self.count += 1
                         if self.count >= 3:
                             self.next_step()
+                            self.count_try += 1
+                            common.debug("Race done. [" + str(self.count_try) + "/" + str(self.max_try) + "]")
             if self.step == AutoLabReplayStep.RESTART:
                 default_sleep = 5
                 common.debug("Restarting the race (after 30 secs)")
