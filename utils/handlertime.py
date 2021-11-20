@@ -15,11 +15,11 @@ class HandlerTime:
     def stringify(self) -> str:
         timer = self.get_timer()
         if timer >= 3600:
-            fmt = "{H:2}h {M:2}m {S:2.2f}s"
+            fmt = "{H:02}h {M:2}m {S:02.02f}s"
         elif timer >= 60:
-            fmt = "{M:2}m {S:2.2f}s"
+            fmt = "{M:02}m {S:02.02f}s"
         else:
-            fmt = "{S:2.2f}s"
+            fmt = "{S:02.02f}s"
         ret = self.strfdelta(timedelta(seconds=self.get_timer()), fmt)
         self.start()
         return ret
