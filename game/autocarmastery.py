@@ -39,88 +39,87 @@ class AutoCarMastery:
         self.running = True
         self.ht.start()
         while self.running and self.count < self.max_try:
-            if self.hcv2.check_match(self.images["my_cars"], True):
-                # My cars
-                common.press_then_sleep("enter", 2)
-                # Constructor
-                common.press_then_sleep("backspace", 1)
+            if not self.hcv2.check_match(self.images["my_cars"], True):
+                raise NameError("Not in home")
+            # My cars
+            common.press_then_sleep("enter", 2)
+            # Constructor
+            common.press_then_sleep("backspace", 1)
+            if not self.hcv2.check_match(self.images["pontiac_name"], True):
+                common.press_then_sleep("up", 1)
                 if not self.hcv2.check_match(self.images["pontiac_name"], True):
-                    common.press_then_sleep("up", 1)
-                    if not self.hcv2.check_match(self.images["pontiac_name"], True):
-                        raise NameError("Pontiac name not found")
-                common.click_then_sleep(self.hcv2.random_find(), .125)
-                if self.hcv2.check_match(self.images["pontiac_name_selected"], True):
-                    common.press_then_sleep("enter", 1)
-                time.sleep(1)
-                # Find car to delete
-                if self.count > 1:  # Need to skip it 2 times to begin
-                    if not self.hcv2.check_match(self.images["pontiac"], True):
-                        raise NameError("Pontiac to delete not found")
-                    # common.click_then_sleep(self.hcv2.random_find())
-                    # common.debug("Choose car to delete (in 3 secs)")
-                    # time.sleep(3)
-                    # common.click_then_sleep((1180, 530))
-                    common.press_then_sleep("right", .125)
-                    common.press_then_sleep("enter")
-                    # Delete button
-                    common.press_then_sleep("down", .125)
-                    common.press_then_sleep("down", .125)
-                    common.press_then_sleep("down", .125)
-                    common.press_then_sleep("down", .125)
-                    common.press_then_sleep("enter")
-                    # Confirm
-                    common.press_then_sleep("enter", 2)
-                # Find car to use
+                    raise NameError("Pontiac name not found")
+            common.click_then_sleep(self.hcv2.random_find(), .125)
+            if self.hcv2.check_match(self.images["pontiac_name_selected"], True):
+                common.press_then_sleep("enter", 1)
+            time.sleep(1)
+            # Find car to delete
+            if self.count > 1:  # Need to skip it 2 times to begin
                 if not self.hcv2.check_match(self.images["pontiac"], True):
-                    raise NameError("Pontiac to drive not found")
+                    raise NameError("Pontiac to delete not found")
                 # common.click_then_sleep(self.hcv2.random_find())
-                # common.debug("Choose car to use (in 3 secs)")
+                # common.debug("Choose car to delete (in 3 secs)")
                 # time.sleep(3)
                 # common.click_then_sleep((1180, 530))
-                common.press_then_sleep("up", .125)
                 common.press_then_sleep("right", .125)
-                # Enter car
                 common.press_then_sleep("enter")
-                common.press_then_sleep("enter", 1)
-                cnt = 0
-                while not self.hcv2.check_match(self.images["my_cars"], True):
-                    common.press_then_sleep("esc", 1)
-                    cnt += 1
-                    if cnt > 10:
-                        raise NameError("My cars not found")
-                # Boost
-                common.press_then_sleep("left", .125)
-                common.press_then_sleep("enter", 1.5)
-                # Mastery
-                common.press_then_sleep("right", .125)
-                common.press_then_sleep("right", .125)
+                # Delete button
                 common.press_then_sleep("down", .125)
-                common.press_then_sleep("enter", 2.5)
-                if not self.hcv2.check_match(self.images["already_done"], True):
-                    # MASTERRR
-                    common.press_then_sleep("enter", 1)
-                    self.checkBuy()
-                    common.press_then_sleep("right", .125)
-                    common.press_then_sleep("enter", .75)
-                    self.checkBuy()
-                    common.press_then_sleep("right", .125)
-                    common.press_then_sleep("enter", .75)
-                    self.checkBuy()
-                    common.press_then_sleep("up", .125)
-                    common.press_then_sleep("enter", .75)
-                    self.checkBuy()
-                    common.press_then_sleep("right", .125)
-                    common.press_then_sleep("enter", .75)
-                    self.checkBuy()
-                    common.press_then_sleep("up", .125)
-                    common.press_then_sleep("enter", .75)
-                    self.checkBuy()
-                # Get back to menu
-                common.press_then_sleep("esc", 2)
-                common.press_then_sleep("esc", 1.5)
+                common.press_then_sleep("down", .125)
+                common.press_then_sleep("down", .125)
+                common.press_then_sleep("down", .125)
+                common.press_then_sleep("enter")
+                # Confirm
+                common.press_then_sleep("enter", 2)
+            # Find car to use
+            if not self.hcv2.check_match(self.images["pontiac"], True):
+                raise NameError("Pontiac to drive not found")
+            # common.click_then_sleep(self.hcv2.random_find())
+            # common.debug("Choose car to use (in 3 secs)")
+            # time.sleep(3)
+            # common.click_then_sleep((1180, 530))
+            common.press_then_sleep("up", .125)
+            common.press_then_sleep("right", .125)
+            # Enter car
+            common.press_then_sleep("enter")
+            common.press_then_sleep("enter", 1)
+            cnt = 0
+            while not self.hcv2.check_match(self.images["my_cars"], True):
+                common.press_then_sleep("esc", 1)
+                cnt += 1
+                if cnt > 10:
+                    raise NameError("My cars not found")
+            # Boost
+            common.press_then_sleep("left", .125)
+            common.press_then_sleep("enter", 1.5)
+            # Mastery
+            common.press_then_sleep("right", .125)
+            common.press_then_sleep("right", .125)
+            common.press_then_sleep("down", .125)
+            common.press_then_sleep("enter", 2.5)
+            if not self.hcv2.check_match(self.images["already_done"], True):
+                # MASTERRR
+                common.press_then_sleep("enter", 1)
+                self.checkBuy()
                 common.press_then_sleep("right", .125)
-            else:
-                raise NameError("Not in home")
+                common.press_then_sleep("enter", .75)
+                self.checkBuy()
+                common.press_then_sleep("right", .125)
+                common.press_then_sleep("enter", .75)
+                self.checkBuy()
+                common.press_then_sleep("up", .125)
+                common.press_then_sleep("enter", .75)
+                self.checkBuy()
+                common.press_then_sleep("right", .125)
+                common.press_then_sleep("enter", .75)
+                self.checkBuy()
+                common.press_then_sleep("up", .125)
+                common.press_then_sleep("enter", .75)
+                self.checkBuy()
+            # Get back to menu
+            common.press_then_sleep("esc", 2)
+            common.press_then_sleep("esc", 1.5)
+            common.press_then_sleep("right", .125)
             self.count += 1
             common.debug("Car done! [" + str(self.count) + "/" + str(self.max_try) + " in " + self.ht.stringify() + "]")
         common.debug("Done AutoCarMastery")
