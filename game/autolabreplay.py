@@ -57,6 +57,7 @@ class AutoLabReplay:
         self.running = True
         while self.running and self.count_try < max_try:
             self.hcv2.require_new_capture = True
+
             if self.step == AutoLabReplayStep.PREPARING:
                 if self.hcv2.check_match(self.images["race_start"]):
                     # common.press_then_sleep("enter")
@@ -67,13 +68,15 @@ class AutoLabReplay:
                     self.count += 1
                     if self.count > 10:
                         common.press_then_sleep("enter", default_sleep)
-            if self.step == AutoLabReplayStep.RACING:
+
+            elif self.step == AutoLabReplayStep.RACING:
                 if self.hcv2.check_match(self.images["continue"]) \
                         or self.hcv2.check_match(self.images["race_skip"]) \
                         or self.hcv2.check_match(self.images["race_reward"]):
                     pyautogui.keyUp("z")
                     self.next_step()
-            if self.step == AutoLabReplayStep.REWARDS:
+
+            elif self.step == AutoLabReplayStep.REWARDS:
                 if self.hcv2.check_match(self.images["continue"]) \
                         or self.hcv2.check_match(self.images["race_skip"]) \
                         or self.hcv2.check_match(self.images["race_reward"]):
@@ -91,11 +94,13 @@ class AutoLabReplay:
                             self.next_step()
                             self.count_try += 1
                             common.debug("Race done. [" + str(self.count_try) + "/" + str(self.max_try) + "]")
-            if self.step == AutoLabReplayStep.CHECK:
+
+            elif self.step == AutoLabReplayStep.CHECK:
                 if self.stop_on_max_mastery and self.gc:
-                    self.running = self.gc.check_mastery()
+                    self.running = not self.gc.check_mastery()
                 self.step.next()
-            if self.step == AutoLabReplayStep.RESTART:
+
+            elif self.step == AutoLabReplayStep.RESTART:
                 common.debug("Restarting the race (after 30 secs)")
                 time.sleep(30)
                 # Open menu
@@ -121,7 +126,9 @@ class AutoLabReplay:
                 # Same car
                 common.press_then_sleep("enter", default_sleep)
                 self.next_step(AutoLabReplayStep.PREPARING)
+
             time.sleep(1)
+
         common.debug("Done AutoLabReplay")
 
     def whereami(self):

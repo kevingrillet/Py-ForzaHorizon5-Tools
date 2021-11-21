@@ -12,13 +12,8 @@ from utils import common
 from utils.handlerconfig import HandlerConfig
 from utils.handlercv2 import HandlerCv2
 
-if __name__ == "__main__":
-    hcfg = HandlerConfig("config.ini")
-    constant.LANG = hcfg.get_value("language", constant.LANG.value)
-    constant.DEBUG_LEVEL = int(hcfg.get_value("debug", str(constant.DEBUG_LEVEL)))
 
-    hcv2 = HandlerCv2()
-    # hcv2.show_debug_image = True
+def show_menu():
     print(" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓")
     print(" ┃   Py-ForzaHorizon5-Tools     ┃")
     print(" ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫")
@@ -30,6 +25,18 @@ if __name__ == "__main__":
     print(" ┃ 6 - AutoCarBuyLeastExpensive ┃")
     print(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛")
     print("Your choice:")
+
+
+if __name__ == "__main__":
+    hcfg = HandlerConfig("config.ini")
+    constant.LANG = hcfg.get_value("language", constant.LANG.value)
+    constant.DEBUG_LEVEL = int(hcfg.get_value("debug", str(constant.DEBUG_LEVEL)))
+
+    show_menu()
+
+    hcv2 = HandlerCv2()
+    # hcv2.show_debug_image = True
+
     intinput = int(input())
     if intinput == 1:
         AutoWheelspins(hcv2).run()
@@ -74,6 +81,5 @@ if __name__ == "__main__":
                 common.press_then_sleep("esc", 5)
                 alr.run()
             first = False
-
     else:
         raise NameError("Not an option")

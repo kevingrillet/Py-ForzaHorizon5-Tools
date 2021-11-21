@@ -12,6 +12,7 @@ class AutoLabReplayStep(SuperIntEnum):
     PREPARING = auto()
     RACING = auto()
     REWARDS = auto()
+    CHECK = auto()
     RESTART = auto()
 
 
