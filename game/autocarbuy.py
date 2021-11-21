@@ -41,5 +41,5 @@ class AutoCarBuy:
                 common.press_then_sleep("y")
             time.sleep(1)
 
-        common.press_then_sleep("esc")
+        common.press_then_sleep("esc", 2)
         common.debug("Done AutoCarBuy")
