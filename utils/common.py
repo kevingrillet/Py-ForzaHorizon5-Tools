@@ -14,6 +14,13 @@ def click_then_sleep(location: (int, int) = (0, 0), sleep: float = .5):
     pyautogui.moveTo(10, 10)
 
 
+def alt_f4():
+    pyautogui.keyDown("alt")
+    time.sleep(.125)
+    pyautogui.press("f4")
+    pyautogui.keyUp("alt")
+
+
 def alt_tab():
     pyautogui.keyDown("alt")
     time.sleep(.125)

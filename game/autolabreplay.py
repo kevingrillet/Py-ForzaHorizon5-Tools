@@ -15,9 +15,8 @@ class AutoLabReplay:
     gc = None
     max_try = 10
     step = None
-    stop_on_max_mastery = False
 
-    def __init__(self, hcv2: HandlerCv2 = None, gc: GameCommon = None):
+    def __init__(self, hcv2: HandlerCv2 = None, gc: GameCommon = None, stop_on_max_mastery: bool = False):
         self.already_owned_choice = AutoSpinAlreadyOwnedChoice.SELL
         common.debug("Create AutoLabReplay")
         if hcv2:
@@ -26,6 +25,7 @@ class AutoLabReplay:
             self.hcv2 = HandlerCv2()
         if gc:
             self.gc = gc
+        self.stop_on_max_mastery = stop_on_max_mastery
         self.ht = HandlerTime()
         self.images = self.hcv2.load_images(["car_already_owned",
                                              "continue",

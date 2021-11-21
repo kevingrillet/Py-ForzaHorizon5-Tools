@@ -1,3 +1,5 @@
+import time
+
 import pyautogui
 
 from game import constant
@@ -44,6 +46,11 @@ if __name__ == "__main__":
         AutoGPSDestination(hcv2).run()
     elif intinput == 3:
         AutoLabReplay(hcv2).run()
+    elif intinput == 30:
+        common.alt_tab()
+        AutoLabReplay(hcv2, stop_on_max_mastery=True).run()
+        time.sleep(10)
+        common.alt_f4()
     elif intinput == 4:
         AutoCarBuy(hcv2).run()
     elif intinput == 5:
@@ -65,8 +72,7 @@ if __name__ == "__main__":
         gc = GameCommon()
         acb = AutoCarBuy(hcv2)
         acm = AutoCarMastery(hcv2)
-        alr = AutoLabReplay(hcv2, gc)
-        alr.stop_on_max_mastery = True
+        alr = AutoLabReplay(hcv2, gc, True)
         common.alt_tab()
         common.click_then_sleep((10, 10), .125)
         first = True
