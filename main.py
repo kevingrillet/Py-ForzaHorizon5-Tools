@@ -12,14 +12,6 @@ from utils import common
 from utils.handlerconfig import HandlerConfig
 from utils.handlercv2 import HandlerCv2
 
-
-def AutoCarBuy_Then_AutoCarMastery(nbcar: int = 70):
-    common.debug("AutoCarBuy + AutoCarMastery for " + str(nbcar) + " cars")
-    AutoCarBuy(hcv2).run(nbcar)
-    common.press_then_sleep("left")
-    AutoCarMastery(hcv2).run(nbcar)
-
-
 if __name__ == "__main__":
     hcfg = HandlerConfig("config.ini")
     constant.LANG = hcfg.get_value("language", constant.LANG.value)
@@ -60,21 +52,28 @@ if __name__ == "__main__":
         pyautogui.keyDown("z")
     elif intinput == 45:
         common.alt_tab()
-        AutoCarBuy_Then_AutoCarMastery(70)
+        GameCommon.AutoCarBuy_Then_AutoCarMastery(AutoCarBuy(hcv2), AutoCarMastery(hcv2), 70)
     elif intinput == 453:
         common.debug("AutoCarBuy + AutoCarMastery + AutoLabReplay")
         gc = GameCommon()
+        acb = AutoCarBuy(hcv2)
+        acm = AutoCarMastery(hcv2)
+        alr = AutoLabReplay(hcv2, gc)
+        alr.stop_on_max_mastery = True
         common.alt_tab()
         common.click_then_sleep((10, 10), .125)
-        if gc.check_mastery():
-            gc.go_home_garage()
-            gc.go_to_car_to_buy()
-            AutoCarBuy_Then_AutoCarMastery(70)
-        else:
-            gc.home_getmycar()
-            common.press_then_sleep("esc", 10)
-            common.press_then_sleep("esc", 5)
-            AutoLabReplay(hcv2).run()
+        first = True
+        while True:
+            if first and gc.check_mastery():
+                gc.go_home_garage()
+                gc.go_to_car_to_buy()
+                GameCommon.AutoCarBuy_Then_AutoCarMastery(acb, acm, 70)
+            else:
+                gc.home_getmycar()
+                common.press_then_sleep("esc", 10)
+                common.press_then_sleep("esc", 5)
+                alr.run()
+            first = False
 
     else:
         raise NameError("Not an option")

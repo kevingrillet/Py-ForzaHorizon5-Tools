@@ -1,5 +1,7 @@
 import time
 
+from game.autocarbuy import AutoCarBuy
+from game.autocarmastery import AutoCarMastery
 from utils import common
 from utils.handlercv2 import HandlerCv2
 from utils.handlertime import HandlerTime
@@ -20,6 +22,13 @@ class GameCommon:
                                              "pontiac_name",
                                              "pontiac_name_selected",
                                              "my_cars"])
+
+    @staticmethod
+    def AutoCarBuy_Then_AutoCarMastery(acb: AutoCarBuy, acm: AutoCarMastery, nbcar: int = 70):
+        common.debug("AutoCarBuy + AutoCarMastery for " + str(nbcar) + " cars")
+        acb.run(nbcar)
+        common.press_then_sleep("left")
+        acm.run(nbcar)
 
     def check_mastery(self) -> bool:
         common.debug("Start GameCommon.check_mastery")

@@ -2,6 +2,7 @@ import time
 
 import pyautogui
 
+from game.common import GameCommon
 from game.constant import AutoLabReplayStep, AutoSpinAlreadyOwnedChoice
 from utils import common
 from utils.handlercv2 import HandlerCv2
@@ -11,16 +12,20 @@ from utils.handlertime import HandlerTime
 class AutoLabReplay:
     count = 0
     count_try = 0
+    gc = None
     max_try = 10
     step = None
+    stop_on_max_mastery = False
 
-    def __init__(self, hcv2: HandlerCv2 = None):
+    def __init__(self, hcv2: HandlerCv2 = None, gc: GameCommon = None):
         self.already_owned_choice = AutoSpinAlreadyOwnedChoice.SELL
         common.debug("Create AutoLabReplay")
         if hcv2:
             self.hcv2 = hcv2
         else:
             self.hcv2 = HandlerCv2()
+        if gc:
+            self.gc = gc
         self.ht = HandlerTime()
         self.images = self.hcv2.load_images(["car_already_owned",
                                              "continue",
@@ -86,6 +91,10 @@ class AutoLabReplay:
                             self.next_step()
                             self.count_try += 1
                             common.debug("Race done. [" + str(self.count_try) + "/" + str(self.max_try) + "]")
+            if self.step == AutoLabReplayStep.CHECK:
+                if self.stop_on_max_mastery and self.gc:
+                    self.running = self.gc.check_mastery()
+                self.step.next()
             if self.step == AutoLabReplayStep.RESTART:
                 common.debug("Restarting the race (after 30 secs)")
                 time.sleep(30)
