@@ -37,7 +37,7 @@ class GameCommon:
         common.press_then_sleep("right", .125)
         common.press_then_sleep("down", .125)
         common.press_then_sleep("enter", 2)
-        ret = self.hcv2.check_match(self.images["999_mastery"])
+        ret = self.hcv2.check_match(self.images["999_mastery"], True)
         common.press_then_sleep("esc, 1")
         common.press_then_sleep("pageup, 1")
         common.debug("End GameCommon.check_mastery")

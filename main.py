@@ -31,7 +31,7 @@ def show_menu():
 
 if __name__ == "__main__":
     hcfg = HandlerConfig("config.ini")
-    constant.LANG = hcfg.get_value("language", constant.LANG.value)
+    constant.LANG = constant.Lang(hcfg.get_value("language", constant.LANG.value))
     constant.DEBUG_LEVEL = int(hcfg.get_value("debug", str(constant.DEBUG_LEVEL)))
 
     show_menu()

@@ -38,7 +38,9 @@ class AutoLabReplay:
         self.step = AutoLabReplayStep.INIT
 
     def next_step(self, step: AutoLabReplayStep = None):
-        common.debug("Step: " + self.step.name + " [" + str(self.count) + " in " + self.ht.stringify() + "]")
+        common.debug(
+            "Step done: " + self.step.name + " [" + str(self.count) + " in " + self.ht.stringify() + "] -> next: " + (
+                step.name if step else self.step.next().name))
         if step:
             self.step = step
         else:
@@ -60,13 +62,13 @@ class AutoLabReplay:
 
             if self.step == AutoLabReplayStep.PREPARING:
                 if self.hcv2.check_match(self.images["race_start"]):
-                    # common.press_then_sleep("enter")
                     common.click_then_sleep(self.hcv2.random_find())
                     pyautogui.keyDown("z")
                     self.next_step()
                 else:
                     self.count += 1
                     if self.count > 10:
+                        self.count = 0
                         common.press_then_sleep("enter", default_sleep)
 
             elif self.step == AutoLabReplayStep.RACING:
@@ -88,17 +90,16 @@ class AutoLabReplay:
                         pyautogui.press("enter")
                     self.count = 0
                 else:
-                    if self.step == AutoLabReplayStep.REWARDS:
-                        self.count += 1
-                        if self.count >= 3:
-                            self.next_step()
-                            self.count_try += 1
-                            common.debug("Race done. [" + str(self.count_try) + "/" + str(self.max_try) + "]")
+                    self.count += 1
+                    if self.count >= 3:
+                        self.count_try += 1
+                        common.debug("Race done. [" + str(self.count_try) + "/" + str(self.max_try) + "]")
+                        self.next_step()
 
             elif self.step == AutoLabReplayStep.CHECK:
                 if self.stop_on_max_mastery and self.gc:
                     self.running = not self.gc.check_mastery()
-                self.step.next()
+                self.next_step()
 
             elif self.step == AutoLabReplayStep.RESTART:
                 common.debug("Restarting the race (after 30 secs)")
