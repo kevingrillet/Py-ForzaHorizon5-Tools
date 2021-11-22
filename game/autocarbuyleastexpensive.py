@@ -11,13 +11,13 @@ class AutoCarBuyLeastExpensive:
     max_try = 25
     running = False
 
-    def __init__(self, hcv2: HandlerCv2 = HandlerCv2(), nb_row: int = 1):
+    def __init__(self, hcv2: HandlerCv2 = None, nb_row: int = 1):
         """
         Prepare to auto buy lest expensive car
         :param hcv2:
         """
         common.debug("Create AutoCarBuyLeastExpensive")
-        self.hcv2 = hcv2
+        self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
             ["color", "not_buy", "not_enaugh_cr", "salon_auto", "valor", "valor_menu", "valor_selected"])
         self.nb_row = nb_row

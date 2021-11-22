@@ -36,29 +36,26 @@ if __name__ == "__main__":
     constant.DEV_MODE = hcfg.get_value("dev", str(constant.DEV_MODE)) == "True"
 
     show_menu()
-
-    hcv2 = HandlerCv2()
-    # hcv2.show_debug_image = True
-
     intinput = int(input())
     if intinput == 1:
-        AutoWheelspins(hcv2).run()
+        AutoWheelspins().run()
     elif intinput == 2:
-        AutoGPSDestination(hcv2).run()
+        AutoGPSDestination().run()
     elif intinput == 3:
-        AutoLabReplay(hcv2).run()
+        AutoLabReplay().run()
     elif intinput == 30:
         common.alt_tab()
-        AutoLabReplay(hcv2, stop_on_max_mastery=True).run()
+        AutoLabReplay(stop_on_max_mastery=True).run()
         time.sleep(10)
         common.alt_f4()
     elif intinput == 4:
-        AutoCarBuy(hcv2).run()
+        AutoCarBuy().run()
     elif intinput == 5:
-        AutoCarMastery(hcv2).run()
+        AutoCarMastery().run()
     elif intinput == 6:
-        AutoCarBuyLeastExpensive(hcv2).run()
+        AutoCarBuyLeastExpensive().run()
     elif intinput == 0:
+        hcv2 = HandlerCv2()
         hcv2.hwin32.list_window_names()
         hcv2.dev()
     elif intinput == 99:
@@ -66,10 +63,12 @@ if __name__ == "__main__":
         pyautogui.press("esc")
         pyautogui.keyDown("z")
     elif intinput == 45:
+        hcv2 = HandlerCv2()
         common.alt_tab()
         GameCommon.AutoCarBuy_Then_AutoCarMastery(AutoCarBuy(hcv2), AutoCarMastery(hcv2), 70)
     elif intinput == 453:
         common.debug("AutoCarBuy + AutoCarMastery + AutoLabReplay")
+        hcv2 = HandlerCv2()
         gc = GameCommon()
         acb = AutoCarBuy(hcv2)
         acm = AutoCarMastery(hcv2)

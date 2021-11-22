@@ -16,10 +16,12 @@ class HandlerCv2:
     image_read_flag = cv2.IMREAD_COLOR
     method = cv2.TM_CCOEFF_NORMED
     require_new_capture = True
-    show_debug_image = False
     target_image = None
     target_image_debug = None
     threshold = 0.9
+
+    def __init__(self, show_debug_image=False):
+        self.show_debug_image = show_debug_image
 
     def check_color(self, crl: (int, int, int) = None, cru: (int, int, int) = None,
                     rect: (int, int, int, int) = None) -> bool:

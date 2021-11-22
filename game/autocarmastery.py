@@ -11,13 +11,13 @@ class AutoCarMastery:
     max_try = 50
     running = False
 
-    def __init__(self, hcv2: HandlerCv2 = HandlerCv2()):
+    def __init__(self, hcv2: HandlerCv2 = None):
         """
         Prepare to auto master cars
         :param hcv2:
         """
         common.debug("Create AutoCarMastery")
-        self.hcv2 = hcv2
+        self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
             ["already_done", "cant_buy", "pontiac", "pontiac_name", "pontiac_name_selected", "my_cars"])
 

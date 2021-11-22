@@ -17,13 +17,13 @@ class AutoGPSDestination:
     map_rect = (cursor_loc[0] - map_d, cursor_loc[1] - map_d, cursor_loc[0] + map_d, cursor_loc[1] + map_d)
     running = False
 
-    def __init__(self, hcv2: HandlerCv2 = HandlerCv2()):
+    def __init__(self, hcv2: HandlerCv2 = None):
         """
         Prepare to drive to destination
         :param hcv2:
         """
         common.debug("Create AutoGPSDestination")
-        self.hcv2 = hcv2
+        self.hcv2 = hcv2 if hcv2 else HandlerCv2()
 
     def run(self):
         """

@@ -11,13 +11,13 @@ class AutoCarBuy:
     max_try = 50
     running = False
 
-    def __init__(self, hcv2: HandlerCv2 = HandlerCv2()):
+    def __init__(self, hcv2: HandlerCv2 = None):
         """
         Prepare to auto buy cars
         :param hcv2:
         """
         common.debug("Create AutoCarBuy")
-        self.hcv2 = hcv2
+        self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(["not_enaugh_cr", "buy_car"])
 
     def run(self, max_try: int = max_try):

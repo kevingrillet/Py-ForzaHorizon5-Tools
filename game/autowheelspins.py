@@ -15,14 +15,14 @@ class AutoWheelspins:
     ht = HandlerTime()
     running = False
 
-    def __init__(self, hcv2: HandlerCv2 = HandlerCv2(), gc: GameCommon = GameCommon()):
+    def __init__(self, hcv2: HandlerCv2 = None, gc: GameCommon = None):
         """
         Prepare to auto wheelspin
         :param hcv2:
         """
         common.debug("Create AutoWheelspins")
-        self.gc = gc
-        self.hcv2 = hcv2
+        self.gc = gc if gc else GameCommon()
+        self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
             ["collect_prize_and_spin_again", "skip", "0_spins_remaining"])
 

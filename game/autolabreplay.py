@@ -18,8 +18,7 @@ class AutoLabReplay:
     running = False
     step = AutoLabReplayStep.INIT
 
-    def __init__(self, hcv2: HandlerCv2 = HandlerCv2(), gc: GameCommon = GameCommon(),
-                 stop_on_max_mastery: bool = False):
+    def __init__(self, hcv2: HandlerCv2 = None, gc: GameCommon = None, stop_on_max_mastery: bool = False):
         """
         Prepare for farming lab races
         :param hcv2:
@@ -27,8 +26,8 @@ class AutoLabReplay:
         :param stop_on_max_mastery: (False)
         """
         common.debug("Create AutoLabReplay")
-        self.gc = gc
-        self.hcv2 = hcv2
+        self.gc = gc if gc else GameCommon()
+        self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
             ["accolades", "continue", "race_quit", "race_reward", "race_skip", "race_start", "race_type"])
         self.stop_on_max_mastery = stop_on_max_mastery
