@@ -5,6 +5,7 @@ import pyautogui
 from game.common import GameCommon
 from game.constant import AutoLabReplayStep, AutoSpinAlreadyOwnedChoice
 from utils import common
+from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
 from utils.handlertime import HandlerTime
 
@@ -25,7 +26,7 @@ class AutoLabReplay:
         :param gc:
         :param stop_on_max_mastery: (False)
         """
-        common.debug("Create AutoLabReplay")
+        common.debug("Create AutoLabReplay", DebugLevel.CLASS)
         self.gc = gc if gc else GameCommon()
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
@@ -33,11 +34,17 @@ class AutoLabReplay:
         self.stop_on_max_mastery = stop_on_max_mastery
 
     def esc_to_menu(self):
-        common.debug("I'm lost!!!")
+        common.debug("I'm lost!!!", DebugLevel.INFO)
         lost = True
+        cnt = 0
         while lost:
-            common.press_then_sleep("esc", 2)
-            if self.hcv2.check_match(self.images["accolades"]) or self.hcv2.check_match(self.images["race_start"]):
+            if cnt < 5:
+                common.press_then_sleep("esc", 2)
+                cnt += 1
+            else:
+                common.press_then_sleep("enter", 2)
+                cnt = 0
+            if self.hcv2.check_match(self.images["accolades"], True) or self.hcv2.check_match(self.images["race_start"]):
                 lost = False
 
     def next_step(self, step: AutoLabReplayStep = None):
@@ -48,7 +55,7 @@ class AutoLabReplay:
         next_step: AutoLabReplayStep = step if step else self.step.next()
         common.debug(
             "Step done: " + self.step.name + " [" + str(self.count) + " in " + self.ht.stringify() + "] -> next: " +
-            next_step.name)
+            next_step.name, DebugLevel.INFO)
         self.step = next_step
         self.count = 0
 
@@ -58,7 +65,7 @@ class AutoLabReplay:
         :param max_try:
         :return:
         """
-        common.debug("Start AutoLabReplay (after 5 secs)")
+        common.debug("Start AutoLabReplay (after 5 secs)", DebugLevel.FUNCTIONS)
         self.max_try = max_try
         default_sleep = 5
         time.sleep(5)
@@ -102,7 +109,8 @@ class AutoLabReplay:
                     self.count += 1
                     if self.count >= 3:
                         self.count_try += 1
-                        common.debug("Race done. [" + str(self.count_try) + "/" + str(self.max_try) + "]")
+                        common.debug("Race done. [" + str(self.count_try) + "/" + str(self.max_try) + "]",
+                                     DebugLevel.INFO)
                         self.next_step()
 
             elif self.step == AutoLabReplayStep.CHECK:
@@ -111,7 +119,7 @@ class AutoLabReplay:
                 self.next_step()
 
             elif self.step == AutoLabReplayStep.RESTART:
-                common.debug("Restarting the race (after 30 secs)")
+                common.debug("Restarting the race (after 30 secs)", DebugLevel.INFO)
                 time.sleep(30)
                 # Open menu
                 common.press_then_sleep("esc", default_sleep)
@@ -139,7 +147,7 @@ class AutoLabReplay:
 
             time.sleep(1)
 
-        common.debug("Done AutoLabReplay")
+        common.debug("Done AutoLabReplay", DebugLevel.FUNCTIONS)
 
     def whereami(self):
         """

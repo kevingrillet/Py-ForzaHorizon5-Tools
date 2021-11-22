@@ -3,6 +3,7 @@ import time
 import pyautogui
 
 from utils import common
+from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
 
 
@@ -22,14 +23,14 @@ class AutoGPSDestination:
         Prepare to drive to destination
         :param hcv2:
         """
-        common.debug("Create AutoGPSDestination")
+        common.debug("Create AutoGPSDestination", DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
 
     def run(self):
         """
         Need to be run from game esc menu
         """
-        common.debug("Start AutoGPSDestination (after 5 secs)")
+        common.debug("Start AutoGPSDestination (after 5 secs)", DebugLevel.FUNCTIONS)
         time.sleep(5)
         common.press_then_sleep("esc")
         pyautogui.keyDown("z")
@@ -39,7 +40,7 @@ class AutoGPSDestination:
         while self.running:
             self.hcv2.require_new_capture = True
             if not self.hcv2.check_color(self.color_range_lower, self.color_range_upper, self.map_rect):
-                common.debug("Path not found: " + str(self.count))
+                common.debug("Path not found: " + str(self.count), DebugLevel.INFO)
                 self.count += 1
                 if self.count >= 2:
                     common.debug("Stop")
@@ -49,4 +50,4 @@ class AutoGPSDestination:
             time.sleep(.25)
         pyautogui.keyUp("z")
         pyautogui.press("esc")
-        common.debug("Done AutoGPSDestination")
+        common.debug("Done AutoGPSDestination", DebugLevel.FUNCTIONS)

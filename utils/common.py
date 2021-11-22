@@ -4,6 +4,7 @@ from datetime import datetime
 import pyautogui
 
 from game import constant
+from utils.constant import DebugLevel
 
 
 def click_then_sleep(location: (int, int) = (0, 0), sleep: float = .5):
@@ -28,11 +29,11 @@ def alt_tab():
     pyautogui.keyUp("alt")
 
 
-def debug(msg: str = "", debug_level: int = 0):
+def debug(msg: str = "", debug_level: int = DebugLevel.ALWAYS):
     """
         print debug if enough level
     """
-    if debug_level >= constant.DEBUG_LEVEL:
+    if debug_level <= constant.DEBUG_LEVEL:
         print("[DEBUG] " + str(datetime.now().strftime("%d/%m/%Y %H:%M:%S")) + " - " + msg)
 
 

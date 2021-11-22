@@ -1,6 +1,7 @@
 import time
 
 from utils import common
+from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
 from utils.handlertime import HandlerTime
 
@@ -16,7 +17,7 @@ class AutoCarMastery:
         Prepare to auto master cars
         :param hcv2:
         """
-        common.debug("Create AutoCarMastery")
+        common.debug("Create AutoCarMastery", DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
             ["already_done", "cant_buy", "pontiac", "pontiac_name", "pontiac_name_selected", "my_cars"])
@@ -37,7 +38,7 @@ class AutoCarMastery:
         Need to be run from home garage
         :param max_try:
         """
-        common.debug("Start AutoCarMastery (after 5 secs)")
+        common.debug("Start AutoCarMastery (after 5 secs)", DebugLevel.FUNCTIONS)
         self.max_try = max_try
         time.sleep(5)
         self.running = True
@@ -117,5 +118,6 @@ class AutoCarMastery:
             common.press_then_sleep("esc", 1.5)
             common.press_then_sleep("right", .125)
             self.count += 1
-            common.debug("Car done! [" + str(self.count) + "/" + str(self.max_try) + " in " + self.ht.stringify() + "]")
-        common.debug("Done AutoCarMastery")
+            common.debug("Car done! [" + str(self.count) + "/" + str(self.max_try) + " in " + self.ht.stringify() + "]",
+                         DebugLevel.INFO)
+        common.debug("Done AutoCarMastery", DebugLevel.FUNCTIONS)

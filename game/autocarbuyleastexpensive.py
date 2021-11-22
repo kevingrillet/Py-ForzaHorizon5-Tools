@@ -1,6 +1,7 @@
 import time
 
 from utils import common
+from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
 from utils.handlertime import HandlerTime
 
@@ -16,7 +17,7 @@ class AutoCarBuyLeastExpensive:
         Prepare to auto buy lest expensive car
         :param hcv2:
         """
-        common.debug("Create AutoCarBuyLeastExpensive")
+        common.debug("Create AutoCarBuyLeastExpensive", DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
             ["color", "not_buy", "not_enaugh_cr", "salon_auto", "valor", "valor_menu", "valor_selected"])
@@ -28,7 +29,7 @@ class AutoCarBuyLeastExpensive:
         :param max_try:
         """
         self.max_try = max_try
-        common.debug("Start AutoCarBuyLeastExpensive (after 5 secs)")
+        common.debug("Start AutoCarBuyLeastExpensive (after 5 secs)", DebugLevel.FUNCTIONS)
         time.sleep(5)
         self.running = True
         self.ht.start()
@@ -76,6 +77,7 @@ class AutoCarBuyLeastExpensive:
 
             self.count += 1
             common.debug(
-                "Car bought! [" + str(self.count) + "/" + str(self.max_try) + " in " + self.ht.stringify() + "]")
+                "Car bought! [" + str(self.count) + "/" + str(self.max_try) + " in " + self.ht.stringify() + "]",
+                DebugLevel.INFO)
             time.sleep(1)
-        common.debug("Done AutoCarBuyLeastExpensive")
+        common.debug("Done AutoCarBuyLeastExpensive", DebugLevel.FUNCTIONS)
