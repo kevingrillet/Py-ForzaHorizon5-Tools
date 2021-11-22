@@ -10,44 +10,55 @@ from utils.handlertime import HandlerTime
 
 
 class AutoLabReplay:
+    already_owned_choice = AutoSpinAlreadyOwnedChoice.SELL
     count = 0
     count_try = 0
-    gc = None
+    ht = HandlerTime()
     max_try = 10
-    step = None
+    running = False
+    step = AutoLabReplayStep.INIT
 
-    def __init__(self, hcv2: HandlerCv2 = None, gc: GameCommon = None, stop_on_max_mastery: bool = False):
-        self.already_owned_choice = AutoSpinAlreadyOwnedChoice.SELL
+    def __init__(self, hcv2: HandlerCv2 = HandlerCv2(), gc: GameCommon = GameCommon(),
+                 stop_on_max_mastery: bool = False):
+        """
+        Prepare for farming lab races
+        :param hcv2:
+        :param gc:
+        :param stop_on_max_mastery: (False)
+        """
         common.debug("Create AutoLabReplay")
-        if hcv2:
-            self.hcv2 = hcv2
-        else:
-            self.hcv2 = HandlerCv2()
-        if gc:
-            self.gc = gc
+        self.gc = gc
+        self.hcv2 = hcv2
+        self.images = self.hcv2.load_images(
+            ["accolades", "continue", "race_quit", "race_reward", "race_skip", "race_start", "race_type"])
         self.stop_on_max_mastery = stop_on_max_mastery
-        self.ht = HandlerTime()
-        self.images = self.hcv2.load_images(["car_already_owned",
-                                             "continue",
-                                             "race_quit",
-                                             "race_reward",
-                                             "race_skip",
-                                             "race_start",
-                                             "race_type"])
-        self.running = False
-        self.step = AutoLabReplayStep.INIT
+
+    def esc_to_menu(self):
+        common.debug("I'm lost!!!")
+        lost = True
+        while lost:
+            common.press_then_sleep("esc", 2)
+            if self.hcv2.check_match(self.images["accolades"]) or self.hcv2.check_match(self.images["race_start"]):
+                lost = False
 
     def next_step(self, step: AutoLabReplayStep = None):
+        """
+        Set next step and reset count
+        :param step:
+        """
+        next_step: AutoLabReplayStep = step if step else self.step.next()
         common.debug(
-            "Step done: " + self.step.name + " [" + str(self.count) + " in " + self.ht.stringify() + "] -> next: " + (
-                step.name if step else self.step.next().name))
-        if step:
-            self.step = step
-        else:
-            self.step = self.step.next()
+            "Step done: " + self.step.name + " [" + str(self.count) + " in " + self.ht.stringify() + "] -> next: " +
+            next_step.name)
+        self.step = next_step
         self.count = 0
 
     def run(self, max_try: int = max_try):
+        """
+        Need to be started from race, or esc menu, or race preparation menu
+        :param max_try:
+        :return:
+        """
         common.debug("Start AutoLabReplay (after 5 secs)")
         self.max_try = max_try
         default_sleep = 5
@@ -66,10 +77,12 @@ class AutoLabReplay:
                     pyautogui.keyDown("z")
                     self.next_step()
                 else:
+                    time.sleep(1)
                     self.count += 1
                     if self.count > 10:
                         self.count = 0
-                        common.press_then_sleep("enter", default_sleep)
+                        self.esc_to_menu()
+                        self.whereami()
 
             elif self.step == AutoLabReplayStep.RACING:
                 if self.hcv2.check_match(self.images["continue"]) \
@@ -79,15 +92,12 @@ class AutoLabReplay:
                     self.next_step()
 
             elif self.step == AutoLabReplayStep.REWARDS:
+                time.sleep(1)
                 if self.hcv2.check_match(self.images["continue"]) \
                         or self.hcv2.check_match(self.images["race_skip"]) \
                         or self.hcv2.check_match(self.images["race_reward"]):
                     common.press_then_sleep("enter")
-                    if self.hcv2.check_match(self.images["car_already_owned"]):
-                        if self.already_owned_choice == AutoSpinAlreadyOwnedChoice.SELL:
-                            common.press_then_sleep("down", .25)
-                            common.press_then_sleep("down", .25)
-                        pyautogui.press("enter")
+                    self.gc.check_car_already_own()
                     self.count = 0
                 else:
                     self.count += 1
@@ -133,6 +143,9 @@ class AutoLabReplay:
         common.debug("Done AutoLabReplay")
 
     def whereami(self):
+        """
+        Check where am i to set initial step
+        """
         if self.hcv2.check_match(self.images["race_quit"]):
             common.press_then_sleep("esc")
             pyautogui.keyDown("z")

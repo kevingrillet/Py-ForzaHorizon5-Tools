@@ -7,27 +7,26 @@ from utils.handlertime import HandlerTime
 
 class AutoCarBuyLeastExpensive:
     count = 0
+    ht = HandlerTime()
     max_try = 25
-    nb_row = 1
+    running = False
 
-    def __init__(self, hcv2: HandlerCv2 = None, nb_row: int = nb_row):
+    def __init__(self, hcv2: HandlerCv2 = HandlerCv2(), nb_row: int = 1):
+        """
+        Prepare to auto buy lest expensive car
+        :param hcv2:
+        """
         common.debug("Create AutoCarBuyLeastExpensive")
+        self.hcv2 = hcv2
+        self.images = self.hcv2.load_images(
+            ["color", "not_buy", "not_enaugh_cr", "salon_auto", "valor", "valor_menu", "valor_selected"])
         self.nb_row = nb_row
-        if hcv2:
-            self.hcv2 = hcv2
-        else:
-            self.hcv2 = HandlerCv2()
-        self.ht = HandlerTime()
-        self.images = self.hcv2.load_images(["color",
-                                             "not_buy",
-                                             "not_enaugh_cr",
-                                             "salon_auto",
-                                             "valor",
-                                             "valor_menu",
-                                             "valor_selected"])
-        self.running = False
 
     def run(self, max_try: int = max_try):
+        """
+        Need to be run from home buy/sell tab
+        :param max_try:
+        """
         self.max_try = max_try
         common.debug("Start AutoCarBuyLeastExpensive (after 5 secs)")
         time.sleep(5)
@@ -54,7 +53,7 @@ class AutoCarBuyLeastExpensive:
             time.sleep(1)
             # GoTo least expensive
             common.press_then_sleep("backspace")
-            if self.nb_row == 2:
+            if self.nb_row == 1:
                 common.click_then_sleep((570, 770), .125)
             elif self.nb_row == 2:
                 common.click_then_sleep((570, 740), .125)

@@ -7,24 +7,24 @@ from utils.handlertime import HandlerTime
 
 class AutoCarMastery:
     count = 0
+    ht = HandlerTime()
     max_try = 50
+    running = False
 
-    def __init__(self, hcv2: HandlerCv2 = None):
+    def __init__(self, hcv2: HandlerCv2 = HandlerCv2()):
+        """
+        Prepare to auto master cars
+        :param hcv2:
+        """
         common.debug("Create AutoCarMastery")
-        if hcv2:
-            self.hcv2 = hcv2
-        else:
-            self.hcv2 = HandlerCv2()
-        self.ht = HandlerTime()
-        self.images = self.hcv2.load_images(["already_done",
-                                             "cant_buy",
-                                             "pontiac",
-                                             "pontiac_name",
-                                             "pontiac_name_selected",
-                                             "my_cars"])
-        self.running = False
+        self.hcv2 = hcv2
+        self.images = self.hcv2.load_images(
+            ["already_done", "cant_buy", "pontiac", "pontiac_name", "pontiac_name_selected", "my_cars"])
 
     def checkBuy(self):
+        """
+        Check if the mastery had been bought
+        """
         if self.hcv2.check_match(self.images["cant_buy"], True):
             common.press_then_sleep("enter")
             common.press_then_sleep("esc", 2)
@@ -33,6 +33,10 @@ class AutoCarMastery:
             raise NameError("Can't buy, not enaugh mastery points")
 
     def run(self, max_try: int = max_try):
+        """
+        Need to be run from home garage
+        :param max_try:
+        """
         common.debug("Start AutoCarMastery (after 5 secs)")
         self.max_try = max_try
         time.sleep(5)
@@ -57,10 +61,6 @@ class AutoCarMastery:
             if self.count > 1:  # Need to skip it 2 times to begin
                 if not self.hcv2.check_match(self.images["pontiac"], True):
                     raise NameError("Pontiac to delete not found")
-                # common.click_then_sleep(self.hcv2.random_find())
-                # common.debug("Choose car to delete (in 3 secs)")
-                # time.sleep(3)
-                # common.click_then_sleep((1180, 530))
                 common.press_then_sleep("right", .125)
                 common.press_then_sleep("enter")
                 # Delete button
@@ -74,10 +74,6 @@ class AutoCarMastery:
             # Find car to use
             if not self.hcv2.check_match(self.images["pontiac"], True):
                 raise NameError("Pontiac to drive not found")
-            # common.click_then_sleep(self.hcv2.random_find())
-            # common.debug("Choose car to use (in 3 secs)")
-            # time.sleep(3)
-            # common.click_then_sleep((1180, 530))
             common.press_then_sleep("up", .125)
             common.press_then_sleep("right", .125)
             # Enter car

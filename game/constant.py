@@ -4,6 +4,7 @@ from enum import auto, Enum
 from utils.superintenum import SuperIntEnum
 
 DEBUG_LEVEL = 0
+DEV_MODE = False
 WINDOW_NAME = "Forza Horizon 5"
 
 

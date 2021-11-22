@@ -8,28 +8,27 @@ from utils.handlercv2 import HandlerCv2
 
 class AutoGPSDestination:
     count = 0
-    delta = 20
-    gps_color = (255, 237, 62)  # [255 237  62] in BGR
-    cursor_location = (260, 1230)
-    map_delta = 75
-    map_rect = (cursor_location[0] - map_delta, cursor_location[1] - map_delta,
-                cursor_location[0] + map_delta, cursor_location[1] + map_delta)
+    color_d = 20  # delta
+    color_gps = (255, 237, 62)  # [255 237  62] in BGR
+    color_range_lower = (color_gps[0] - color_d, color_gps[1] - color_d, color_gps[2] - color_d)
+    color_range_upper = (color_gps[0] + color_d, color_gps[1] + color_d, color_gps[2] + color_d)
+    cursor_loc = (260, 1230)  # Location
+    map_d = 75  # delta
+    map_rect = (cursor_loc[0] - map_d, cursor_loc[1] - map_d, cursor_loc[0] + map_d, cursor_loc[1] + map_d)
+    running = False
 
-    def __init__(self, cv2: HandlerCv2 = None):
+    def __init__(self, hcv2: HandlerCv2 = HandlerCv2()):
+        """
+        Prepare to drive to destination
+        :param hcv2:
+        """
         common.debug("Create AutoGPSDestination")
-        if cv2:
-            self.hcv2 = cv2
-        else:
-            self.hcv2 = HandlerCv2()
-        self.color_range_lower = (self.gps_color[0] - self.delta,
-                                  self.gps_color[1] - self.delta,
-                                  self.gps_color[2] - self.delta)
-        self.color_range_upper = (self.gps_color[0] + self.delta,
-                                  self.gps_color[1] + self.delta,
-                                  self.gps_color[2] + self.delta)
-        self.running = False
+        self.hcv2 = hcv2
 
     def run(self):
+        """
+        Need to be run from game esc menu
+        """
         common.debug("Start AutoGPSDestination (after 5 secs)")
         time.sleep(5)
         common.press_then_sleep("esc")

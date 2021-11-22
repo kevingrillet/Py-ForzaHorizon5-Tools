@@ -1,36 +1,58 @@
 import time
 
+from game import constant
 from game.autocarbuy import AutoCarBuy
 from game.autocarmastery import AutoCarMastery
+from game.constant import AutoSpinAlreadyOwnedChoice
 from utils import common
 from utils.handlercv2 import HandlerCv2
 from utils.handlertime import HandlerTime
 
 
 class GameCommon:
+    ht = HandlerTime()
+
     def __init__(self, hcv2: HandlerCv2 = None):
+        """
+        Game common things
+        :param hcv2:
+        """
         common.debug("Create GameCommon")
-        if hcv2:
-            self.hcv2 = hcv2
-        else:
-            self.hcv2 = HandlerCv2()
-        self.ht = HandlerTime()
-        self.images = self.hcv2.load_images(["999_mastery",
-                                             "campaign_selected",
-                                             "lamborghini_name",
-                                             "lamborghini_name_selected",
-                                             "pontiac_name",
-                                             "pontiac_name_selected",
-                                             "my_cars"])
+        self.hcv2 = hcv2 if hcv2 else HandlerCv2()
+        self.images = self.hcv2.load_images(
+            ["999_mastery", "campaign_selected", "car_already_owned", "lamborghini_name", "lamborghini_name_selected",
+             "pontiac_name", "pontiac_name_selected", "my_cars"])
 
     @staticmethod
     def AutoCarBuy_Then_AutoCarMastery(acb: AutoCarBuy, acm: AutoCarMastery, nbcar: int = 70):
+        """
+        From main, used to do AutoCarBuy (already places on the pontiac) then AutoCarMastery
+        """
         common.debug("AutoCarBuy + AutoCarMastery for " + str(nbcar) + " cars")
         acb.run(nbcar)
         common.press_then_sleep("left")
         acm.run(nbcar)
 
+    def check_car_already_own(self,
+                              already_owned_choice: AutoSpinAlreadyOwnedChoice = AutoSpinAlreadyOwnedChoice.SELL) -> bool:
+        """
+        From anywhere where you can get a new car :)
+        """
+        common.debug("Start GameCommon.check_car_already_own")
+        if self.hcv2.check_match(self.images["car_already_owned"], True):
+            if constant.DEV_MODE:
+                self.hcv2.save_image()
+            if already_owned_choice == AutoSpinAlreadyOwnedChoice.SELL:
+                common.press_then_sleep("down", .125)
+                common.press_then_sleep("down", .125)
+            common.press_then_sleep("enter", 1)
+        common.debug("End GameCommon.check_car_already_own")
+        return False
+
     def check_mastery(self) -> bool:
+        """
+        From game, check if mastery is at 999
+        """
         common.debug("Start GameCommon.check_mastery")
         common.press_then_sleep("esc", 2)
         common.press_then_sleep("pagedown")
@@ -44,6 +66,9 @@ class GameCommon:
         return ret
 
     def go_home_garage(self):
+        """
+        From game, go to home > garage
+        """
         common.debug("Start GameCommon.go_home_garage")
         if not self.hcv2.check_match(self.images["campaign_selected"]):
             common.press_then_sleep("esc", 2)
@@ -57,6 +82,9 @@ class GameCommon:
         common.debug("End GameCommon.go_home_garage")
 
     def go_to_car_to_buy(self):
+        """
+        Starting in garage, get in car collection, then filter pontiac and go to firebird
+        """
         common.debug("Start GameCommon.go_to_car_to_buy")
         common.press_then_sleep("right", .125)
         common.press_then_sleep("enter", 2)
@@ -75,12 +103,18 @@ class GameCommon:
         common.debug("End GameCommon.go_to_car_to_buy")
 
     def home_getmycar(self):
+        """
+        Starting in garage, get in my lambo then get back to garage
+        """
         common.debug("Start GameCommon.home_getmycar")
         self.home_goinmycars()
         self.home_mycars_getinlambo()
         common.debug("End GameCommon.home_getmycar")
 
     def home_goinmycars(self):
+        """
+        Starting in garage, get in my cars
+        """
         common.debug("Start GameCommon.home_goinmycars")
         if not self.hcv2.check_match(self.images["my_cars"], True):
             raise NameError("Not in home")
@@ -88,6 +122,9 @@ class GameCommon:
         common.debug("End GameCommon.home_goinmycars")
 
     def home_mycars_getinlambo(self):
+        """
+        Starting in garage > my cars, filter favorite & lambo, then get in, then esc to garage
+        """
         common.debug("Start GameCommon.home_mycars_getinlambo")
         # Filter favorites
         common.press_then_sleep("y")

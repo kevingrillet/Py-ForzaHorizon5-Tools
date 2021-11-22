@@ -7,12 +7,23 @@ class HandlerTime:
     my_timer = time.time()
 
     def get_timer(self) -> float:
+        """
+        Get time since start
+        :return: difference in seconds
+        """
         return time.time() - self.my_timer
 
     def start(self):
+        """
+        Start timer
+        """
         self.my_timer = time.time()
 
     def stringify(self) -> str:
+        """
+        Beautify output
+        :return: time formated
+        """
         timer = self.get_timer()
         if timer >= 3600:
             fmt = "{H:02}h {M:2}m {S:02.02f}s"

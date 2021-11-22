@@ -10,22 +10,21 @@ from utils.handlerwin32 import HandlerWin32
 
 
 class HandlerCv2:
-    def __init__(self):
-        self.find_start = None
-        self.find_end = None
-        self.image_read_flag = cv2.IMREAD_COLOR
-        self.method = cv2.TM_CCOEFF_NORMED
-        self.require_new_capture = True
-        self.show_debug_image = False
-        self.target_image = None
-        self.target_image_debug = None
-        self.threshold = 0.9
-        self.hwin32 = HandlerWin32(window_name=constant.WINDOW_NAME, fullscreen=True, sos=True)
+    find_start = None
+    find_end = None
+    hwin32 = HandlerWin32(window_name=constant.WINDOW_NAME, fullscreen=True, sos=True)
+    image_read_flag = cv2.IMREAD_COLOR
+    method = cv2.TM_CCOEFF_NORMED
+    require_new_capture = True
+    show_debug_image = False
+    target_image = None
+    target_image_debug = None
+    threshold = 0.9
 
     def check_color(self, crl: (int, int, int) = None, cru: (int, int, int) = None,
                     rect: (int, int, int, int) = None) -> bool:
         """
-            Take capture & check if image match
+        Take capture & check if image match
         :param crl: color_range_lower (B,G,R)
         :param cru: color_range_upper (B,G,R)
         :param rect: rect
@@ -40,8 +39,8 @@ class HandlerCv2:
 
     def check_match(self, data_image, force: bool = False) -> bool:
         """
-            Take capture & check if image match
-            coordinates can be accessed with find_start / find_end or directly tap with tap_find
+        Take capture & check if image match
+        coordinates can be accessed with find_start / find_end or directly tap with tap_find
         :param data_image: Image to find
         :param force: force capture
         :return: true / false
@@ -52,7 +51,7 @@ class HandlerCv2:
 
     def dev(self):
         """
-            Run dev mode, showing the capture
+        Run dev mode, showing the capture
         """
         debug("dev > s to save, q to quit")
         while True:
@@ -72,24 +71,25 @@ class HandlerCv2:
 
     def draw_debug(self):
         """
-            Draw rect on find & show
+        Draw rect on find & show
         """
         self.target_image_debug = cv2.rectangle(self.target_image_debug, self.find_start, self.find_end, (0, 255, 0), 5)
         self.show_image()
 
     def get_image(self, force: bool = False):
         """
-            take capture & show
+        take capture & show
         :param force: force capture, else use require_new_capture
         """
         if self.require_new_capture or force:
             self.require_new_capture = False
-            self.target_image_debug = self.target_image = self.hwin32.screenshot()
+            self.target_image = self.hwin32.screenshot()
+            self.target_image_debug = self.hwin32.screenshot()
             self.show_image()
 
     def load_images(self, images_list: list[str] = None) -> dict:
         """
-            Load images and return dictionary
+        Load images and return dictionary
         :param images_list: [path_to_image, ...]
         :return: dict[path]={image, h, w}
         """
@@ -106,7 +106,7 @@ class HandlerCv2:
 
     def match_template(self, find_image) -> bool:
         """
-            return true if image match
+        return true if image match
         :param find_image: Image to find
         :return: true / false
         """
@@ -114,7 +114,7 @@ class HandlerCv2:
 
     def match(self, data_image) -> bool:
         """
-            return true if image match & set find_start & find_end
+        return true if image match & set find_start & find_end
         :param data_image: Image to find
         :return: true / false
         """
@@ -131,21 +131,24 @@ class HandlerCv2:
 
     def random_find(self) -> (int, int):
         """
-            return random coords (x,y) between find_start & find_end
+        return random coords (x,y) between find_start & find_end
+        :return:
         """
         x1, y1 = self.find_start
         x2, y2 = self.find_end
         return random.randint(x1, x2), random.randint(y1, y2)
 
+    def save_image(self, image=None):
+        cv2.imwrite(".temp/" + str(datetime.now()).replace(":", ".") + ".jpg", image if image else self.target_image)
+
     def show_image(self, image=None):
         """
-            show image if show_debug_image is set to True
+        show image if show_debug_image is set to True
         :param image: Image to show
         """
         if not self.show_debug_image:
             return
-        if image is None:
-            image = self.target_image_debug
+        image = image if image else self.target_image_debug
         cv2.namedWindow("show_image", cv2.WINDOW_NORMAL)
         cv2.resizeWindow("show_image", 1600, 900)
         cv2.imshow("show_image", image)

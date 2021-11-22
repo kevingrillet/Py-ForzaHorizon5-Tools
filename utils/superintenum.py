@@ -22,7 +22,7 @@ class SuperIntEnum(IntEnum):
 
     def first(self):
         """
-            return first element of the enum
+        return first element of the enum
         """
         cls = self.__class__
         members = list(cls)
@@ -32,7 +32,7 @@ class SuperIntEnum(IntEnum):
 
     def last(self):
         """
-            return last element of the enum
+        return last element of the enum
         """
         cls = self.__class__
         members = list(cls)
@@ -42,7 +42,7 @@ class SuperIntEnum(IntEnum):
 
     def prev(self, step: int = 1):
         """
-            return previous element of the enum
+        return previous element of the enum
         """
         cls = self.__class__
         members = list(cls)
@@ -53,7 +53,7 @@ class SuperIntEnum(IntEnum):
 
     def next(self, step: int = 1):
         """
-            return next element of the enum
+        return next element of the enum
         """
         cls = self.__class__
         members = list(cls)
