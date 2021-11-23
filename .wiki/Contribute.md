@@ -1,5 +1,3 @@
-# Contribute
-
 If you want to contribute, please pick an issue and send a PR ;)
 
 I'm using `PyCharm` to dev this tool.

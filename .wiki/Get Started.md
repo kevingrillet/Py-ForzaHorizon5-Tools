@@ -1,5 +1,3 @@
-# Get Started
-
 ## AutoWheelSpins
 
 Works fot WheelSpins and SuperWheelSpins!

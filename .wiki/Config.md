@@ -1,5 +1,3 @@
-# Config
-
 `config.ini` next to `main.py`
 
 ```ini

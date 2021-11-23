@@ -1,9 +1,7 @@
-# Requirements
-
-- Forza Horizon 5
-- Fullscreen
-- Res: 2560x1440
-- Language: French
+ - Forza Horizon 5
+ - Fullscreen
+ - Res: 2560x1440
+ - Language: French
 
 ## Other language
 
