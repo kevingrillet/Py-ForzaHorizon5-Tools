@@ -64,7 +64,7 @@ ToDo:
 <hr>
 
 <div align="center">
-<a href="https://github.com/kevingrillet/AFKArena-LabHelper/wiki/Requirements">Previous page</a>
+<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Requirements">Previous page</a>
 |
-<a href="https://github.com/kevingrillet/AFKArena-LabHelper/wiki/Sources">Next page</a>
+<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Sources">Next page</a>
 </div>

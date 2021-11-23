@@ -8,7 +8,7 @@
 <hr>
 
 <div align="center">
-<a href="https://github.com/kevingrillet/AFKArena-LabHelper/wiki/Get-Started">Previous page</a>
+<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Get-Started">Previous page</a>
 |
-<a href="https://github.com/kevingrillet/AFKArena-LabHelper/wiki/Contribute">Next page</a>
+<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Contribute">Next page</a>
 </div>

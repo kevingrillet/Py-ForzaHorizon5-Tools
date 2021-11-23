@@ -40,7 +40,7 @@ If you want to use another language, please add the missing captures into the co
 <hr>
 
 <div align="center">
-<a href="https://github.com/kevingrillet/AFKArena-LabHelper/wiki/Sources">Previous page</a>
+<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Sources">Previous page</a>
 |
 <strike>Next page</strike>
 </div>

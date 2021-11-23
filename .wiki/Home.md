@@ -39,5 +39,5 @@ Please look at [Get Started](https://github.com/kevingrillet/Py-ForzaHorizon5-To
 <div align="center">
 <strike>Previous page</strike>
 |
-<a href="https://github.com/kevingrillet/AFKArena-LabHelper/wiki/Config">Next page</a>
+<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Config">Next page</a>
 </div>

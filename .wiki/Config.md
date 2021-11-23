@@ -20,7 +20,7 @@ language = fr
 <hr>
 
 <div align="center">
-<a href="https://github.com/kevingrillet/AFKArena-LabHelper/wiki/Home">Previous page</a>
+<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Home">Previous page</a>
 |
-<a href="https://github.com/kevingrillet/AFKArena-LabHelper/wiki/Requirements">Next page</a>
+<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Requirements">Next page</a>
 </div>
