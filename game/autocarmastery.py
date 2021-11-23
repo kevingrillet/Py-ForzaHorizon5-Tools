@@ -20,7 +20,7 @@ class AutoCarMastery:
         common.debug("Create AutoCarMastery", DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
-            ["already_done", "cant_buy", "pontiac", "pontiac_name", "pontiac_name_selected", "my_cars"])
+            ["already_done", "cant_buy", "my_cars", "pontiac", "pontiac_name", "pontiac_name_selected"])
 
     def checkBuy(self):
         """

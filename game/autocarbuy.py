@@ -19,7 +19,7 @@ class AutoCarBuy:
         """
         common.debug("Create AutoCarBuy", DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
-        self.images = self.hcv2.load_images(["not_enaugh_cr", "buy_car"])
+        self.images = self.hcv2.load_images(["buy_car", "not_enaugh_cr"])
 
     def run(self, max_try: int = max_try):
         """

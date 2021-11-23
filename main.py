@@ -75,17 +75,15 @@ if __name__ == "__main__":
         alr = AutoLabReplay(hcv2, gc, True)
         common.alt_tab()
         common.click_then_sleep((10, 10), .125)
-        first = True
-        while True:
-            if first and gc.check_mastery():
-                gc.go_home_garage()
-                gc.go_to_car_to_buy()
-                GameCommon.AutoCarBuy_Then_AutoCarMastery(acb, acm, 70)
-            else:
-                gc.home_getmycar()
-                common.press_then_sleep("esc", 10)
-                common.press_then_sleep("esc", 5)
-                alr.run()
-            first = False
+        common.press_then_sleep("esc", 2)
+        if gc.check_mastery():
+            gc.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(acb, acm)
+        running = True
+        while running:
+            alr.run()
+            gc.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(acb, acm)
+            # running = gc.check_super_wheelspins()
+        time.sleep(5)
+        common.alt_f4()
     else:
         raise NameError("Not an option")

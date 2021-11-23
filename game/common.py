@@ -21,8 +21,8 @@ class GameCommon:
         common.debug("Create GameCommon", DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
-            ["999_mastery", "campaign_selected", "car_already_owned", "lamborghini_name", "lamborghini_name_selected",
-             "pontiac_name", "pontiac_name_selected", "my_cars"])
+            ["999_mastery", "999_super_wheelspins", "campaign_selected", "car_already_owned", "lamborghini_name",
+             "lamborghini_name_selected", "my_cars", "pontiac_name", "pontiac_name_selected"])
 
     @staticmethod
     def AutoCarBuy_Then_AutoCarMastery(acb: AutoCarBuy, acm: AutoCarMastery, nbcar: int = 70):
@@ -34,8 +34,18 @@ class GameCommon:
         common.press_then_sleep("left")
         acm.run(nbcar)
 
-    def check_car_already_own(self,
-                              already_owned_choice: AutoSpinAlreadyOwnedChoice = AutoSpinAlreadyOwnedChoice.SELL) -> bool:
+    def AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(self, acb: AutoCarBuy, acm: AutoCarMastery):
+        """
+        From main, used to do AutoCarBuy (from game) then AutoCarMastery then get in my lambo :)
+        """
+        self.go_home_garage()
+        self.go_to_car_to_buy()
+        GameCommon.AutoCarBuy_Then_AutoCarMastery(acb, acm, 70)
+        self.home_getmycar()
+        common.press_then_sleep("esc", 10)
+        common.press_then_sleep("esc", 5)
+
+    def check_car_already_own(self, aoc: AutoSpinAlreadyOwnedChoice = AutoSpinAlreadyOwnedChoice.SELL) -> bool:
         """
         From anywhere where you can get a new car :)
         """
@@ -43,7 +53,7 @@ class GameCommon:
         if self.hcv2.check_match(self.images["car_already_owned"], True):
             if constant.DEV_MODE:
                 self.hcv2.save_image()
-            if already_owned_choice == AutoSpinAlreadyOwnedChoice.SELL:
+            if aoc == AutoSpinAlreadyOwnedChoice.SELL:
                 common.press_then_sleep("down", .125)
                 common.press_then_sleep("down", .125)
             common.press_then_sleep("enter", 1)
@@ -53,6 +63,7 @@ class GameCommon:
     def check_mastery(self) -> bool:
         """
         From game, check if mastery is at 999
+        :return: True/False
         """
         common.debug("Start GameCommon.check_mastery", DebugLevel.FUNCTIONS)
         common.press_then_sleep("esc", 2)
@@ -63,6 +74,21 @@ class GameCommon:
         ret = self.hcv2.check_match(self.images["999_mastery"], True)
         common.press_then_sleep("esc, 1")
         common.press_then_sleep("pageup, 1")
+        common.debug("End GameCommon.check_mastery", DebugLevel.FUNCTIONS)
+        return ret
+
+    def check_super_wheelspins(self) -> bool:
+        """
+        From game, check if SuperWheelSpins is at 999
+        :return: True/False
+        """
+        common.debug("Start GameCommon.check_mastery", DebugLevel.FUNCTIONS)
+        common.press_then_sleep("esc", 2)
+        common.press_then_sleep("pagedown")
+        common.press_then_sleep("left", .125)
+        common.press_then_sleep("down", .125)
+        common.press_then_sleep("enter", 2)
+        ret = not self.hcv2.check_match(self.images["999_super_wheelspins"], True)
         common.debug("End GameCommon.check_mastery", DebugLevel.FUNCTIONS)
         return ret
 

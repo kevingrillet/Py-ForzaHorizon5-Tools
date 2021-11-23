@@ -30,7 +30,7 @@ class AutoLabReplay:
         self.gc = gc if gc else GameCommon()
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
-            ["accolades", "continue", "race_quit", "race_reward", "race_skip", "race_start", "race_type"])
+            ["accolades", "race_continue", "race_quit", "race_reward", "race_skip", "race_start", "race_type"])
         self.stop_on_max_mastery = stop_on_max_mastery
 
     def esc_to_menu(self):
@@ -44,7 +44,8 @@ class AutoLabReplay:
             else:
                 common.press_then_sleep("enter", 2)
                 cnt = 0
-            if self.hcv2.check_match(self.images["accolades"], True) or self.hcv2.check_match(self.images["race_start"]):
+            if self.hcv2.check_match(self.images["accolades"], True) or self.hcv2.check_match(
+                    self.images["race_start"]):
                 lost = False
 
     def next_step(self, step: AutoLabReplayStep = None):
@@ -91,7 +92,7 @@ class AutoLabReplay:
                         self.whereami()
 
             elif self.step == AutoLabReplayStep.RACING:
-                if self.hcv2.check_match(self.images["continue"]) \
+                if self.hcv2.check_match(self.images["race_continue"]) \
                         or self.hcv2.check_match(self.images["race_skip"]) \
                         or self.hcv2.check_match(self.images["race_reward"]):
                     pyautogui.keyUp("z")
@@ -99,7 +100,7 @@ class AutoLabReplay:
 
             elif self.step == AutoLabReplayStep.REWARDS:
                 time.sleep(1)
-                if self.hcv2.check_match(self.images["continue"]) \
+                if self.hcv2.check_match(self.images["race_continue"]) \
                         or self.hcv2.check_match(self.images["race_skip"]) \
                         or self.hcv2.check_match(self.images["race_reward"]):
                     common.press_then_sleep("enter")

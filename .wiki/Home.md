@@ -5,7 +5,9 @@
    </a>
 </div>
 
-Welcome to the **Py-ForzaHorizon5-Tools**
+## Description
+
+Welcome to the Py-ForzaHorizon5-Tools wiki!
 
 ```cmd
  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -21,11 +23,21 @@ Welcome to the **Py-ForzaHorizon5-Tools**
 Your choice:
 ```
 
-For more info, please check the wiki ;)
+Before starting to use it, please have a look at the [[Requirements]].
+
+Please look at [[Get Started]] to get more info about how to use the script.
 
 <!-- Footer -->
 <div align="center">
    <a href="https://github.com/kyechan99/capsule-render">
       <img align="center" src="https://capsule-render.vercel.app/api?section=footer&type=waving&color=gradient&height=100" />
    </a>
+</div>
+
+<hr>
+
+<div align="center">
+<strike>Previous page</strike>
+|
+<a href="https://github.com/kevingrillet/AFKArena-LabHelper/wiki/Config">Next page</a>
 </div>

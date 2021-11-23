@@ -24,8 +24,7 @@ class AutoWheelspins:
         common.debug("Create AutoWheelspins", DebugLevel.CLASS)
         self.gc = gc if gc else GameCommon()
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
-        self.images = self.hcv2.load_images(
-            ["collect_prize_and_spin_again", "skip", "0_spins_remaining"])
+        self.images = self.hcv2.load_images(["0_spins_remaining", "collect_prize_and_spin_again", "skip"])
 
     def run(self):
         """
