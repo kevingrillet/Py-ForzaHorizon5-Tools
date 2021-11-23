@@ -21,7 +21,7 @@ Welcome to the **Py-ForzaHorizon5-Tools**
 Your choice:
 ```
 
-For more info, please check the wiki ;)
+For more info, please check the [wiki](https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki) :goberserk:
 
 <!-- Footer -->
 <div align="center">
