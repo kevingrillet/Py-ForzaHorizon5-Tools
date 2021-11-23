@@ -23,9 +23,9 @@ Welcome to the Py-ForzaHorizon5-Tools wiki!
 Your choice:
 ```
 
-Before starting to use it, please have a look at the [[Requirements]].
+Before starting to use it, please have a look at the [Requirements](https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Requirements).
 
-Please look at [[Get Started]] to get more info about how to use the script.
+Please look at [Get Started](https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Get-Started) to get more info about how to use the script.
 
 <!-- Footer -->
 <div align="center">
