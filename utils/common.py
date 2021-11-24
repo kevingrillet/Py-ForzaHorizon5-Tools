@@ -49,7 +49,6 @@ def debug(msg: str = "", debug_level: int = DebugLevel.ALWAYS):
     print debug if enough level
     :param msg:
     :param debug_level:
-    :return:
     """
     if debug_level <= constant.DEBUG_LEVEL:
         print("[DEBUG] " + str(datetime.now().strftime("%d/%m/%Y %H:%M:%S")) + " - " + msg)
@@ -57,7 +56,7 @@ def debug(msg: str = "", debug_level: int = DebugLevel.ALWAYS):
 
 def fps() -> float:
     """
-    return fps
+    :return: fps
     """
     new_frame = time.time()
     timer = 1 / (new_frame - fps.frame)
@@ -70,11 +69,18 @@ def press_then_sleep(key: str, sleep: float = .5):
     press key then sleep
     :param key:
     :param sleep:
-    :return:
     """
     pyautogui.press(key)
     # pydirectinput.press(key)
     time.sleep(sleep)
+
+
+def warn(msg: str = ""):
+    """
+    print warn
+    :param msg:
+    """
+    print("[WARN ] " + str(datetime.now().strftime("%d/%m/%Y %H:%M:%S")) + " - " + msg)
 
 
 # https://stackoverflow.com/questions/279561/what-is-the-python-equivalent-of-static-variables-inside-a-function

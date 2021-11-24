@@ -1,4 +1,7 @@
+import os
 from configparser import SafeConfigParser
+
+from game import constant
 
 
 class HandlerConfig:
@@ -11,6 +14,17 @@ class HandlerConfig:
         :param path:
         """
         self.set_path(path)
+        self.create_default()
+
+    def create_default(self):
+        """
+        Create default config.ini file
+        """
+        if not os.path.isfile(self.path):
+            self.set_value("debug", str(constant.DEBUG_LEVEL.value))
+            self.set_value("dev", str(constant.DEV_MODE))
+            self.set_value("language", constant.LANG.value)
+            self.set_value("scale", str(constant.SCALE))
 
     def get_value(self, key: str = None, default: str = None, section: str = "main") -> str:
         """

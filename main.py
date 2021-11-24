@@ -11,8 +11,17 @@ from game.autolabreplay import AutoLabReplay
 from game.autowheelspins import AutoWheelspins
 from game.common import GameCommon
 from utils import common
+from utils.constant import DebugLevel, Lang
 from utils.handlerconfig import HandlerConfig
 from utils.handlercv2 import HandlerCv2
+
+
+def load_config():
+    hcfg = HandlerConfig("config.ini")
+    constant.DEBUG_LEVEL = DebugLevel(int(hcfg.get_value("debug")))
+    constant.DEV_MODE = hcfg.get_value("dev") == "True"
+    constant.LANG = Lang(hcfg.get_value("language"))
+    constant.SCALE = float(hcfg.get_value("scale"))
 
 
 def show_menu():
@@ -30,32 +39,28 @@ def show_menu():
 
 
 if __name__ == "__main__":
-    hcfg = HandlerConfig("config.ini")
-    constant.LANG = constant.Lang(hcfg.get_value("language", constant.LANG.value))
-    constant.DEBUG_LEVEL = int(hcfg.get_value("debug", str(constant.DEBUG_LEVEL)))
-    constant.DEV_MODE = hcfg.get_value("dev", str(constant.DEV_MODE)) == "True"
-
+    load_config()
     show_menu()
     intinput = int(input())
+    hcv2 = HandlerCv2(scale=constant.SCALE)
     if intinput == 1:
-        AutoWheelspins().run()
+        AutoWheelspins(hcv2).run()
     elif intinput == 2:
-        AutoGPSDestination().run()
+        AutoGPSDestination(hcv2).run()
     elif intinput == 3:
-        AutoLabReplay().run()
+        AutoLabReplay(hcv2).run()
     elif intinput == 30:
         common.alt_tab()
-        AutoLabReplay(stop_on_max_mastery=True).run()
+        AutoLabReplay(hcv2, stop_on_max_mastery=True).run()
         time.sleep(10)
         common.alt_f4()
     elif intinput == 4:
-        AutoCarBuy().run()
+        AutoCarBuy(hcv2).run()
     elif intinput == 5:
-        AutoCarMastery().run()
+        AutoCarMastery(hcv2).run()
     elif intinput == 6:
-        AutoCarBuyLeastExpensive().run()
+        AutoCarBuyLeastExpensive(hcv2).run()
     elif intinput == 0:
-        hcv2 = HandlerCv2()
         hcv2.hwin32.list_window_names()
         hcv2.dev()
     elif intinput == 99:
@@ -63,12 +68,10 @@ if __name__ == "__main__":
         pyautogui.press("esc")
         pyautogui.keyDown("z")
     elif intinput == 45:
-        hcv2 = HandlerCv2()
         common.alt_tab()
         GameCommon.AutoCarBuy_Then_AutoCarMastery(AutoCarBuy(hcv2), AutoCarMastery(hcv2), 70)
     elif intinput == 453:
         common.debug("AutoCarBuy + AutoCarMastery + AutoLabReplay")
-        hcv2 = HandlerCv2()
         gc = GameCommon()
         acb = AutoCarBuy(hcv2)
         acm = AutoCarMastery(hcv2)

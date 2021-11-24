@@ -20,13 +20,13 @@ class AutoCarMastery:
         common.debug("Create AutoCarMastery", DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
-            ["already_done", "cant_buy", "my_cars", "pontiac", "pontiac_name", "pontiac_name_selected"])
+            ["already_done", "cannot_afford_perk", "my_cars", "pontiac", "pontiac_name", "pontiac_name_selected"])
 
     def checkBuy(self):
         """
         Check if the mastery had been bought
         """
-        if self.hcv2.check_match(self.images["cant_buy"], True):
+        if self.hcv2.check_match(self.images["cannot_afford_perk"], True):
             common.press_then_sleep("enter")
             common.press_then_sleep("esc", 2)
             common.press_then_sleep("esc", 1.5)

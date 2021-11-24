@@ -1,6 +1,18 @@
+1. [AutoWheelSpins](#autowheelspins)
+2. [AutoGPSDestination](#autogpsdestination)
+3. [AutoLabReplay](#autolabreplay)
+4. [AutoCarBuy](#autocarbuy)
+5. [AutoCarMastery](#autocarmastery)
+  - [`1987 Pontiac Firebird Trans Am GTA`](#1987-pontiac-firebird-trans-am-gta)
+6. [AutoCarBuyLeastExpensive](#autocarbuyleastexpensive)
+
 ## AutoWheelSpins
 
 Works fot WheelSpins and SuperWheelSpins!
+
+Will spin until no more remain.
+
+Will sell duplicates cars.
 
 - Launch a first spin
 - Launch the script
@@ -8,7 +20,12 @@ Works fot WheelSpins and SuperWheelSpins!
 
 ## AutoGPSDestination
 
+Will go to destination then press `esc`.
+
 - SetUp full assist
+
+  ![2021-11-24 18 20 31 991569](https://user-images.githubusercontent.com/7203617/143285703-30f8c0ee-c8d8-42b8-aaa9-06734fde6ffc.jpg)
+
 - Set your destination
 - Launch the script
 - Set focus on Forza
@@ -31,27 +48,27 @@ Example of codes from <https://www.youtube.com/watch?v=HPS8Ubziu7U>:
 
 ## AutoCarBuy
 
+Buys car from collection.
+
 - Place on the car you want to buy in car collection
 - Launch the script
 - Set focus on Forza
 
 ## AutoCarMastery
 
-Delete car after mastery, it's **RISKY**!
+Delete car after mastery, so it's **RISKY**!
+
+### `1987 Pontiac Firebird Trans Am GTA`
 
 Will get super wheelspins for 14 points.
 
 The `1987 Pontiac Firebird Trans Am GTA` needs to be the 3rd car of the `pontiac` constructor.
 
+![Ex](https://user-images.githubusercontent.com/7203617/143285495-8d88e725-64ee-4261-95fb-240b96b28ebe.jpg)
+
 - At the home page of the house
-- Only works for `1987 Pontiac Firebird Trans Am GTA`
 - Launch the script
 - Set focus on Forza
-
-ToDo:
-
-- `2014 Porsche 911 Turbo S` <https://youtu.be/s6z0FyguhrI?t=30>
-- `2014 Ford Fiesta ST` <https://youtu.be/zI3Sm7q34bs?t=13>
 
 ## AutoCarBuyLeastExpensive
 

@@ -1,4 +1,4 @@
-from enum import auto
+from enum import auto, Enum
 
 from utils.superintenum import SuperIntEnum
 
@@ -9,3 +9,8 @@ class DebugLevel(SuperIntEnum):
     FUNCTIONS = auto()
     CLASS = auto()
     DEBUG = auto()
+
+
+class Lang(Enum):
+    ENGLISH = "en"
+    FRENCH = "fr"

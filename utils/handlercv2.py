@@ -1,10 +1,12 @@
+import os
 import random
 from datetime import datetime
 from pathlib import Path
 
-import cv2
+from cv2 import cv2
 
 from game import constant
+from utils import common
 from utils.common import debug, fps
 from utils.handlerwin32 import HandlerWin32
 
@@ -20,7 +22,8 @@ class HandlerCv2:
     target_image_debug = None
     threshold = 0.9
 
-    def __init__(self, show_debug_image=False):
+    def __init__(self, show_debug_image=False, scale=1):
+        self.scale = scale
         self.show_debug_image = show_debug_image
 
     def check_color(self, crl: (int, int, int) = None, cru: (int, int, int) = None,
@@ -89,21 +92,26 @@ class HandlerCv2:
             self.target_image_debug = self.hwin32.screenshot()
             self.show_image()
 
-    def load_images(self, images_list: list[str] = None, scale: float = 1) -> dict:
+    def load_images(self, images_list: list[str] = None) -> dict:
         """
         Load images and return dictionary
         :param images_list: [path_to_image, ...]
-        :param scale:
         :return: dict[path]={image, h, w}
         """
         if images_list is None:
             images_list = []
         res = {}
         for image in images_list:
-            # global_utils.debug("load_images > " + image, -1)
-            img = cv2.imread("./images/" + constant.LANG.value + "/" + image + ".jpg", self.image_read_flag)
-            if scale != 1:
-                img = cv2.resize(img, int(img.shape[1] * scale), int(img.shape[0] * scale),
+            # common.debug("load_images > " + image, -1)
+            if os.path.isfile("./images/" + constant.LANG.value + "/" + image + ".jpg"):
+                img = cv2.imread("./images/" + constant.LANG.value + "/" + image + ".jpg", self.image_read_flag)
+            elif os.path.isfile("./images/common/" + image + ".jpg"):
+                img = cv2.imread("./images/common/" + image + ".jpg", self.image_read_flag)
+            else:
+                common.warn("Image not found [" + image + "]")
+                img = cv2.imread("./images/default.jpg", self.image_read_flag)
+            if self.scale != 1:
+                img = cv2.resize(img, int(img.shape[1] * self.scale), int(img.shape[0] * self.scale),
                                  interpolation=cv2.INTER_AREA)
             if img is not None:
                 h, w = img.shape[:2]

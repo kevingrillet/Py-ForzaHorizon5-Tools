@@ -1,5 +1,6 @@
 import time
 
+from game import constant
 from utils import common
 from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
@@ -20,7 +21,7 @@ class AutoCarBuyLeastExpensive:
         common.debug("Create AutoCarBuyLeastExpensive", DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
-            ["color", "not_buy", "not_enaugh_cr", "salon_auto", "valor", "valor_menu", "valor_selected"])
+            ["autoshow", "colors", "not_owned", "not_enaugh_cr", "value", "value_menu", "value_selected"])
         self.nb_row = nb_row
 
     def run(self, max_try: int = max_try):
@@ -35,37 +36,37 @@ class AutoCarBuyLeastExpensive:
         self.ht.start()
         while self.running and self.count < self.max_try:
             # Enter salon
-            if not self.hcv2.check_match(self.images["salon_auto"], True):
+            if not self.hcv2.check_match(self.images["autoshow"], True):
                 raise NameError("Not at salon")
             common.press_then_sleep("enter", 2)
             # Filter not buy
             common.press_then_sleep("y")
-            if not self.hcv2.check_match(self.images["not_buy"], True):
+            if not self.hcv2.check_match(self.images["not_owned"], True):
                 raise NameError("Filter not found")
             common.click_then_sleep(self.hcv2.random_find(), .125)
             common.press_then_sleep("esc", 2)
             # Sort
             common.press_then_sleep("x")
-            if not self.hcv2.check_match(self.images["valor"], True):
+            if not self.hcv2.check_match(self.images["value"], True):
                 raise NameError("Sort not found")
             common.click_then_sleep(self.hcv2.random_find(), .125)
-            if self.hcv2.check_match(self.images["valor_selected"], True):
+            if self.hcv2.check_match(self.images["value_selected"], True):
                 common.press_then_sleep("enter")
             time.sleep(1)
             # GoTo least expensive
             common.press_then_sleep("backspace")
             if self.nb_row == 1:
-                common.click_then_sleep((570, 770), .125)
+                common.click_then_sleep((570, 770), .125, constant.SCALE)
             elif self.nb_row == 2:
-                common.click_then_sleep((570, 740), .125)
+                common.click_then_sleep((570, 740), .125, constant.SCALE)
             else:
-                common.click_then_sleep((570, 710), .125)
+                common.click_then_sleep((570, 710), .125, constant.SCALE)
 
-            if self.hcv2.check_match(self.images["valor_menu"], True):
+            if self.hcv2.check_match(self.images["value_menu"], True):
                 common.press_then_sleep("enter", 2)
             # Buy
             common.press_then_sleep("enter", 1)
-            while not self.hcv2.check_match(self.images["color"], True):
+            while not self.hcv2.check_match(self.images["colors"], True):
                 time.sleep(.1)
             common.press_then_sleep("y", 2)
             common.press_then_sleep("enter", 1)
