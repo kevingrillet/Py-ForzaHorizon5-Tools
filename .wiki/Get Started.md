@@ -15,6 +15,9 @@ Will spin until no more remain.
 Will sell duplicates cars.
 
 - Launch a first spin
+
+  ![](https://user-images.githubusercontent.com/7203617/143293552-aab176f5-2a37-46ff-b417-a757b2ba81a9.jpg)
+
 - Launch the script
 - Set focus on Forza
 
@@ -24,7 +27,7 @@ Will go to destination then press `esc`.
 
 - SetUp full assist
 
-  ![2021-11-24 18 20 31 991569](https://user-images.githubusercontent.com/7203617/143285703-30f8c0ee-c8d8-42b8-aaa9-06734fde6ffc.jpg)
+  ![](https://user-images.githubusercontent.com/7203617/143285703-30f8c0ee-c8d8-42b8-aaa9-06734fde6ffc.jpg)
 
 - Set your destination
 - Launch the script
@@ -33,6 +36,9 @@ Will go to destination then press `esc`.
 ## AutoLabReplay
 
 Will redo the last lab race done.
+
+![](https://user-images.githubusercontent.com/7203617/143293466-835bca70-004b-498b-853d-511cf2d6b6b7.jpg)
+
 Can be started from menu or race.
 
 - SetUp full assist
@@ -62,9 +68,11 @@ Delete car after mastery, so it's **RISKY**!
 
 Will get super wheelspins for 14 points.
 
+![](https://user-images.githubusercontent.com/7203617/143293559-7a901f3e-0450-44e4-a45e-4924d5381356.jpg)
+
 The `1987 Pontiac Firebird Trans Am GTA` needs to be the 3rd car of the `pontiac` constructor.
 
-![Ex](https://user-images.githubusercontent.com/7203617/143285495-8d88e725-64ee-4261-95fb-240b96b28ebe.jpg)
+![](https://user-images.githubusercontent.com/7203617/143285495-8d88e725-64ee-4261-95fb-240b96b28ebe.jpg)
 
 - At the home page of the house
 - Launch the script
