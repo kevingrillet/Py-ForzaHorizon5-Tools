@@ -57,6 +57,9 @@ Example of codes from <https://www.youtube.com/watch?v=HPS8Ubziu7U>:
 Buys car from collection.
 
 - Place on the car you want to buy in car collection
+
+  ![](https://user-images.githubusercontent.com/7203617/143294156-0c9c793d-3cbb-4f04-8396-8de6423ba5d0.jpg)
+
 - Launch the script
 - Set focus on Forza
 
