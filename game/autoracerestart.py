@@ -9,7 +9,7 @@ class AutoRaceRestart:
     count = 0
     count_try = 0
     ht = HandlerTime()
-    max_try = 100
+    max_try = 60
     running = False
     step = AutoLabReplayStep.INIT
 
@@ -45,6 +45,7 @@ class AutoRaceRestart:
         common.sleep(5)
         common.moveTo((10, 10))
         self.ht.start()
+        self.whereami()
         self.running = True
         while self.running and self.count_try < max_try:
             self.hcv2.require_new_capture = True
@@ -68,6 +69,7 @@ class AutoRaceRestart:
             elif self.step == AutoLabReplayStep.REWARDS:
                 common.sleep(1)
                 if self.hcv2.check_match(self.images["race_continue"]):
+                    self.count_try += 1
                     common.debug("Race done. [" + str(self.count_try) + "/" + str(self.max_try) + "]", DebugLevel.INFO)
                     common.press("x")
                     common.press("enter", 5)
