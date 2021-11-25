@@ -1,4 +1,3 @@
-from game import constant
 from utils import common
 from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
@@ -11,7 +10,7 @@ class AutoCarBuyLeastExpensive:
     max_try = 25
     running = False
 
-    def __init__(self, hcv2: HandlerCv2 = None, nb_row: int = 1):
+    def __init__(self, hcv2: HandlerCv2 = None):
         """
         Prepare to auto buy lest expensive car
         :param hcv2:
@@ -20,7 +19,6 @@ class AutoCarBuyLeastExpensive:
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
             ["autoshow", "colors", "not_owned", "not_enaugh_cr", "value", "value_menu", "value_selected"])
-        self.nb_row = nb_row
 
     def run(self, max_try: int = max_try):
         """
@@ -53,12 +51,10 @@ class AutoCarBuyLeastExpensive:
             common.sleep(1)
             # GoTo least expensive
             common.press("backspace")
-            if self.nb_row == 1:
-                common.click((570, 770), .125, constant.SCALE)
-            elif self.nb_row == 2:
-                common.click((570, 740), .125, constant.SCALE)
+            if self.hcv2.check_match(self.images["value_menu"], True):
+                common.click((570, self.hcv2.find_end[2] + 54))
             else:
-                common.click((570, 710), .125, constant.SCALE)
+                raise NameError("Jump to value not found")
 
             if self.hcv2.check_match(self.images["value_menu"], True):
                 common.press("enter", 2)
