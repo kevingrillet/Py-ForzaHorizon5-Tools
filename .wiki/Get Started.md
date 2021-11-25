@@ -5,6 +5,7 @@
 5. [AutoCarMastery](#autocarmastery)
   - [`1987 Pontiac Firebird Trans Am GTA`](#1987-pontiac-firebird-trans-am-gta)
 6. [AutoCarBuyLeastExpensive](#autocarbuyleastexpensive)
+7. [AutoRaceRestart](#autoracerestart)
 
 ## AutoWheelSpins
 
@@ -86,6 +87,21 @@ The `1987 Pontiac Firebird Trans Am GTA` needs to be the 3rd car of the `pontiac
 - At the home page of the house
 - Launch the script
 - Set focus on Forza
+
+## AutoRaceRestart
+
+Will restart the current race at the end.
+
+Can be started from menu or race.
+
+- SetUp full assist
+- Launch the script
+- Set focus on Forza
+
+Example of codes from <https://youtu.be/oBFlEdrj8Ec?t=16>:
+
+- Piniata: 10sp in 30 secs | 743 324 179
+
 
 <hr>
 

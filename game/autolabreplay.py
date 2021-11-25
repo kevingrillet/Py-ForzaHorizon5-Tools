@@ -26,7 +26,7 @@ class AutoLabReplay:
         self.gc = gc if gc else GameCommon()
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
-            ["accolades", "race_continue", "race_quit", "race_reward", "race_skip", "race_start", "race_type"])
+            ["accolades", "race_continue", "race_quit", "race_reward", "race_skip", "race_start"])
         self.stop_on_max_mastery = stop_on_max_mastery
 
     def esc_to_menu(self):
@@ -63,7 +63,6 @@ class AutoLabReplay:
         """
         common.debug("Start AutoLabReplay (after 5 secs)", DebugLevel.FUNCTIONS)
         self.max_try = max_try
-        default_sleep = 5
         common.sleep(5)
         common.moveTo((10, 10))
         self.ht.start()
@@ -115,30 +114,7 @@ class AutoLabReplay:
                 self.next_step()
 
             elif self.step == AutoLabReplayStep.RESTART:
-                common.debug("Restarting the race (after 30 secs)", DebugLevel.INFO)
-                common.sleep(30)
-                # Open menu
-                common.press("esc", default_sleep)
-                # GoTo Creation
-                common.press("pagedown", .25)
-                common.press("pagedown", .25)
-                common.press("pagedown", .25)
-                common.press("pagedown", .25)
-                # Enter Lab
-                common.press("enter", default_sleep)
-                # Enter my races
-                common.press("right", .25)
-                common.press("enter", default_sleep)
-                # GoTo History
-                common.press("pagedown", .25)
-                common.press("pagedown", default_sleep)
-                # Select last race
-                common.press("enter", default_sleep)
-                # Solo
-                if self.hcv2.check_match(self.images["race_type"]):
-                    common.press("enter", default_sleep)
-                # Same car
-                common.press("enter", default_sleep)
+                self.gc.go_to_last_lab_race()
                 self.next_step(AutoLabReplayStep.PREPARING)
 
             common.sleep(1)

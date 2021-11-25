@@ -4,6 +4,7 @@ from game.autocarbuyleastexpensive import AutoCarBuyLeastExpensive
 from game.autocarmastery import AutoCarMastery
 from game.autogpsdestination import AutoGPSDestination
 from game.autolabreplay import AutoLabReplay
+from game.autoracerestart import AutoRaceRestart
 from game.autowheelspins import AutoWheelspins
 from game.common import GameCommon
 from utils import common
@@ -30,6 +31,7 @@ def show_menu():
     print(" ┃ 4 - AutoCarBuy               ┃")
     print(" ┃ 5 - ⚠ AutoCarMastery ⚠       ┃")
     print(" ┃ 6 - AutoCarBuyLeastExpensive ┃")
+    print(" ┃ 7 - AutoRaceRestart          ┃")
     print(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛")
     print("Your choice:")
 
@@ -39,6 +41,8 @@ if __name__ == "__main__":
     show_menu()
     intinput = int(input())
     hcv2 = HandlerCv2(scale=constant.SCALE)
+
+    # Menu
     if intinput == 1:
         AutoWheelspins(hcv2).run()
     elif intinput == 2:
@@ -56,11 +60,8 @@ if __name__ == "__main__":
         AutoCarMastery(hcv2).run()
     elif intinput == 6:
         AutoCarBuyLeastExpensive(hcv2).run()
-
-    # Dev
-    elif intinput == 0:
-        hcv2.hwin32.list_window_names()
-        hcv2.dev()
+    elif intinput == 7:
+        AutoRaceRestart(hcv2).run()
 
     # Just press Z
     elif intinput == 99:
@@ -90,5 +91,36 @@ if __name__ == "__main__":
             # running = gc.check_super_wheelspins()
         common.sleep(5)
         common.alt_f4()
+    elif intinput == 457:
+        common.debug("AutoCarBuy + AutoCarMastery + AutoLabReplay")
+        gc = GameCommon()
+        acb = AutoCarBuy(hcv2)
+        acm = AutoCarMastery(hcv2)
+        arr = AutoRaceRestart(hcv2)
+        common.alt_tab()
+        common.click((10, 10), .125)
+        common.press("esc", 2)
+        if gc.check_mastery():
+            gc.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(acb, acm)
+        running = True
+        while running:
+            gc.go_to_last_lab_race()
+            arr.run(75)
+            gc.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(acb, acm)
+            # running = gc.check_super_wheelspins()
+        common.sleep(5)
+        common.alt_f4()
+
+    # Dev
+    elif intinput == 0:
+        hcv2.hwin32.list_window_names()
+        hcv2.dev()
+
+    # WIP
+    elif intinput == 98:
+        img_name = "valor_menu"
+        hcv2.check_match(hcv2.load_images([img_name])[img_name])
+        print("find_start: " + str(hcv2.find_start) + " find_end: " + str(hcv2.find_end))
+
     else:
         raise NameError("Not an option")

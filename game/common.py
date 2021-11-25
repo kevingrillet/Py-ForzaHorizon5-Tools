@@ -20,7 +20,7 @@ class GameCommon:
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
             ["999_mastery", "999_super_wheelspins", "campaign_selected", "car_already_owned", "lamborghini_name",
-             "lamborghini_name_selected", "my_cars", "pontiac_name", "pontiac_name_selected"])
+             "lamborghini_name_selected", "my_cars", "pontiac_name", "pontiac_name_selected", "race_type"])
 
     @staticmethod
     def AutoCarBuy_Then_AutoCarMastery(acb: AutoCarBuy, acm: AutoCarMastery, nbcar: int = 70):
@@ -126,6 +126,36 @@ class GameCommon:
         common.press("right", .125)
         common.press("right", .125)
         common.debug("End GameCommon.go_to_car_to_buy", DebugLevel.FUNCTIONS)
+
+    def go_to_last_lab_race(self, default_sleep: float = 5):
+        """
+        Starting in game, go to last lab race
+        :param default_sleep:
+        """
+        common.debug("Restarting the race (after 30 secs)", DebugLevel.INFO)
+        common.sleep(30)
+        # Open menu
+        common.press("esc", default_sleep)
+        # GoTo Creation
+        common.press("pagedown", .25)
+        common.press("pagedown", .25)
+        common.press("pagedown", .25)
+        common.press("pagedown", .25)
+        # Enter Lab
+        common.press("enter", default_sleep)
+        # Enter my races
+        common.press("right", .25)
+        common.press("enter", default_sleep)
+        # GoTo History
+        common.press("pagedown", .25)
+        common.press("pagedown", default_sleep)
+        # Select last race
+        common.press("enter", default_sleep)
+        # Solo
+        if self.hcv2.check_match(self.images["race_type"]):
+            common.press("enter", default_sleep)
+        # Same car
+        common.press("enter", default_sleep)
 
     def home_getmycar(self):
         """

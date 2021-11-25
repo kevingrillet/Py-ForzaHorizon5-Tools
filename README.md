@@ -28,6 +28,7 @@ Welcome to the **Py-ForzaHorizon5-Tools**
  ┃ 4 - AutoCarBuy               ┃
  ┃ 5 - AutoCarMastery           ┃
  ┃ 6 - AutoCarBuyLeastExpensive ┃
+ ┃ 7 - AutoRaceRestart          ┃
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 Your choice:
 ```
