@@ -1,5 +1,3 @@
-import time
-
 from game import constant
 from game.autocarbuy import AutoCarBuy
 from game.autocarmastery import AutoCarMastery
@@ -123,7 +121,7 @@ class GameCommon:
         common.click(self.hcv2.random_find(), .125)
         if self.hcv2.check_match(self.images["pontiac_name_selected"], True):
             common.press("enter", 1)
-        time.sleep(1)
+        common.sleep(1)
         common.press("right", .125)
         common.press("right", .125)
         common.press("right", .125)
