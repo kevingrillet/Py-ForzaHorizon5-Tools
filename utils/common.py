@@ -4,7 +4,7 @@ from datetime import datetime
 import pyautogui
 
 from game import constant
-from utils.constant import DebugLevel, Lang
+from utils.constant import DebugLevel
 
 
 def alt_f4():
@@ -31,7 +31,6 @@ def click(location: (int, int) = (0, 0), secs: float = .5, scale: float = 1):
     :param location:
     :param secs:
     :param scale:
-    :return:
     """
     if scale != 1:
         location = (int(location[0] * scale), int(location[1] * scale))
@@ -86,7 +85,6 @@ def moveTo(location: (int, int) = (0, 0), secs: float = .5, scale: float = 1):
     :param location:
     :param secs:
     :param scale:
-    :return:
     """
     if scale != 1:
         location = (int(location[0] * scale), int(location[1] * scale))

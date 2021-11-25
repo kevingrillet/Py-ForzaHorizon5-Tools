@@ -60,7 +60,6 @@ class AutoLabReplay:
         """
         Need to be started from race, or esc menu, or race preparation menu
         :param max_try:
-        :return:
         """
         common.debug("Start AutoLabReplay (after 5 secs)", DebugLevel.FUNCTIONS)
         self.max_try = max_try
