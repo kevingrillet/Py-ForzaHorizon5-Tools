@@ -64,6 +64,10 @@ if __name__ == "__main__":
         AutoCarBuyLeastExpensive(hcv2).run()
     elif intinput == 7:
         AutoRaceRestart(hcv2).run()
+    elif intinput == 70:
+        AutoRaceRestart(hcv2).run()
+        common.sleep(10)
+        common.alt_f4()
 
     # Just press Z
     elif intinput == 99:

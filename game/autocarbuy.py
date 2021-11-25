@@ -17,7 +17,7 @@ class AutoCarBuy:
         """
         common.debug("Create AutoCarBuy", DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
-        self.images = self.hcv2.load_images(["buy_car", "not_enaugh_cr"])
+        self.images = self.hcv2.load_images(["buy_car", "insufficient_cr"])
 
     def run(self, max_try: int = max_try):
         """
@@ -30,7 +30,7 @@ class AutoCarBuy:
         self.running = True
         self.ht.start()
         while self.running and self.count < self.max_try:
-            if self.hcv2.check_match(self.images["not_enaugh_cr"], True):
+            if self.hcv2.check_match(self.images["insufficient_cr"], True):
                 common.press("esc")
                 common.press("esc")
                 self.running = False

@@ -18,7 +18,7 @@ class AutoCarBuyLeastExpensive:
         common.debug("Create AutoCarBuyLeastExpensive", DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
-            ["autoshow", "colors", "not_owned", "not_enaugh_cr", "value", "value_menu", "value_selected"])
+            ["autoshow", "colors", "not_owned", "insufficient_cr", "value", "value_menu", "value_selected"])
 
     def run(self, max_try: int = max_try):
         """
@@ -65,7 +65,7 @@ class AutoCarBuyLeastExpensive:
             common.press("y", 2)
             common.press("enter", 1)
             common.press("enter", 1)
-            if self.hcv2.check_match(self.images["not_enaugh_cr"], True):
+            if self.hcv2.check_match(self.images["insufficient_cr"], True):
                 raise NameError("Not Enaugh CR")
             common.press("enter", 20)
             common.press("esc", 3)
