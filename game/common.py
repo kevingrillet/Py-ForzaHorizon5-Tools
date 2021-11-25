@@ -31,7 +31,7 @@ class GameCommon:
         """
         common.debug("AutoCarBuy + AutoCarMastery for " + str(nbcar) + " cars", DebugLevel.INFO)
         acb.run(nbcar)
-        common.press_then_sleep("left")
+        common.press("left")
         acm.run(nbcar)
 
     def AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(self, acb: AutoCarBuy, acm: AutoCarMastery):
@@ -42,8 +42,8 @@ class GameCommon:
         self.go_to_car_to_buy()
         GameCommon.AutoCarBuy_Then_AutoCarMastery(acb, acm, 70)
         self.home_getmycar()
-        common.press_then_sleep("esc", 10)
-        common.press_then_sleep("esc", 5)
+        common.press("esc", 10)
+        common.press("esc", 5)
 
     def check_car_already_own(self, aoc: AutoSpinAlreadyOwnedChoice = AutoSpinAlreadyOwnedChoice.SELL) -> bool:
         """
@@ -54,9 +54,9 @@ class GameCommon:
             if constant.DEV_MODE:
                 self.hcv2.save_image()
             if aoc == AutoSpinAlreadyOwnedChoice.SELL:
-                common.press_then_sleep("down", .125)
-                common.press_then_sleep("down", .125)
-            common.press_then_sleep("enter", 1)
+                common.press("down", .125)
+                common.press("down", .125)
+            common.press("enter", 1)
         common.debug("End GameCommon.check_car_already_own", DebugLevel.FUNCTIONS)
         return False
 
@@ -66,14 +66,14 @@ class GameCommon:
         :return: True/False
         """
         common.debug("Start GameCommon.check_mastery", DebugLevel.FUNCTIONS)
-        common.press_then_sleep("esc", 2)
-        common.press_then_sleep("pagedown")
-        common.press_then_sleep("right", .125)
-        common.press_then_sleep("down", .125)
-        common.press_then_sleep("enter", 2)
+        common.press("esc", 2)
+        common.press("pagedown")
+        common.press("right", .125)
+        common.press("down", .125)
+        common.press("enter", 2)
         ret = self.hcv2.check_match(self.images["999_mastery"], True)
-        common.press_then_sleep("esc, 1")
-        common.press_then_sleep("pageup, 1")
+        common.press("esc, 1")
+        common.press("pageup, 1")
         common.debug("End GameCommon.check_mastery", DebugLevel.FUNCTIONS)
         return ret
 
@@ -83,11 +83,11 @@ class GameCommon:
         :return: True/False
         """
         common.debug("Start GameCommon.check_mastery", DebugLevel.FUNCTIONS)
-        common.press_then_sleep("esc", 2)
-        common.press_then_sleep("pagedown")
-        common.press_then_sleep("left", .125)
-        common.press_then_sleep("down", .125)
-        common.press_then_sleep("enter", 2)
+        common.press("esc", 2)
+        common.press("pagedown")
+        common.press("left", .125)
+        common.press("down", .125)
+        common.press("enter", 2)
         ret = not self.hcv2.check_match(self.images["999_super_wheelspins"], True)
         common.debug("End GameCommon.check_mastery", DebugLevel.FUNCTIONS)
         return ret
@@ -98,14 +98,14 @@ class GameCommon:
         """
         common.debug("Start GameCommon.go_home_garage", DebugLevel.FUNCTIONS)
         if not self.hcv2.check_match(self.images["campaign_selected"]):
-            common.press_then_sleep("esc", 2)
+            common.press("esc", 2)
             if not self.hcv2.check_match(self.images["campaign_selected"]):
                 raise NameError("Not in menu")
-        common.press_then_sleep("pagedown")
-        common.press_then_sleep("pagedown")
-        common.press_then_sleep("enter")
-        common.press_then_sleep("enter", 5)
-        common.press_then_sleep("pageup")
+        common.press("pagedown")
+        common.press("pagedown")
+        common.press("enter")
+        common.press("enter", 5)
+        common.press("pageup")
         common.debug("End GameCommon.go_home_garage", DebugLevel.FUNCTIONS)
 
     def go_to_car_to_buy(self):
@@ -113,20 +113,20 @@ class GameCommon:
         Starting in garage, get in car collection, then filter pontiac and go to firebird
         """
         common.debug("Start GameCommon.go_to_car_to_buy", DebugLevel.FUNCTIONS)
-        common.press_then_sleep("right", .125)
-        common.press_then_sleep("enter", 2)
-        common.press_then_sleep("backspace", 1)
+        common.press("right", .125)
+        common.press("enter", 2)
+        common.press("backspace", 1)
         if not self.hcv2.check_match(self.images["pontiac_name"], True):
-            common.press_then_sleep("up", 1)
+            common.press("up", 1)
             if not self.hcv2.check_match(self.images["pontiac_name"], True):
                 raise NameError("Pontiac name not found")
-        common.click_then_sleep(self.hcv2.random_find(), .125)
+        common.click(self.hcv2.random_find(), .125)
         if self.hcv2.check_match(self.images["pontiac_name_selected"], True):
-            common.press_then_sleep("enter", 1)
+            common.press("enter", 1)
         time.sleep(1)
-        common.press_then_sleep("right", .125)
-        common.press_then_sleep("right", .125)
-        common.press_then_sleep("right", .125)
+        common.press("right", .125)
+        common.press("right", .125)
+        common.press("right", .125)
         common.debug("End GameCommon.go_to_car_to_buy", DebugLevel.FUNCTIONS)
 
     def home_getmycar(self):
@@ -145,7 +145,7 @@ class GameCommon:
         common.debug("Start GameCommon.home_goinmycars", DebugLevel.FUNCTIONS)
         if not self.hcv2.check_match(self.images["my_cars"], True):
             raise NameError("Not in home")
-        common.press_then_sleep("enter", 2)
+        common.press("enter", 2)
         common.debug("End GameCommon.home_goinmycars", DebugLevel.FUNCTIONS)
 
     def home_mycars_getinlambo(self):
@@ -154,22 +154,22 @@ class GameCommon:
         """
         common.debug("Start GameCommon.home_mycars_getinlambo", DebugLevel.FUNCTIONS)
         # Filter favorites
-        common.press_then_sleep("y")
-        common.press_then_sleep("enter")
-        common.press_then_sleep("esc", 2)
+        common.press("y")
+        common.press("enter")
+        common.press("esc", 2)
         # Constructor
-        common.press_then_sleep("backspace", 1)
+        common.press("backspace", 1)
         if not self.hcv2.check_match(self.images["lamborghini"], True):
             raise NameError("No lambo in favorites")
-        common.click_then_sleep(self.hcv2.random_find(), .125)
+        common.click(self.hcv2.random_find(), .125)
         if self.hcv2.check_match(self.images["lamborghini_name_selected"], True):
-            common.press_then_sleep("enter", 1)
+            common.press("enter", 1)
         # Get in car
-        common.press_then_sleep("enter")
-        common.press_then_sleep("enter", 1)
+        common.press("enter")
+        common.press("enter", 1)
         cnt = 0
         while not self.hcv2.check_match(self.images["my_cars"], True):
-            common.press_then_sleep("esc", 1)
+            common.press("esc", 1)
             cnt += 1
             if cnt > 10:
                 raise NameError("My cars not found")
