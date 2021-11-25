@@ -1,5 +1,5 @@
 from game.common import GameCommon
-from game.constant import AutoSpinAlreadyOwnedChoice
+from game.constant import AlreadyOwnedChoice
 from utils import common
 from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
@@ -7,7 +7,7 @@ from utils.handlertime import HandlerTime
 
 
 class AutoWheelspins:
-    already_owned_choice = AutoSpinAlreadyOwnedChoice.SELL
+    already_owned_choice = AlreadyOwnedChoice.SELL
     count = 0
     ht = HandlerTime()
     running = False

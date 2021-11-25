@@ -1,5 +1,5 @@
 from game.common import GameCommon
-from game.constant import AutoLabReplayStep, AutoSpinAlreadyOwnedChoice
+from game.constant import RaceStep, AlreadyOwnedChoice
 from utils import common
 from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
@@ -7,13 +7,13 @@ from utils.handlertime import HandlerTime
 
 
 class AutoLabReplay:
-    already_owned_choice = AutoSpinAlreadyOwnedChoice.SELL
+    already_owned_choice = AlreadyOwnedChoice.SELL
     count = 0
     count_try = 0
     ht = HandlerTime()
     max_try = 10
     running = False
-    step = AutoLabReplayStep.INIT
+    step = RaceStep.INIT
 
     def __init__(self, hcv2: HandlerCv2 = None, gc: GameCommon = None, stop_on_max_mastery: bool = False):
         """
@@ -44,12 +44,12 @@ class AutoLabReplay:
                     self.images["race_start"]):
                 lost = False
 
-    def next_step(self, step: AutoLabReplayStep = None):
+    def next_step(self, step: RaceStep = None):
         """
         Set next step and reset count
         :param step:
         """
-        next_step: AutoLabReplayStep = step if step else self.step.next()
+        next_step: RaceStep = step if step else self.step.next()
         common.debug(
             "Step done: " + self.step.name + " [" + str(self.count) + " in " + self.ht.stringify() + "] -> next: " +
             next_step.name, DebugLevel.INFO)
@@ -72,7 +72,7 @@ class AutoLabReplay:
         while self.running and self.count_try < max_try:
             self.hcv2.require_new_capture = True
 
-            if self.step == AutoLabReplayStep.PREPARING:
+            if self.step == RaceStep.PREPARING:
                 if self.hcv2.check_match(self.images["race_start"]):
                     common.click(self.hcv2.random_find())
                     common.keyDown("z")
@@ -85,14 +85,14 @@ class AutoLabReplay:
                         self.esc_to_menu()
                         self.whereami()
 
-            elif self.step == AutoLabReplayStep.RACING:
+            elif self.step == RaceStep.RACING:
                 if self.hcv2.check_match(self.images["race_continue"]) \
                         or self.hcv2.check_match(self.images["race_skip"]) \
                         or self.hcv2.check_match(self.images["race_reward"]):
                     common.keyUp("z")
                     self.next_step()
 
-            elif self.step == AutoLabReplayStep.REWARDS:
+            elif self.step == RaceStep.REWARDS:
                 common.sleep(1)
                 if self.hcv2.check_match(self.images["race_continue"]) \
                         or self.hcv2.check_match(self.images["race_skip"]) \
@@ -108,14 +108,14 @@ class AutoLabReplay:
                                      DebugLevel.INFO)
                         self.next_step()
 
-            elif self.step == AutoLabReplayStep.CHECK:
+            elif self.step == RaceStep.CHECK:
                 if self.stop_on_max_mastery and self.gc:
                     self.running = not self.gc.check_mastery()
                 self.next_step()
 
-            elif self.step == AutoLabReplayStep.RESTART:
+            elif self.step == RaceStep.RESTART:
                 self.gc.go_to_last_lab_race()
-                self.next_step(AutoLabReplayStep.PREPARING)
+                self.next_step(RaceStep.PREPARING)
 
             common.sleep(1)
 
@@ -128,9 +128,9 @@ class AutoLabReplay:
         if self.hcv2.check_match(self.images["race_quit"]):
             common.press("esc")
             common.keyDown("z")
-            self.next_step(AutoLabReplayStep.RACING)
+            self.next_step(RaceStep.RACING)
         elif self.hcv2.check_match(self.images["race_start"]):
-            self.next_step(AutoLabReplayStep.PREPARING)
+            self.next_step(RaceStep.PREPARING)
         else:
             common.press("esc")
-            self.next_step(AutoLabReplayStep.RESTART)
+            self.next_step(RaceStep.RESTART)

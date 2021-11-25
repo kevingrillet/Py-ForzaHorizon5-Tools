@@ -4,6 +4,7 @@ Edit `config.ini` next to `main.py`. The file is created at first launch.
 
 ```ini
 [main]
+car = pontiac
 debug = 0
 dev = False
 language = fr
@@ -12,15 +13,26 @@ scale = 1
 
 ## Description
 
-| Options    | Type    | Nullable | Description                                                         | Values          |
-|------------|---------|----------|---------------------------------------------------------------------|-----------------|
-| `debug`    | `int`   | Yes      | Set the verbosity of the script. Higher values will have more text. | `0`-`4`         |
-| `dev`      | `bool`  | Yes      | Set dev mode. Will save images in `.temp/` folder.                  | `True`, `False` |
-| `language` | `str`   | Yes      | Set language for the image folder.                                  | `en`, `fr`, ... |
-| `scale`    | `float` | Yes      | Set scale.                                                          | `1`, `0.75`     |
+| Options    | Type    | Nullable | Description                                                         | Values            |
+|------------|---------|----------|---------------------------------------------------------------------|-------------------|
+| `car`      | `str`   | Yes      | Set the car to buy / master.                                        | `ford`, `pontiac` |
+| `debug`    | `int`   | Yes      | Set the verbosity of the script. Higher values will have more text. | `0`-`4`           |
+| `dev`      | `bool`  | Yes      | Set dev mode. Will save images in `.temp/` folder.                  | `True`, `False`   |
+| `language` | `str`   | Yes      | Set language for the image folder.                                  | `en`, `fr`, ...   |
+| `scale`    | `float` | Yes      | Set scale.                                                          | `1`, `0.75`       |
 
 
 ## More info
+
+### Car
+
+Car enum can be found here: <https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/blob/main/game/constant.py>
+
+| Name      | Value     |
+|:---------:|:---------:|
+| `FORD`    | `ford`    |
+| `PONTIAC` | `pontiac` |
+|           |           |
 
 ### Debug
 

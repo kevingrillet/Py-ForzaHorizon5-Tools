@@ -9,9 +9,8 @@
 
 - AutoCarPhotoAll: Take a photo of every vehicules
 
-- AutoCarMastery + some GoTo
+- AutoCarMastery
   - `2014 Porsche 911 Turbo S` <https://youtu.be/s6z0FyguhrI?t=30>
-  - `2014 Ford Fiesta ST` <https://youtu.be/zI3Sm7q34bs?t=13>
 
 ## Low priority
 

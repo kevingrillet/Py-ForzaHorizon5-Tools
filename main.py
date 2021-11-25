@@ -7,6 +7,7 @@ from game.autolabreplay import AutoLabReplay
 from game.autoracerestart import AutoRaceRestart
 from game.autowheelspins import AutoWheelspins
 from game.common import GameCommon
+from game.constant import Car
 from utils import common
 from utils.constant import DebugLevel, Lang
 from utils.handlerconfig import HandlerConfig
@@ -15,10 +16,11 @@ from utils.handlercv2 import HandlerCv2
 
 def load_config():
     hcfg = HandlerConfig("config.ini")
-    constant.DEBUG_LEVEL = DebugLevel(int(hcfg.get_value("debug")))
-    constant.DEV_MODE = hcfg.get_value("dev") == "True"
-    constant.LANG = Lang(hcfg.get_value("language"))
-    constant.SCALE = float(hcfg.get_value("scale"))
+    constant.CAR = Car(hcfg.get_value("car", constant.CAR.value))
+    constant.DEBUG_LEVEL = DebugLevel(int(hcfg.get_value("debug", str(constant.DEBUG_LEVEL.value))))
+    constant.DEV_MODE = hcfg.get_value("dev", str(constant.DEV_MODE)) == "True"
+    constant.LANG = Lang(hcfg.get_value("language", constant.LANG.value))
+    constant.SCALE = float(hcfg.get_value("scale", str(constant.SCALE)))
 
 
 def show_menu():
@@ -105,7 +107,8 @@ if __name__ == "__main__":
         running = True
         while running:
             gc.go_to_last_lab_race()
-            arr.run(75)
+            arr.run()
+            gc.quit_race()
             gc.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(acb, acm)
             # running = gc.check_super_wheelspins()
         common.sleep(5)
@@ -118,9 +121,9 @@ if __name__ == "__main__":
 
     # WIP
     elif intinput == 98:
-        img_name = "valor_menu"
-        hcv2.check_match(hcv2.load_images([img_name])[img_name])
-        print("find_start: " + str(hcv2.find_start) + " find_end: " + str(hcv2.find_end))
+        img_name = "skip"
+        print("find: " + str(hcv2.check_match(hcv2.load_images([img_name])[img_name])) + " find_start: " + str(
+            hcv2.find_start) + " find_end: " + str(hcv2.find_end))
 
     else:
         raise NameError("Not an option")

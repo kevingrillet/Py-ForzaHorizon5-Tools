@@ -21,6 +21,7 @@ class HandlerConfig:
         Create default config.ini file
         """
         if not os.path.isfile(self.path):
+            self.set_value("car", str(constant.CAR.value))
             self.set_value("debug", str(constant.DEBUG_LEVEL.value))
             self.set_value("dev", str(constant.DEV_MODE))
             self.set_value("language", constant.LANG.value)
@@ -38,7 +39,7 @@ class HandlerConfig:
             raise NameError("No config file loaded")
         if not (section and key):
             raise NameError("Missing parameter")
-        return self.config.get(section, key, fallback=default)
+        return self.config.get(section, key)
 
     def set_path(self, path: str = None):
         """

@@ -1,7 +1,7 @@
 from game import constant
 from game.autocarbuy import AutoCarBuy
 from game.autocarmastery import AutoCarMastery
-from game.constant import AutoSpinAlreadyOwnedChoice
+from game.constant import AlreadyOwnedChoice, Car
 from utils import common
 from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
@@ -17,10 +17,11 @@ class GameCommon:
         :param hcv2:
         """
         common.debug("Create GameCommon", DebugLevel.CLASS)
+        self.car = constant.CAR.value
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
             ["999_mastery", "999_super_wheelspins", "campaign_selected", "car_already_owned", "lamborghini_name",
-             "lamborghini_name_selected", "my_cars", "pontiac_name", "pontiac_name_selected", "race_type"])
+             "lamborghini_name_selected", "my_cars", self.car + "_name", self.car + "_name_selected", "race_type"])
 
     @staticmethod
     def AutoCarBuy_Then_AutoCarMastery(acb: AutoCarBuy, acm: AutoCarMastery, nbcar: int = 70):
@@ -36,14 +37,21 @@ class GameCommon:
         """
         From main, used to do AutoCarBuy (from game) then AutoCarMastery then get in my lambo :)
         """
+        if self.car == Car.PONTIAC.value:
+            nbcar = 70
+        elif self.car == Car.PONTIAC.value:
+            nbcar = 199
+        else:
+            raise NameError("Unknow car")
+
         self.go_home_garage()
         self.go_to_car_to_buy()
-        GameCommon.AutoCarBuy_Then_AutoCarMastery(acb, acm, 70)
+        GameCommon.AutoCarBuy_Then_AutoCarMastery(acb, acm, nbcar)
         self.home_getmycar()
         common.press("esc", 10)
         common.press("esc", 5)
 
-    def check_car_already_own(self, aoc: AutoSpinAlreadyOwnedChoice = AutoSpinAlreadyOwnedChoice.SELL) -> bool:
+    def check_car_already_own(self, aoc: AlreadyOwnedChoice = AlreadyOwnedChoice.SELL) -> bool:
         """
         From anywhere where you can get a new car :)
         """
@@ -51,7 +59,7 @@ class GameCommon:
         if self.hcv2.check_match(self.images["car_already_owned"], True):
             if constant.DEV_MODE:
                 self.hcv2.save_image()
-            if aoc == AutoSpinAlreadyOwnedChoice.SELL:
+            if aoc == AlreadyOwnedChoice.SELL:
                 common.press("down", .125)
                 common.press("down", .125)
             common.press("enter", 1)
@@ -114,17 +122,26 @@ class GameCommon:
         common.press("right", .125)
         common.press("enter", 2)
         common.press("backspace", 1)
-        if not self.hcv2.check_match(self.images["pontiac_name"], True):
+        if not self.hcv2.check_match(self.images[self.car + "_name"], True):
             common.press("up", 1)
-            if not self.hcv2.check_match(self.images["pontiac_name"], True):
+            if not self.hcv2.check_match(self.images[self.car + "_name"], True):
                 raise NameError("Pontiac name not found")
         common.click(self.hcv2.random_find(), .125)
-        if self.hcv2.check_match(self.images["pontiac_name_selected"], True):
+        if self.hcv2.check_match(self.images[self.car + "_name_selected"], True):
             common.press("enter", 1)
         common.sleep(1)
-        common.press("right", .125)
-        common.press("right", .125)
-        common.press("right", .125)
+
+        if self.car == constant.Car.PONTIAC.value:
+            for _ in range(3):
+                common.press("right", .125)
+        elif self.car == constant.Car.FORD.value:
+            for _ in range(5):
+                common.press("down", .125)
+            for _ in range(4):
+                common.press("right", .125)
+        else:
+            NameError("Unknow car")
+
         common.debug("End GameCommon.go_to_car_to_buy", DebugLevel.FUNCTIONS)
 
     def go_to_last_lab_race(self, default_sleep: float = 5):
@@ -202,3 +219,11 @@ class GameCommon:
             if cnt > 10:
                 raise NameError("My cars not found")
         common.debug("End GameCommon.home_mycars_getinlambo", DebugLevel.FUNCTIONS)
+
+    @staticmethod
+    def quit_race():
+        common.press("right", .125)
+        common.press("down", .125)
+        common.press("down", .125)
+        common.press("enter")
+        common.press("enter", 30)

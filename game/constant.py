@@ -1,17 +1,21 @@
 # Constant file to be clean
-from enum import auto
+from enum import auto, Enum
 
 from utils.constant import DebugLevel, Lang
 from utils.superintenum import SuperIntEnum
 
-DEBUG_LEVEL = DebugLevel.ALWAYS
-DEV_MODE = False
-LANG = Lang.FRENCH
-SCALE = 1
-WINDOW_NAME = "Forza Horizon 5"
+
+class AlreadyOwnedChoice(SuperIntEnum):
+    ADD_TO_GARAGE = auto()
+    SELL = auto()
 
 
-class AutoLabReplayStep(SuperIntEnum):
+class Car(Enum):
+    FORD = "ford"
+    PONTIAC = "pontiac"
+
+
+class RaceStep(SuperIntEnum):
     INIT = auto()
     PREPARING = auto()
     RACING = auto()
@@ -20,6 +24,9 @@ class AutoLabReplayStep(SuperIntEnum):
     RESTART = auto()
 
 
-class AutoSpinAlreadyOwnedChoice(SuperIntEnum):
-    ADD_TO_GARAGE = auto()
-    SELL = auto()
+CAR = Car.PONTIAC
+DEBUG_LEVEL = DebugLevel.ALWAYS
+DEV_MODE = False
+LANG = Lang.FRENCH
+SCALE = 1
+WINDOW_NAME = "Forza Horizon 5"
