@@ -1,5 +1,3 @@
-import time
-
 from utils import common
 from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
@@ -28,23 +26,23 @@ class AutoCarBuy:
         """
         self.max_try = max_try
         common.debug("Start AutoCarBuy (after 5 secs)", DebugLevel.FUNCTIONS)
-        time.sleep(5)
+        common.sleep(5)
         self.running = True
         self.ht.start()
         while self.running and self.count < self.max_try:
             if self.hcv2.check_match(self.images["not_enaugh_cr"], True):
-                common.press_then_sleep("esc")
-                common.press_then_sleep("esc")
+                common.press("esc")
+                common.press("esc")
                 self.running = False
             elif self.hcv2.check_match(self.images["buy_car"]):
-                common.press_then_sleep("enter")
+                common.press("enter")
                 self.count += 1
                 common.debug(
                     "Car bought! [" + str(self.count) + "/" + str(self.max_try) + " in " + self.ht.stringify() + "]",
                     DebugLevel.INFO)
             else:
-                common.press_then_sleep("y")
-            time.sleep(1)
+                common.press("y")
+            common.sleep(1)
 
-        common.press_then_sleep("esc", 2)
+        common.press("esc", 2)
         common.debug("Done AutoCarBuy", DebugLevel.FUNCTIONS)

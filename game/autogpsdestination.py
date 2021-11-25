@@ -1,7 +1,3 @@
-import time
-
-import pyautogui
-
 from utils import common
 from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
@@ -31,10 +27,9 @@ class AutoGPSDestination:
         Need to be run from game esc menu
         """
         common.debug("Start AutoGPSDestination (after 5 secs)", DebugLevel.FUNCTIONS)
-        time.sleep(5)
-        common.press_then_sleep("esc")
-        pyautogui.keyDown("z")
-        time.sleep(2)
+        common.sleep(5)
+        common.press("esc")
+        common.keyDown("z", 2)
         self.count = 0
         self.running = True
         while self.running:
@@ -47,7 +42,7 @@ class AutoGPSDestination:
                     self.running = False
             else:
                 self.count = 0
-            time.sleep(.25)
-        pyautogui.keyUp("z")
-        pyautogui.press("esc")
+            common.sleep(.25)
+        common.keyDown("z")
+        common.press("esc", 0)
         common.debug("Done AutoGPSDestination", DebugLevel.FUNCTIONS)

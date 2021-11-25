@@ -1,4 +1,5 @@
 - Forza Horizon 5 running in fullscreen
+- Keyboard layout: French
 - Language:
   - English
   - **French**

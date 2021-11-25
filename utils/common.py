@@ -4,44 +4,42 @@ from datetime import datetime
 import pyautogui
 
 from game import constant
-from utils.constant import DebugLevel
-
-
-def click_then_sleep(location: (int, int) = (0, 0), sleep: float = .5, scale: float = 1):
-    """
-    click at location then sleep
-    :param location:
-    :param sleep:
-    :param scale:
-    :return:
-    """
-    if scale != 1:
-        location = (int(location[0] * scale), int(location[1] * scale))
-    pyautogui.moveTo(location)
-    pyautogui.mouseDown()
-    time.sleep(sleep)
-    pyautogui.mouseUp()
-    pyautogui.moveTo(10, 10)
+from utils.constant import DebugLevel, Lang
 
 
 def alt_f4():
     """
     send alt + f4
     """
-    pyautogui.keyDown("alt")
-    time.sleep(.125)
-    pyautogui.press("f4")
-    pyautogui.keyUp("alt")
+    keyDown("alt", .125)
+    press("f4", 0)
+    keyUp("alt")
 
 
 def alt_tab():
     """
     send alt tab
     """
-    pyautogui.keyDown("alt")
-    time.sleep(.125)
-    pyautogui.press("tab")
-    pyautogui.keyUp("alt")
+    keyDown("alt", .125)
+    press("tab", 0)
+    keyUp("alt")
+
+
+def click(location: (int, int) = (0, 0), secs: float = .5, scale: float = 1):
+    """
+    click at location then sleep
+    :param location:
+    :param secs:
+    :param scale:
+    :return:
+    """
+    if scale != 1:
+        location = (int(location[0] * scale), int(location[1] * scale))
+    moveTo(location)
+    pyautogui.mouseDown()
+    time.sleep(secs)
+    pyautogui.mouseUp()
+    moveTo((10, 10))
 
 
 def debug(msg: str = "", debug_level: int = DebugLevel.ALWAYS):
@@ -64,15 +62,54 @@ def fps() -> float:
     return timer
 
 
-def press_then_sleep(key: str, sleep: float = .5):
+def keyDown(key: str, secs: float = 0):
     """
-    press key then sleep
+    press key then sleep x secs
     :param key:
-    :param sleep:
+    :param secs:
+    """
+    pyautogui.keyDown(key)
+    sleep(secs)
+
+
+def keyUp(key: str):
+    """
+    release key
+    :param key:
+    """
+    pyautogui.keyUp(key)
+
+
+def moveTo(location: (int, int) = (0, 0), secs: float = .5, scale: float = 1):
+    """
+    move mouse to location then sleep
+    :param location:
+    :param secs:
+    :param scale:
+    :return:
+    """
+    if scale != 1:
+        location = (int(location[0] * scale), int(location[1] * scale))
+    pyautogui.moveTo(location)
+    sleep(secs)
+
+
+def press(key: str, secs: float = .5):
+    """
+    press key then sleep x secs
+    :param key:
+    :param secs:
     """
     pyautogui.press(key)
-    # pydirectinput.press(key)
-    time.sleep(sleep)
+    sleep(secs)
+
+
+def sleep(secs: float = 0):
+    """
+    sleep for x secs
+    :param secs:
+    """
+    time.sleep(secs)
 
 
 def warn(msg: str = ""):

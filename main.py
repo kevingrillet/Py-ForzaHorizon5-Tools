@@ -1,7 +1,3 @@
-import time
-
-import pyautogui
-
 from game import constant
 from game.autocarbuy import AutoCarBuy
 from game.autocarbuyleastexpensive import AutoCarBuyLeastExpensive
@@ -52,7 +48,7 @@ if __name__ == "__main__":
     elif intinput == 30:
         common.alt_tab()
         AutoLabReplay(hcv2, stop_on_max_mastery=True).run()
-        time.sleep(10)
+        common.sleep(10)
         common.alt_f4()
     elif intinput == 4:
         AutoCarBuy(hcv2).run()
@@ -60,13 +56,19 @@ if __name__ == "__main__":
         AutoCarMastery(hcv2).run()
     elif intinput == 6:
         AutoCarBuyLeastExpensive(hcv2).run()
+
+    # Dev
     elif intinput == 0:
         hcv2.hwin32.list_window_names()
         hcv2.dev()
+
+    # Just press Z
     elif intinput == 99:
         common.alt_tab()
-        pyautogui.press("esc")
-        pyautogui.keyDown("z")
+        common.press("esc", 0)
+        common.keyDown("z")
+
+    # Combination
     elif intinput == 45:
         common.alt_tab()
         GameCommon.AutoCarBuy_Then_AutoCarMastery(AutoCarBuy(hcv2), AutoCarMastery(hcv2), 70)
@@ -77,8 +79,8 @@ if __name__ == "__main__":
         acm = AutoCarMastery(hcv2)
         alr = AutoLabReplay(hcv2, gc, True)
         common.alt_tab()
-        common.click_then_sleep((10, 10), .125)
-        common.press_then_sleep("esc", 2)
+        common.click((10, 10), .125)
+        common.press("esc", 2)
         if gc.check_mastery():
             gc.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(acb, acm)
         running = True
@@ -86,7 +88,7 @@ if __name__ == "__main__":
             alr.run()
             gc.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(acb, acm)
             # running = gc.check_super_wheelspins()
-        time.sleep(5)
+        common.sleep(5)
         common.alt_f4()
     else:
         raise NameError("Not an option")

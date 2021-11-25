@@ -1,5 +1,3 @@
-import time
-
 from utils import common
 from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
@@ -27,10 +25,10 @@ class AutoCarMastery:
         Check if the mastery had been bought
         """
         if self.hcv2.check_match(self.images["cannot_afford_perk"], True):
-            common.press_then_sleep("enter")
-            common.press_then_sleep("esc", 2)
-            common.press_then_sleep("esc", 1.5)
-            common.press_then_sleep("right", .125)
+            common.press("enter")
+            common.press("esc", 2)
+            common.press("esc", 1.5)
+            common.press("right", .125)
             raise NameError("Can't buy, not enaugh mastery points")
 
     def run(self, max_try: int = max_try):
@@ -40,83 +38,83 @@ class AutoCarMastery:
         """
         common.debug("Start AutoCarMastery (after 5 secs)", DebugLevel.FUNCTIONS)
         self.max_try = max_try
-        time.sleep(5)
+        common.sleep(5)
         self.running = True
         self.ht.start()
         while self.running and self.count < self.max_try:
             if not self.hcv2.check_match(self.images["my_cars"], True):
                 raise NameError("Not in home")
             # My cars
-            common.press_then_sleep("enter", 2)
+            common.press("enter", 2)
             # Constructor
-            common.press_then_sleep("backspace", 1)
+            common.press("backspace", 1)
             if not self.hcv2.check_match(self.images["pontiac_name"], True):
-                common.press_then_sleep("up", 1)
+                common.press("up", 1)
                 if not self.hcv2.check_match(self.images["pontiac_name"], True):
                     raise NameError("Pontiac name not found")
-            common.click_then_sleep(self.hcv2.random_find(), .125)
+            common.click(self.hcv2.random_find(), .125)
             if self.hcv2.check_match(self.images["pontiac_name_selected"], True):
-                common.press_then_sleep("enter", 1)
-            time.sleep(1)
+                common.press("enter", 1)
+            common.sleep(1)
             # Find car to delete
             if self.count > 1:  # Need to skip it 2 times to begin
                 if not self.hcv2.check_match(self.images["pontiac"], True):
                     raise NameError("Pontiac to delete not found")
-                common.press_then_sleep("right", .125)
-                common.press_then_sleep("enter")
+                common.press("right", .125)
+                common.press("enter")
                 # Delete button
-                common.press_then_sleep("down", .125)
-                common.press_then_sleep("down", .125)
-                common.press_then_sleep("down", .125)
-                common.press_then_sleep("down", .125)
-                common.press_then_sleep("enter")
+                common.press("down", .125)
+                common.press("down", .125)
+                common.press("down", .125)
+                common.press("down", .125)
+                common.press("enter")
                 # Confirm
-                common.press_then_sleep("enter", 2)
+                common.press("enter", 2)
             # Find car to use
             if not self.hcv2.check_match(self.images["pontiac"], True):
                 raise NameError("Pontiac to drive not found")
-            common.press_then_sleep("up", .125)
-            common.press_then_sleep("right", .125)
+            common.press("up", .125)
+            common.press("right", .125)
             # Enter car
-            common.press_then_sleep("enter")
-            common.press_then_sleep("enter", 1)
+            common.press("enter")
+            common.press("enter", 1)
             cnt = 0
             while not self.hcv2.check_match(self.images["my_cars"], True):
-                common.press_then_sleep("esc", 1)
+                common.press("esc", 1)
                 cnt += 1
                 if cnt > 10:
                     raise NameError("My cars not found")
             # Boost
-            common.press_then_sleep("left", .125)
-            common.press_then_sleep("enter", 1.5)
+            common.press("left", .125)
+            common.press("enter", 1.5)
             # Mastery
-            common.press_then_sleep("right", .125)
-            common.press_then_sleep("right", .125)
-            common.press_then_sleep("down", .125)
-            common.press_then_sleep("enter", 2.5)
+            common.press("right", .125)
+            common.press("right", .125)
+            common.press("down", .125)
+            common.press("enter", 2.5)
             if not self.hcv2.check_match(self.images["already_done"], True):
                 # MASTERRR
-                common.press_then_sleep("enter", 1)
+                common.press("enter", 1)
                 self.checkBuy()
-                common.press_then_sleep("right", .125)
-                common.press_then_sleep("enter", .75)
+                common.press("right", .125)
+                common.press("enter", .75)
                 self.checkBuy()
-                common.press_then_sleep("right", .125)
-                common.press_then_sleep("enter", .75)
+                common.press("right", .125)
+                common.press("enter", .75)
                 self.checkBuy()
-                common.press_then_sleep("up", .125)
-                common.press_then_sleep("enter", .75)
+                common.press("up", .125)
+                common.press("enter", .75)
                 self.checkBuy()
-                common.press_then_sleep("right", .125)
-                common.press_then_sleep("enter", .75)
+                common.press("right", .125)
+                common.press("enter", .75)
                 self.checkBuy()
-                common.press_then_sleep("up", .125)
-                common.press_then_sleep("enter", .75)
+                common.press("up", .125)
+                common.press("enter", .75)
                 self.checkBuy()
             # Get back to menu
-            common.press_then_sleep("esc", 2)
-            common.press_then_sleep("esc", 1.5)
-            common.press_then_sleep("right", .125)
+            common.press("esc", 2)
+            common.press("esc", 1.5)
+            common.press("right", .125)
             self.count += 1
             common.debug("Car done! [" + str(self.count) + "/" + str(self.max_try) + " in " + self.ht.stringify() + "]",
                          DebugLevel.INFO)

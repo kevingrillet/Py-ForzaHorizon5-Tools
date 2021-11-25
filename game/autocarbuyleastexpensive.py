@@ -1,5 +1,3 @@
-import time
-
 from game import constant
 from utils import common
 from utils.constant import DebugLevel
@@ -31,54 +29,54 @@ class AutoCarBuyLeastExpensive:
         """
         self.max_try = max_try
         common.debug("Start AutoCarBuyLeastExpensive (after 5 secs)", DebugLevel.FUNCTIONS)
-        time.sleep(5)
+        common.sleep(5)
         self.running = True
         self.ht.start()
         while self.running and self.count < self.max_try:
             # Enter salon
             if not self.hcv2.check_match(self.images["autoshow"], True):
                 raise NameError("Not at salon")
-            common.press_then_sleep("enter", 2)
+            common.press("enter", 2)
             # Filter not buy
-            common.press_then_sleep("y")
+            common.press("y")
             if not self.hcv2.check_match(self.images["not_owned"], True):
                 raise NameError("Filter not found")
-            common.click_then_sleep(self.hcv2.random_find(), .125)
-            common.press_then_sleep("esc", 2)
+            common.click(self.hcv2.random_find(), .125)
+            common.press("esc", 2)
             # Sort
-            common.press_then_sleep("x")
+            common.press("x")
             if not self.hcv2.check_match(self.images["value"], True):
                 raise NameError("Sort not found")
-            common.click_then_sleep(self.hcv2.random_find(), .125)
+            common.click(self.hcv2.random_find(), .125)
             if self.hcv2.check_match(self.images["value_selected"], True):
-                common.press_then_sleep("enter")
-            time.sleep(1)
+                common.press("enter")
+            common.sleep(1)
             # GoTo least expensive
-            common.press_then_sleep("backspace")
+            common.press("backspace")
             if self.nb_row == 1:
-                common.click_then_sleep((570, 770), .125, constant.SCALE)
+                common.click((570, 770), .125, constant.SCALE)
             elif self.nb_row == 2:
-                common.click_then_sleep((570, 740), .125, constant.SCALE)
+                common.click((570, 740), .125, constant.SCALE)
             else:
-                common.click_then_sleep((570, 710), .125, constant.SCALE)
+                common.click((570, 710), .125, constant.SCALE)
 
             if self.hcv2.check_match(self.images["value_menu"], True):
-                common.press_then_sleep("enter", 2)
+                common.press("enter", 2)
             # Buy
-            common.press_then_sleep("enter", 1)
+            common.press("enter", 1)
             while not self.hcv2.check_match(self.images["colors"], True):
-                time.sleep(.1)
-            common.press_then_sleep("y", 2)
-            common.press_then_sleep("enter", 1)
-            common.press_then_sleep("enter", 1)
+                common.sleep(.1)
+            common.press("y", 2)
+            common.press("enter", 1)
+            common.press("enter", 1)
             if self.hcv2.check_match(self.images["not_enaugh_cr"], True):
                 raise NameError("Not Enaugh CR")
-            common.press_then_sleep("enter", 20)
-            common.press_then_sleep("esc", 3)
+            common.press("enter", 20)
+            common.press("esc", 3)
 
             self.count += 1
             common.debug(
                 "Car bought! [" + str(self.count) + "/" + str(self.max_try) + " in " + self.ht.stringify() + "]",
                 DebugLevel.INFO)
-            time.sleep(1)
+            common.sleep(1)
         common.debug("Done AutoCarBuyLeastExpensive", DebugLevel.FUNCTIONS)

@@ -1,7 +1,3 @@
-import time
-
-import pyautogui
-
 from game.common import GameCommon
 from game.constant import AutoLabReplayStep, AutoSpinAlreadyOwnedChoice
 from utils import common
@@ -39,10 +35,10 @@ class AutoLabReplay:
         cnt = 0
         while lost:
             if cnt < 5:
-                common.press_then_sleep("esc", 2)
+                common.press("esc", 2)
                 cnt += 1
             else:
-                common.press_then_sleep("enter", 2)
+                common.press("enter", 2)
                 cnt = 0
             if self.hcv2.check_match(self.images["accolades"], True) or self.hcv2.check_match(
                     self.images["race_start"]):
@@ -69,8 +65,8 @@ class AutoLabReplay:
         common.debug("Start AutoLabReplay (after 5 secs)", DebugLevel.FUNCTIONS)
         self.max_try = max_try
         default_sleep = 5
-        time.sleep(5)
-        pyautogui.moveTo(10, 10)
+        common.sleep(5)
+        common.moveTo((10, 10))
         self.ht.start()
         self.whereami()
         self.count_try = 0
@@ -80,11 +76,11 @@ class AutoLabReplay:
 
             if self.step == AutoLabReplayStep.PREPARING:
                 if self.hcv2.check_match(self.images["race_start"]):
-                    common.click_then_sleep(self.hcv2.random_find())
-                    pyautogui.keyDown("z")
+                    common.click(self.hcv2.random_find())
+                    common.keyDown("z")
                     self.next_step()
                 else:
-                    time.sleep(1)
+                    common.sleep(1)
                     self.count += 1
                     if self.count > 10:
                         self.count = 0
@@ -95,15 +91,15 @@ class AutoLabReplay:
                 if self.hcv2.check_match(self.images["race_continue"]) \
                         or self.hcv2.check_match(self.images["race_skip"]) \
                         or self.hcv2.check_match(self.images["race_reward"]):
-                    pyautogui.keyUp("z")
+                    common.keyUp("z")
                     self.next_step()
 
             elif self.step == AutoLabReplayStep.REWARDS:
-                time.sleep(1)
+                common.sleep(1)
                 if self.hcv2.check_match(self.images["race_continue"]) \
                         or self.hcv2.check_match(self.images["race_skip"]) \
                         or self.hcv2.check_match(self.images["race_reward"]):
-                    common.press_then_sleep("enter")
+                    common.press("enter")
                     self.gc.check_car_already_own()
                     self.count = 0
                 else:
@@ -121,32 +117,32 @@ class AutoLabReplay:
 
             elif self.step == AutoLabReplayStep.RESTART:
                 common.debug("Restarting the race (after 30 secs)", DebugLevel.INFO)
-                time.sleep(30)
+                common.sleep(30)
                 # Open menu
-                common.press_then_sleep("esc", default_sleep)
+                common.press("esc", default_sleep)
                 # GoTo Creation
-                common.press_then_sleep("pagedown", .25)
-                common.press_then_sleep("pagedown", .25)
-                common.press_then_sleep("pagedown", .25)
-                common.press_then_sleep("pagedown", .25)
+                common.press("pagedown", .25)
+                common.press("pagedown", .25)
+                common.press("pagedown", .25)
+                common.press("pagedown", .25)
                 # Enter Lab
-                common.press_then_sleep("enter", default_sleep)
+                common.press("enter", default_sleep)
                 # Enter my races
-                common.press_then_sleep("right", .25)
-                common.press_then_sleep("enter", default_sleep)
+                common.press("right", .25)
+                common.press("enter", default_sleep)
                 # GoTo History
-                common.press_then_sleep("pagedown", .25)
-                common.press_then_sleep("pagedown", default_sleep)
+                common.press("pagedown", .25)
+                common.press("pagedown", default_sleep)
                 # Select last race
-                common.press_then_sleep("enter", default_sleep)
+                common.press("enter", default_sleep)
                 # Solo
                 if self.hcv2.check_match(self.images["race_type"]):
-                    common.press_then_sleep("enter", default_sleep)
+                    common.press("enter", default_sleep)
                 # Same car
-                common.press_then_sleep("enter", default_sleep)
+                common.press("enter", default_sleep)
                 self.next_step(AutoLabReplayStep.PREPARING)
 
-            time.sleep(1)
+            common.sleep(1)
 
         common.debug("Done AutoLabReplay", DebugLevel.FUNCTIONS)
 
@@ -155,11 +151,11 @@ class AutoLabReplay:
         Check where am i to set initial step
         """
         if self.hcv2.check_match(self.images["race_quit"]):
-            common.press_then_sleep("esc")
-            pyautogui.keyDown("z")
+            common.press("esc")
+            common.keyDown("z")
             self.next_step(AutoLabReplayStep.RACING)
         elif self.hcv2.check_match(self.images["race_start"]):
             self.next_step(AutoLabReplayStep.PREPARING)
         else:
-            common.press_then_sleep("esc")
+            common.press("esc")
             self.next_step(AutoLabReplayStep.RESTART)
