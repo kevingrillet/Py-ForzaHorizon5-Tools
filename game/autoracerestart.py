@@ -41,6 +41,7 @@ class AutoRaceRestart:
         :param max_try:
         """
         common.debug("Start AutoRaceRestart (after 5 secs)", DebugLevel.FUNCTIONS)
+        self.count_try = 0
         self.max_try = max_try
         common.sleep(5)
         common.moveTo((10, 10))

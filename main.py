@@ -81,7 +81,7 @@ if __name__ == "__main__":
         GameCommon.AutoCarBuy_Then_AutoCarMastery(AutoCarBuy(hcv2), AutoCarMastery(hcv2), 70)
     elif intinput == 453:
         common.debug("AutoCarBuy + AutoCarMastery + AutoLabReplay")
-        gc = GameCommon()
+        gc = GameCommon(hcv2)
         acb = AutoCarBuy(hcv2)
         acm = AutoCarMastery(hcv2)
         alr = AutoLabReplay(hcv2, gc, True)
@@ -99,7 +99,7 @@ if __name__ == "__main__":
         common.alt_f4()
     elif intinput == 457:
         common.debug("AutoCarBuy + AutoCarMastery + AutoLabReplay")
-        gc = GameCommon()
+        gc = GameCommon(hcv2)
         acb = AutoCarBuy(hcv2)
         acm = AutoCarMastery(hcv2)
         arr = AutoRaceRestart(hcv2)

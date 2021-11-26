@@ -42,8 +42,8 @@ Debug enum can be found here: <https://github.com/kevingrillet/Py-ForzaHorizon5-
 |:-----------:|:-----:|
 | `ALWAYS`    | `0`   |
 | `INFO`      | `1`   |
-| `FUNCTIONS` | `2`   |
-| `CLASS`     | `3`   |
+| `CLASS`     | `2`   |
+| `FUNCTIONS` | `3`   |
 | `DEBUG`     | `4`   |
 |             |       |
 

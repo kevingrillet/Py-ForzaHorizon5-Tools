@@ -6,8 +6,8 @@ from utils.superintenum import SuperIntEnum
 class DebugLevel(SuperIntEnum):
     ALWAYS = auto()
     INFO = auto()
-    FUNCTIONS = auto()
     CLASS = auto()
+    FUNCTIONS = auto()
     DEBUG = auto()
 
 

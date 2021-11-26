@@ -102,6 +102,22 @@ def press(key: str, secs: float = .5):
     sleep(secs)
 
 
+def scroll(clicks: int = 1, location: (int, int) = (0, 0), secs: float = .5, scale=1):
+    """
+    Scroll at location then sleep x secs
+    :param scale:
+    :param clicks:
+    :param location:
+    :param secs:
+    :return:
+    """
+    if scale != 1:
+        location = (int(location[0] * scale), int(location[1] * scale))
+    moveTo(location, secs)
+    pyautogui.scroll(clicks)
+    moveTo((10, 10), secs)
+
+
 def sleep(secs: float = 0):
     """
     sleep for x secs

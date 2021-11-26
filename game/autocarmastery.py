@@ -160,6 +160,7 @@ class AutoCarMastery:
         :param max_try:
         """
         common.debug("Start AutoCarMastery (after 5 secs)", DebugLevel.FUNCTIONS)
+        self.count = 0
         self.max_try = max_try
         common.sleep(5)
         self.running = True

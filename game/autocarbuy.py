@@ -24,6 +24,7 @@ class AutoCarBuy:
         Buys the car where you are placed (in car collection)
         :param max_try:
         """
+        self.count = 0
         self.max_try = max_try
         common.debug("Start AutoCarBuy (after 5 secs)", DebugLevel.FUNCTIONS)
         common.sleep(5)
