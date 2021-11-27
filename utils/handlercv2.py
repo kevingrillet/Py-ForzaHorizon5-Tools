@@ -111,7 +111,7 @@ class HandlerCv2:
                 common.warn("Image not found [" + image + "]")
                 img = cv2.imread("./images/default.jpg", self.image_read_flag)
             if self.scale != 1:
-                img = cv2.resize(img, int(img.shape[1] * self.scale), int(img.shape[0] * self.scale),
+                img = cv2.resize(img, (int(img.shape[1] * self.scale), int(img.shape[0] * self.scale)),
                                  interpolation=cv2.INTER_AREA)
             if img is not None:
                 h, w = img.shape[:2]
