@@ -28,4 +28,5 @@ DEBUG_LEVEL = DebugLevel.ALWAYS
 DEV_MODE = False
 LANG = Lang.FRENCH
 SCALE = 1
+OWNED = AlreadyOwnedChoice.SELL
 WINDOW_NAME = "Forza Horizon 5"

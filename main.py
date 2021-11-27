@@ -7,7 +7,7 @@ from game.autolabreplay import AutoLabReplay
 from game.autoracerestart import AutoRaceRestart
 from game.autowheelspins import AutoWheelspins
 from game.common import GameCommon
-from game.constant import Car
+from game.constant import Car, AlreadyOwnedChoice
 from utils import common
 from utils.constant import DebugLevel, Lang
 from utils.handlerconfig import HandlerConfig
@@ -20,6 +20,7 @@ def load_config():
     constant.DEBUG_LEVEL = DebugLevel(int(hcfg.get_value("debug", str(constant.DEBUG_LEVEL.value))))
     constant.DEV_MODE = hcfg.get_value("dev", str(constant.DEV_MODE)) == "True"
     constant.LANG = Lang(hcfg.get_value("language", constant.LANG.value))
+    constant.OWNED = AlreadyOwnedChoice(int(hcfg.get_value("owned", str(constant.OWNED.value))))
     constant.SCALE = float(hcfg.get_value("scale", str(constant.SCALE)))
 
 

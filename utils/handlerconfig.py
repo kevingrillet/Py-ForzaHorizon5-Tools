@@ -25,6 +25,7 @@ class HandlerConfig:
             self.set_value("debug", str(constant.DEBUG_LEVEL.value))
             self.set_value("dev", str(constant.DEV_MODE))
             self.set_value("language", constant.LANG.value)
+            self.set_value("owned", constant.OWNED.value)
             self.set_value("scale", str(constant.SCALE))
 
     def get_value(self, key: str = None, default: str = None, section: str = "main") -> str:
@@ -39,7 +40,7 @@ class HandlerConfig:
             raise NameError("No config file loaded")
         if not (section and key):
             raise NameError("Missing parameter")
-        return self.config.get(section, key)
+        return self.config.get(section, key, fallback=default)
 
     def set_path(self, path: str = None):
         """

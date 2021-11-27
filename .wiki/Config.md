@@ -8,6 +8,7 @@ car = pontiac
 debug = 0
 dev = False
 language = fr
+owned = 1
 scale = 1
 ```
 
@@ -19,6 +20,7 @@ scale = 1
 | `debug`    | `int`   | Yes      | Set the verbosity of the script. Higher values will have more text. | `0`-`4`           |
 | `dev`      | `bool`  | Yes      | Set dev mode. Will save images in `.temp/` folder.                  | `True`, `False`   |
 | `language` | `str`   | Yes      | Set language for the image folder.                                  | `en`, `fr`, ...   |
+| `owned`    | `int`   | Yes      | Set the action if car already owned.                                | `0`-`1`           |
 | `scale`    | `float` | Yes      | Set scale.                                                          | `1`, `0.75`       |
 
 
@@ -56,6 +58,16 @@ Lang enum can be found here: <https://github.com/kevingrillet/Py-ForzaHorizon5-T
 | `ENGLISH` | `en`  |
 | `FRENCH`  | `fr`  |
 |           |       |
+
+### Owned
+
+Owned enum can be found here: <https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/blob/main/game/constant.py>
+
+| Name            | Value |
+|:---------------:|:-----:|
+| `ADD_TO_GARAGE` | `0`   |
+| `SELL`          | `1`   |
+|                 |       |
 
 ### Scale
 

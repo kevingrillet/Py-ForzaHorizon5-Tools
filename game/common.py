@@ -51,7 +51,7 @@ class GameCommon:
         self.home_getmycar()
         common.press("esc", 10)
 
-    def check_car_already_own(self, aoc: AlreadyOwnedChoice = AlreadyOwnedChoice.SELL) -> bool:
+    def check_car_already_own(self, aoc: AlreadyOwnedChoice = constant.OWNED) -> bool:
         """
         From anywhere where you can get a new car :)
         """
