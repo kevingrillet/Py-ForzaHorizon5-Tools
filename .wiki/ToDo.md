@@ -1,9 +1,6 @@
 ## High priority
 
-- Loop:
-  - [x] until 999 mastery points, do AutoPiniataRace (or AutoLabReplay)
-  - [ ] then buy `x` cars to mastery until 999 super wheelspins (after this, need to get back in my lambo)
-    - *Missing capture 999 super wheelspins*
+- Loop until 999 super wheelspins > *Missing capture 999 super wheelspins*
 
 ## Medium priority
 

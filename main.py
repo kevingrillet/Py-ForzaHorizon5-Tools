@@ -98,7 +98,7 @@ if __name__ == "__main__":
         common.sleep(5)
         common.alt_f4()
     elif intinput == 457:
-        common.debug("AutoCarBuy + AutoCarMastery + AutoLabReplay")
+        common.debug("AutoCarBuy + AutoCarMastery + AutoRaceRestart")
         gc = GameCommon(hcv2)
         acb = AutoCarBuy(hcv2)
         acm = AutoCarMastery(hcv2)

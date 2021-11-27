@@ -1,3 +1,5 @@
+* [Basic](#basic)
+
 1. [AutoWheelSpins](#autowheelspins)
 2. [AutoGPSDestination](#autogpsdestination)
 3. [AutoLabReplay](#autolabreplay)
@@ -8,7 +10,15 @@
 6. [AutoCarBuyLeastExpensive](#autocarbuyleastexpensive)
 7. [AutoRaceRestart](#autoracerestart)
 
-## AutoWheelSpins
+* [Advance](#advance)
+
+- [Just press z](#just-press-z)
+- [AutoCarBuy + AutoCarMastery + AutoLabReplay](#autocarbuy--autocarmastery--autolabreplay)
+- [AutoCarBuy + AutoCarMastery + AutoRaceRestart](#autocarbuy--autocarmastery--autoracerestart)
+
+## Basic
+
+### AutoWheelSpins
 
 Works fot WheelSpins and SuperWheelSpins!
 
@@ -23,7 +33,7 @@ Will sell duplicates cars.
 - Launch the script
 - Set focus on Forza
 
-## AutoGPSDestination
+### AutoGPSDestination
 
 Will go to destination then press `esc`.
 
@@ -35,7 +45,9 @@ Will go to destination then press `esc`.
 - Launch the script
 - Set focus on Forza
 
-## AutoLabReplay
+### AutoLabReplay
+
+Can be used with `30` to quit game after max mastery points.
 
 Will redo the last lab race done.
 
@@ -54,7 +66,7 @@ Example of codes from <https://www.youtube.com/watch?v=HPS8Ubziu7U>:
 - 50 Laps | 430 730 853
 - 50 Laps WITH MAX AI FOR CREDITS! | 473 350 397 
 
-## AutoCarBuy
+### AutoCarBuy
 
 Buys car from collection.
 
@@ -65,11 +77,11 @@ Buys car from collection.
 - Launch the script
 - Set focus on Forza
 
-## AutoCarMastery
+### AutoCarMastery
 
 Delete car after mastery, so it's **RISKY**!
 
-### `1987 Pontiac Firebird Trans Am GTA`
+#### `1987 Pontiac Firebird Trans Am GTA`
 
 Will get super wheelspins for 14 points: <https://youtu.be/HPS8Ubziu7U?t=140>
 
@@ -83,7 +95,7 @@ The `1987 Pontiac Firebird Trans Am GTA` needs to be the 3rd car of the `pontiac
 - Launch the script
 - Set focus on Forza
 
-### `2014 Ford Fiesta ST`
+#### `2014 Ford Fiesta ST`
 
 Will get 10 Forzathon Points for 5 points: <https://youtu.be/zI3Sm7q34bs?t=13>
 
@@ -97,13 +109,15 @@ The `2014 Ford Fiesta ST` needs to be the only car of the `ford` constructor wit
 - Launch the script
 - Set focus on Forza
 
-## AutoCarBuyLeastExpensive
+### AutoCarBuyLeastExpensive
 
 - At the home page of the house
 - Launch the script
 - Set focus on Forza
 
-## AutoRaceRestart
+### AutoRaceRestart
+
+Can be used with `70` to quit game after 100 restart.
 
 Will restart the current race at the end.
 
@@ -117,6 +131,37 @@ Example of codes from <https://youtu.be/oBFlEdrj8Ec?t=16>:
 
 - Piniata: 10sp in 30 secs | 743 324 179
 
+## Advance
+
+### Just press z
+
+Choice `99`.
+
+Will alt tab, press `esc`, then hold `z`
+
+### AutoCarBuy + AutoCarMastery + AutoLabReplay
+
+Choice `453`.
+
+Need to be started from game default esc menu.
+
+Will alt tab, check if max mastery, then AutoCarBuy + AutoCarMastery
+Then loop
+- AutoLabReplay
+- Check mastery
+- AutoCarBuy + AutoCarMastery
+
+### AutoCarBuy + AutoCarMastery + AutoRaceRestart
+
+Choice `457`.
+
+Need to be started from game default esc menu.
+
+Will alt tab, check if max mastery, then AutoCarBuy + AutoCarMastery
+Then loop
+- AutoRaceRestart (will run the last lab race)
+- Check mastery
+- AutoCarBuy + AutoCarMastery
 
 <hr>
 
