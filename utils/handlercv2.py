@@ -20,7 +20,7 @@ class HandlerCv2:
     require_new_capture = True
     target_image = None
     target_image_debug = None
-    threshold = 0.9
+    threshold = 0.8
 
     def __init__(self, show_debug_image=False, scale=1):
         self.scale = scale
