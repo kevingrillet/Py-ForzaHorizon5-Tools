@@ -1,20 +1,23 @@
 * [Basic](#basic)
 
-1. [AutoWheelSpins](#autowheelspins)
-2. [AutoGPSDestination](#autogpsdestination)
-3. [AutoLabReplay](#autolabreplay)
-4. [AutoCarBuy](#autocarbuy)
-5. [AutoCarMastery](#autocarmastery)
-  - [`1987 Pontiac Firebird Trans Am GTA`](#1987-pontiac-firebird-trans-am-gta)
-  - [`2014 Ford Fiesta ST`](#2014-ford-fiesta-st)
-6. [AutoCarBuyLeastExpensive](#autocarbuyleastexpensive)
-7. [AutoRaceRestart](#autoracerestart)
+    1. [AutoWheelSpins](#autowheelspins)
+    2. [AutoGPSDestination](#autogpsdestination)
+    3. [AutoLabReplay](#autolabreplay)
+    4. [AutoCarBuy](#autocarbuy)
+    5. [AutoCarMastery](#autocarmastery)
+
+        - [`2014 Ford Fiesta ST`](#2014-ford-fiesta-st)
+        - [`1987 Pontiac Firebird Trans Am GTA`](#1987-pontiac-firebird-trans-am-gta)
+        - [`2014 Porsche 911 Turbo S`](#2014-porsche-911-turbo-s)
+        
+    6. [AutoCarBuyLeastExpensive](#autocarbuyleastexpensive)
+    7. [AutoRaceRestart](#autoracerestart)
 
 * [Advance](#advance)
 
-- [Just press z](#just-press-z)
-- [AutoCarBuy + AutoCarMastery + AutoLabReplay](#autocarbuy--autocarmastery--autolabreplay)
-- [AutoCarBuy + AutoCarMastery + AutoRaceRestart](#autocarbuy--autocarmastery--autoracerestart)
+    - [Just press z](#just-press-z)
+    - [AutoCarBuy + AutoCarMastery + AutoLabReplay](#autocarbuy--autocarmastery--autolabreplay)
+    - [AutoCarBuy + AutoCarMastery + AutoRaceRestart](#autocarbuy--autocarmastery--autoracerestart)
 
 ## Basic
 
@@ -81,13 +84,27 @@ Buys car from collection.
 
 Delete car after mastery, so it's **RISKY**!
 
+#### `2014 Ford Fiesta ST`
+
+Will get 10 Forzathon Points for 5 points: <https://youtu.be/zI3Sm7q34bs?t=13>
+
+![](https://user-images.githubusercontent.com/7203617/143456768-e4c6a39d-ba7a-4391-85a6-c9f86ab28713.png)
+
+The `2014 Ford Fiesta ST` needs to be the only car of the `Ford` constructor with filter `B` and `Hot Hatch`.
+
+![](https://user-images.githubusercontent.com/7203617/143456955-41545796-77b0-4227-b962-1b2350aeae4c.png)
+
+- At the home page of the house
+- Launch the script
+- Set focus on Forza
+
 #### `1987 Pontiac Firebird Trans Am GTA`
 
 Will get super wheelspins for 14 points: <https://youtu.be/HPS8Ubziu7U?t=140>
 
 ![](https://user-images.githubusercontent.com/7203617/143293559-7a901f3e-0450-44e4-a45e-4924d5381356.jpg)
 
-The `1987 Pontiac Firebird Trans Am GTA` needs to be the 3rd car of the `pontiac` constructor.
+The `1987 Pontiac Firebird Trans Am GTA` needs to be the 3rd car of the `Pontiac` constructor.
 
 ![](https://user-images.githubusercontent.com/7203617/143285495-8d88e725-64ee-4261-95fb-240b96b28ebe.jpg)
 
@@ -95,15 +112,13 @@ The `1987 Pontiac Firebird Trans Am GTA` needs to be the 3rd car of the `pontiac
 - Launch the script
 - Set focus on Forza
 
-#### `2014 Ford Fiesta ST`
+#### `2014 Porsche 911 Turbo S`
 
-Will get 10 Forzathon Points for 5 points: <https://youtu.be/zI3Sm7q34bs?t=13>
+**Still half broken :/**
 
-![](https://user-images.githubusercontent.com/7203617/143456768-e4c6a39d-ba7a-4391-85a6-c9f86ab28713.png)
+Will get super wheelspins for 11 points: <https://youtu.be/s6z0FyguhrI?t=30>
 
-The `2014 Ford Fiesta ST` needs to be the only car of the `ford` constructor with filter `B` and `Hot Hatch`.
-
-![](https://user-images.githubusercontent.com/7203617/143456955-41545796-77b0-4227-b962-1b2350aeae4c.png)
+The `2014 Porsche 911 Turbo S` needs to be the 1rst car of the `Porsche` constructor with filter `A` and `Modern Sport Car`.
 
 - At the home page of the house
 - Launch the script

@@ -144,6 +144,56 @@ class AutoCarMastery:
             common.press("enter", .75)
             self.checkBuy()
 
+    def car_porsche(self):
+        fast_sleep = .125
+        # Filter A & HotHatch
+        common.press("y", 1)
+        for _ in range(7):
+            common.press("down", fast_sleep / 2)
+        common.press("enter", fast_sleep)
+        for _ in range(10):
+            common.press("down", fast_sleep / 2)
+        common.press("enter", fast_sleep)
+        common.press("esc", 1)
+
+        self._go_to_manufacturer()
+
+        # Find car to delete
+        if self.count > 1:  # Need to skip it 2 times to begin
+            if not self.hcv2.check_match(self.images[self.car], True):
+                raise NameError("Porsche to delete not found")
+            common.press("enter")
+            self._delete()
+            common.press("up", fast_sleep)
+            common.press("right", fast_sleep)
+        # Find car to use
+        if not self.hcv2.check_match(self.images[self.car], True):
+            raise NameError("Porsche to drive not found")
+
+        self._enter_car()
+        self._go_to_mastery()
+
+        if not self.hcv2.check_match(self.images["already_done"], True):
+            # MASTERRR
+            common.press("enter", 1)
+            self.checkBuy()
+            common.press("right", fast_sleep)
+            common.press("enter", .75)
+            self.checkBuy()
+            common.press("right", fast_sleep)
+            common.press("enter", .75)
+            self.checkBuy()
+            common.press("up", fast_sleep)
+            common.press("enter", .75)
+            self.checkBuy()
+            # common.press("right", fast_sleep)
+            # common.press("enter", .75)
+            # self.checkBuy()
+            # common.press("left", fast_sleep)
+            common.press("up", fast_sleep)
+            common.press("enter", .75)
+            self.checkBuy()
+
     def checkBuy(self):
         """
         Check if the mastery had been bought
@@ -171,11 +221,12 @@ class AutoCarMastery:
                 raise NameError("Not in home")
             # My cars
             common.press("enter", 2)
-
-            if self.car == constant.Car.PONTIAC.value:
-                self.car_pontiac()
-            elif self.car == constant.Car.FORD.value:
+            if self.car == constant.Car.FORD.value:
                 self.car_ford()
+            elif self.car == constant.Car.PONTIAC.value:
+                self.car_pontiac()
+            elif self.car == constant.Car.PORSCHE.value:
+                self.car_porsche()
             else:
                 NameError("Unknow car")
 

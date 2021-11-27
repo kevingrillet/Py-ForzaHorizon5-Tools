@@ -34,6 +34,7 @@ Car enum can be found here: <https://github.com/kevingrillet/Py-ForzaHorizon5-To
 |:---------:|:---------:|
 | `FORD`    | `ford`    |
 | `PONTIAC` | `pontiac` |
+| `PORSCHE` | `porsche` |
 |           |           |
 
 ### Debug

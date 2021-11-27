@@ -12,6 +12,7 @@ class AlreadyOwnedChoice(SuperIntEnum):
 class Car(Enum):
     FORD = "ford"
     PONTIAC = "pontiac"
+    PORSCHE = "porsche"
 
 
 class RaceStep(SuperIntEnum):

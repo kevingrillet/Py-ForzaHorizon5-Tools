@@ -1,3 +1,5 @@
+import math
+
 from game import constant
 from game.autocarbuy import AutoCarBuy
 from game.autocarmastery import AutoCarMastery
@@ -38,10 +40,12 @@ class GameCommon:
         """
         From main, used to do AutoCarBuy (from game) then AutoCarMastery then get in my lambo :)
         """
-        if self.car == Car.PONTIAC.value:
-            nbcar = 71
+        if self.car == Car.FORD.value:
+            nbcar = math.floor(999/5)
         elif self.car == Car.PONTIAC.value:
-            nbcar = 199
+            nbcar = math.floor(999/14)
+        elif self.car == Car.PORSCHE.value:
+            nbcar = math.floor(999/11)
         else:
             raise NameError("Unknow car")
 
@@ -136,14 +140,18 @@ class GameCommon:
         if self.hcv2.check_match(self.images[self.car + "_name_selected"], True):
             common.press("enter", 1)
         common.sleep(1)
-
-        if self.car == constant.Car.PONTIAC.value:
-            for _ in range(3):
-                common.press("right", .125)
-        elif self.car == constant.Car.FORD.value:
+        if self.car == constant.Car.FORD.value:
             for _ in range(5):
                 common.press("down", .125)
             for _ in range(4):
+                common.press("right", .125)
+        elif self.car == constant.Car.PONTIAC.value:
+            for _ in range(3):
+                common.press("right", .125)
+        elif self.car == constant.Car.PORSCHE.value:
+            for _ in range(2):
+                common.press("down", .125)
+            for _ in range(3):
                 common.press("right", .125)
         else:
             NameError("Unknow car")

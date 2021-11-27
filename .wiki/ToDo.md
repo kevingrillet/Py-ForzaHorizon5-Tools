@@ -6,9 +6,6 @@
 
 - AutoCarPhotoAll: Take a photo of every vehicules
 
-- AutoCarMastery
-  - `2014 Porsche 911 Turbo S` <https://youtu.be/s6z0FyguhrI?t=30>
-
 ## Low priority
 
 - Add tkinter label top left corner to show which step is running:
