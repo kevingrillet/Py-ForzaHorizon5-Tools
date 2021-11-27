@@ -44,10 +44,11 @@ class AutoCarMastery:
         common.press("backspace", 1)
         if self.hcv2.check_match(self.images[self.car + "_name_selected"], True):
             common.press("enter", 1)
-        elif not self.hcv2.check_match(self.images[self.car + "_name"], True):
-            common.press("up", 1)
+        else:
             if not self.hcv2.check_match(self.images[self.car + "_name"], True):
-                raise NameError(self.car + " name not found")
+                common.press("up", 1)
+                if not self.hcv2.check_match(self.images[self.car + "_name"], True):
+                    raise NameError(self.car + " name not found")
             common.click(self.hcv2.random_find(), .125)
             if self.hcv2.check_match(self.images[self.car + "_name_selected"], True):
                 common.press("enter", 1)
