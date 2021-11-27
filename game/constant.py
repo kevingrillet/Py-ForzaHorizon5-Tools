@@ -1,4 +1,3 @@
-# Constant file to be clean
 from enum import auto, Enum
 
 from utils.constant import DebugLevel, Lang

@@ -125,7 +125,7 @@ if __name__ == "__main__":
 
     # WIP
     elif intinput == 98:
-        img_name = "skip"
+        img_name = "race_continue"
         print("find: " + str(hcv2.check_match(hcv2.load_images([img_name])[img_name])) + " find_start: " + str(
             hcv2.find_start) + " find_end: " + str(hcv2.find_end))
 
