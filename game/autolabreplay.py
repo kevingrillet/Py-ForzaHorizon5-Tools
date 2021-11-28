@@ -23,8 +23,8 @@ class AutoLabReplay:
         :param stop_on_max_mastery: (False)
         """
         common.debug("Create AutoLabReplay", DebugLevel.CLASS)
-        self.gc = gc if gc else GameCommon()
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
+        self.gc = gc if gc else GameCommon(self.hcv2)
         self.images = self.hcv2.load_images(
             ["accolades", "race_continue", "race_quit", "race_reward", "race_skip", "race_start"])
         self.stop_on_max_mastery = stop_on_max_mastery

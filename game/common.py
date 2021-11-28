@@ -1,9 +1,5 @@
-import math
-
 from game import constant
-from game.autocarbuy import AutoCarBuy
-from game.autocarmastery import AutoCarMastery
-from game.constant import AlreadyOwnedChoice, Car
+from game.constant import AlreadyOwnedChoice
 from utils import common
 from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
@@ -25,35 +21,6 @@ class GameCommon:
             ["999_mastery", "999_super_wheelspins", "accolades", "car_already_owned", "lamborghini_name",
              "lamborghini_name_selected", "my_cars", self.car + "_name", self.car + "_name_selected", "race_start",
              "race_type"])
-
-    @staticmethod
-    def AutoCarBuy_Then_AutoCarMastery(acb: AutoCarBuy, acm: AutoCarMastery, nbcar: int = 70):
-        """
-        From main, used to do AutoCarBuy (already places on the pontiac) then AutoCarMastery
-        """
-        common.debug("AutoCarBuy + AutoCarMastery for " + str(nbcar) + " cars", DebugLevel.INFO)
-        acb.run(nbcar)
-        common.press("left")
-        acm.run(nbcar)
-
-    def AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(self, acb: AutoCarBuy, acm: AutoCarMastery):
-        """
-        From main, used to do AutoCarBuy (from game) then AutoCarMastery then get in my lambo :)
-        """
-        if self.car == Car.FORD.value:
-            nbcar = math.floor(999 / 5)
-        elif self.car == Car.PONTIAC.value:
-            nbcar = math.floor(999 / 14)
-        elif self.car == Car.PORSCHE.value:
-            nbcar = math.floor(999 / 11)
-        else:
-            raise NameError("Unknow car")
-
-        self.go_home_garage()
-        self.go_to_car_to_buy()
-        GameCommon.AutoCarBuy_Then_AutoCarMastery(acb, acm, nbcar)
-        self.home_getmycar()
-        common.press("esc", 10)
 
     def check_car_already_own(self, aoc: AlreadyOwnedChoice = constant.OWNED) -> bool:
         """

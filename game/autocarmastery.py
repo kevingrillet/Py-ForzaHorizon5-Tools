@@ -1,4 +1,5 @@
 from game import constant
+from game.common import GameCommon
 from utils import common
 from utils.constant import DebugLevel
 from utils.handlercv2 import HandlerCv2
@@ -11,7 +12,7 @@ class AutoCarMastery:
     max_try = 50
     running = False
 
-    def __init__(self, hcv2: HandlerCv2 = None):
+    def __init__(self, hcv2: HandlerCv2 = None, gc: GameCommon = None):
         """
         Prepare to auto master car
         :param hcv2:
@@ -19,6 +20,7 @@ class AutoCarMastery:
         common.debug("Create AutoCarMastery", DebugLevel.CLASS)
         self.car = constant.CAR.value
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
+        self.gc = gc if gc else GameCommon(self.hcv2)
         self.images = self.hcv2.load_images(
             ["already_done", "cannot_afford_perk", "my_cars", self.car, self.car + "_name",
              self.car + "_name_selected"])
@@ -32,13 +34,14 @@ class AutoCarMastery:
 
     def _enter_car(self):
         common.press("enter")
-        common.press("enter", 1)
+        common.press("enter", 3)
         cnt = 0
         while not self.hcv2.check_match(self.images["my_cars"], True):
             common.press("esc", 1)
             cnt += 1
             if cnt > 10:
-                raise NameError("My cars not found")
+                common.warn("My cars not found")
+                self.gc.go_home_garage()
 
     def _go_to_manufacturer(self):
         common.press("backspace", 1)
