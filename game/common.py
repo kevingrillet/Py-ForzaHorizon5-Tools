@@ -41,11 +41,11 @@ class GameCommon:
         From main, used to do AutoCarBuy (from game) then AutoCarMastery then get in my lambo :)
         """
         if self.car == Car.FORD.value:
-            nbcar = math.floor(999/5)
+            nbcar = math.floor(999 / 5)
         elif self.car == Car.PONTIAC.value:
-            nbcar = math.floor(999/14)
+            nbcar = math.floor(999 / 14)
         elif self.car == Car.PORSCHE.value:
-            nbcar = math.floor(999/11)
+            nbcar = math.floor(999 / 11)
         else:
             raise NameError("Unknow car")
 
@@ -59,7 +59,7 @@ class GameCommon:
         """
         From anywhere where you can get a new car :)
         """
-        common.debug("Start GameCommon.check_car_already_own", DebugLevel.FUNCTIONS)
+        common.debug("Start GameCommon.check_car_already_own [" + aoc.name + "]", DebugLevel.FUNCTIONS)
         if self.hcv2.check_match(self.images["car_already_owned"], True):
             if constant.DEV_MODE:
                 self.hcv2.save_image()
@@ -67,7 +67,8 @@ class GameCommon:
                 common.press("down", .125)
                 common.press("down", .125)
             common.press("enter", 1)
-        common.debug("End GameCommon.check_car_already_own", DebugLevel.FUNCTIONS)
+        common.debug("End GameCommon.check_car_already_own [" + (self.hcv2.find_start is not None) + "]",
+                     DebugLevel.FUNCTIONS)
         return False
 
     def check_mastery(self) -> bool:
@@ -88,7 +89,7 @@ class GameCommon:
         # Get back to esc menu
         common.press("esc", 1)
         common.press("esc", 2)
-        common.debug("End GameCommon.check_mastery", DebugLevel.FUNCTIONS)
+        common.debug("End GameCommon.check_mastery [" + (self.hcv2.find_start is not None) + "]", DebugLevel.FUNCTIONS)
         return ret
 
     def check_super_wheelspins(self) -> bool:
@@ -103,7 +104,7 @@ class GameCommon:
         common.press("down", .125)
         common.press("enter", 2)
         ret = not self.hcv2.check_match(self.images["999_super_wheelspins"], True)
-        common.debug("End GameCommon.check_mastery", DebugLevel.FUNCTIONS)
+        common.debug("End GameCommon.check_mastery [" + (self.hcv2.find_start is not None) + "]", DebugLevel.FUNCTIONS)
         return ret
 
     def go_home_garage(self):

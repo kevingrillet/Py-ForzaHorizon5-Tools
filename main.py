@@ -121,14 +121,18 @@ if __name__ == "__main__":
 
     # Dev
     elif intinput == 0:
+        print(common.get_keyboard_language())
+        print(common.convert_layout("z"))
         hcv2.hwin32.list_window_names()
         hcv2.dev()
 
     # WIP
     elif intinput == 98:
-        img_name = "race_continue"
-        print("find: " + str(hcv2.check_match(hcv2.load_images([img_name])[img_name])) + " find_start: " + str(
-            hcv2.find_start) + " find_end: " + str(hcv2.find_end))
+        img_name = "car_already_owned"
+        print("find: " + str(hcv2.check_match(hcv2.load_images([img_name])[img_name]))
+              + " find_max_val: " + str(hcv2.find_max_val)
+              + " find_start: " + str(hcv2.find_start)
+              + " find_end: " + str(hcv2.find_end))
 
     else:
         raise NameError("Not an option")

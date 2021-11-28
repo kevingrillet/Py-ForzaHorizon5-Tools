@@ -13,6 +13,7 @@ from utils.handlerwin32 import HandlerWin32
 
 class HandlerCv2:
     find_start = None
+    find_max_val = None
     find_end = None
     hwin32 = HandlerWin32(window_name=constant.WINDOW_NAME, fullscreen=True, sos=True)
     image_read_flag = cv2.IMREAD_COLOR
@@ -133,8 +134,8 @@ class HandlerCv2:
         :return: true / false
         """
         find_image, h, w = data_image
-        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(self.match_template(find_image))
-        if max_val < self.threshold:
+        min_val, self.find_max_val, min_loc, max_loc = cv2.minMaxLoc(self.match_template(find_image))
+        if self.find_max_val < self.threshold:
             self.find_start = None
             self.find_end = None
             return False

@@ -68,6 +68,7 @@ def keyDown(key: str, secs: float = 0):
     :param key:
     :param secs:
     """
+    # key = convert_layout(key)
     pyautogui.keyDown(key)
     sleep(secs)
 
@@ -77,10 +78,22 @@ def keyUp(key: str):
     release key
     :param key:
     """
+    # key = convert_layout(key)
     pyautogui.keyUp(key)
 
 
-def get_keyboard_language():
+def convert_layout(inpt: str) -> str:
+    """
+    If keyboard is not in AZERTY, switch input to QWERTY
+    :param inpt:
+    :return:
+    """
+    if not ("France" or "Belgium") in get_keyboard_language():
+        inpt.translate(str.maketrans("z", "w"))
+    return inpt
+
+
+def get_keyboard_language() -> str:
     # https://stackoverflow.com/a/66756115
     """
     Gets the keyboard language in use by the current
@@ -200,6 +213,7 @@ def press(key: str, secs: float = .5):
     :param key:
     :param secs:
     """
+    # key = convert_layout(key)
     pyautogui.press(key)
     sleep(secs)
 
