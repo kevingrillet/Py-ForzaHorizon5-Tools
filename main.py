@@ -44,6 +44,7 @@ if __name__ == "__main__":
     show_menu()
     intinput = int(input())
     hcv2 = HandlerCv2(scale=constant.SCALE)
+    hcv2.threshold = 0.9 if constant.SCALE == 1 else 0.8
 
     # Menu
     if intinput == 1:

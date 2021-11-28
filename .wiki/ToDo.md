@@ -6,6 +6,8 @@
 
 - AutoCarPhotoAll: Take a photo of every vehicules
 
+- Threshold in config?
+
 ## Low priority
 
 - Add tkinter label top left corner to show which step is running:
