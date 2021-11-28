@@ -67,7 +67,7 @@ class GameCommon:
                 common.press("down", .125)
                 common.press("down", .125)
             common.press("enter", 1)
-        common.debug("End GameCommon.check_car_already_own [" + (self.hcv2.find_start is not None) + "]",
+        common.debug("End GameCommon.check_car_already_own [" + str(self.hcv2.find_start is not None) + "]",
                      DebugLevel.FUNCTIONS)
         return False
 
@@ -89,7 +89,8 @@ class GameCommon:
         # Get back to esc menu
         common.press("esc", 1)
         common.press("esc", 2)
-        common.debug("End GameCommon.check_mastery [" + (self.hcv2.find_start is not None) + "]", DebugLevel.FUNCTIONS)
+        common.debug("End GameCommon.check_mastery [" + str(self.hcv2.find_start is not None) + "]",
+                     DebugLevel.FUNCTIONS)
         return ret
 
     def check_super_wheelspins(self) -> bool:
@@ -104,7 +105,8 @@ class GameCommon:
         common.press("down", .125)
         common.press("enter", 2)
         ret = not self.hcv2.check_match(self.images["999_super_wheelspins"], True)
-        common.debug("End GameCommon.check_mastery [" + (self.hcv2.find_start is not None) + "]", DebugLevel.FUNCTIONS)
+        common.debug("End GameCommon.check_mastery [" + str(self.hcv2.find_start is not None) + "]",
+                     DebugLevel.FUNCTIONS)
         return ret
 
     def go_home_garage(self):
