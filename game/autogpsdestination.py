@@ -10,7 +10,7 @@ class AutoGPSDestination:
     color_range_lower = (color_gps[0] - color_d, color_gps[1] - color_d, color_gps[2] - color_d)
     color_range_upper = (color_gps[0] + color_d, color_gps[1] + color_d, color_gps[2] + color_d)
     cursor_loc = (260, 1230)  # Location
-    map_d = 75  # delta
+    map_d = 200  # delta
     map_rect = (cursor_loc[0] - map_d, cursor_loc[1] - map_d, cursor_loc[0] + map_d, cursor_loc[1] + map_d)
     running = False
 
