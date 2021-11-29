@@ -39,7 +39,7 @@ def show_menu():
     print(" ┃ 5 - ⚠ AutoCarMastery ⚠       ┃")
     print(" ┃ 6 - AutoCarBuyLeastExpensive ┃")
     print(" ┃ 7 - AutoRaceRestart          ┃")
-    print(" ┃ 8 - AutoPhotoAllMyCars (WIP) ┃")
+    print(" ┃ 8 - AutoPhotoAllMyCars       ┃")
     print(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛")
     print("Your choice:")
 
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     elif intinput == 30:
         common.alt_tab()
         AutoLabReplay(hcv2, stop_on_max_mastery=True).run()
-        common.sleep(10)
+        common.sleep(30)
         common.alt_f4()
     elif intinput == 4:
         AutoCarBuy(hcv2).run()
@@ -73,13 +73,13 @@ if __name__ == "__main__":
         AutoRaceRestart(hcv2).run()
     elif intinput == 70:
         AutoRaceRestart(hcv2).run()
-        common.sleep(10)
+        common.sleep(30)
         common.alt_f4()
     elif intinput == 8:
         AutoPhotoAllMyCars(hcv2).run()
     elif intinput == 80:
         AutoPhotoAllMyCars(hcv2).run()
-        common.sleep(10)
+        common.sleep(30)
         common.alt_f4()
 
     # Just press Z
@@ -108,7 +108,7 @@ if __name__ == "__main__":
             alr.run()
             Advance.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
             # running = gc.check_super_wheelspins()
-        common.sleep(5)
+        common.sleep(30)
         common.alt_f4()
     elif intinput == 457:
         common.debug("AutoCarBuy + AutoCarMastery + AutoRaceRestart")
@@ -128,7 +128,7 @@ if __name__ == "__main__":
             gc.quit_race()
             Advance.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
             # running = gc.check_super_wheelspins()
-        common.sleep(5)
+        common.sleep(30)
         common.alt_f4()
 
     # Dev

@@ -77,6 +77,9 @@ class GameCommon:
         return ret
 
     def enter_car(self):
+        """
+        Enter the car
+        """
         common.press("enter")
         common.press("enter", 3)
         cnt = 0

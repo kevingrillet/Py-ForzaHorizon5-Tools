@@ -30,6 +30,9 @@ class AutoLabReplay:
         self.stop_on_max_mastery = stop_on_max_mastery
 
     def esc_to_menu(self):
+        """
+        If lost, get back to menu (at least try)
+        """
         common.warn("I'm lost!!!")
         lost = True
         cnt = 0

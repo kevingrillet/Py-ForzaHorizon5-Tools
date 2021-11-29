@@ -225,7 +225,6 @@ def scroll(clicks: int = 1, location: (int, int) = (0, 0), secs: float = .5, sca
     :param clicks:
     :param location:
     :param secs:
-    :return:
     """
     if scale != 1:
         location = (int(location[0] * scale), int(location[1] * scale))

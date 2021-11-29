@@ -154,6 +154,10 @@ class HandlerCv2:
         return random.randint(x1, x2), random.randint(y1, y2)
 
     def save_image(self, image=None):
+        """
+        Save image in param or target_image
+        :param image:
+        """
         cv2.imwrite(".temp/" + str(datetime.now()).replace(":", ".") + ".jpg", image if image else self.target_image)
 
     def show_image(self, image=None):

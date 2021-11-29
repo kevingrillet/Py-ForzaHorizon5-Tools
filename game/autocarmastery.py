@@ -26,6 +26,10 @@ class AutoCarMastery:
              self.car + "_name_selected"])
 
     def car_ford(self, fast_sleep: float = .125):
+        """
+        run for Ford
+        :param fast_sleep:
+        """
         # Filter B & HotHatch
         common.press("y", 1)
         for _ in range(6):
@@ -53,6 +57,10 @@ class AutoCarMastery:
             self.checkBuy()
 
     def car_pontiac(self, fast_sleep: float = .125):
+        """
+        run for Pontiac
+        :param fast_sleep:
+        """
         self.go_to_manufacturer()
 
         # Find car to delete
@@ -92,6 +100,10 @@ class AutoCarMastery:
             self.checkBuy()
 
     def car_porsche(self, fast_sleep: float = .125):
+        """
+        run for Porsche
+        :param fast_sleep:
+        """
         # Filter A & HotHatch
         common.press("y", 1)
         for _ in range(7):
@@ -137,16 +149,24 @@ class AutoCarMastery:
             common.press("esc", 2)
             common.press("esc", 1.5)
             common.press("right", .125)
-            raise NameError("Can't buy, not enaugh mastery points [cannot_afford_perk]")
+            common.warn("Can't buy, not enough mastery points [cannot_afford_perk]")
+            self.running = False
 
     @staticmethod
     def delete():
+        """
+        Delete car after selecting it
+        """
         for _ in range(4):
             common.press("down", .125)
         common.press("enter")
         common.press("enter", 1)
 
     def find_car(self, fast_sleep: float = .125):
+        """
+        Look for the car
+        :param fast_sleep:
+        """
         # Find car to delete
         if self.count > 1:  # Need to skip it 2 times to begin
             if not self.hcv2.check_match(self.images[self.car], True):
@@ -160,6 +180,9 @@ class AutoCarMastery:
             raise NameError(self.car.capitalize() + " to drive not found [" + self.car + "]")
 
     def go_to_manufacturer(self):
+        """
+        Go to the manufacturer
+        """
         common.press("backspace")
         if self.hcv2.check_match(self.images[self.car + "_name_selected"], True):
             common.press("enter", 1)
@@ -175,6 +198,10 @@ class AutoCarMastery:
 
     @staticmethod
     def go_to_mastery(fast_sleep: float = .125):
+        """
+        Go to mastery page
+        :param fast_sleep:
+        """
         # Boost
         common.press("left", fast_sleep)
         common.press("enter", 1.5)
@@ -209,11 +236,14 @@ class AutoCarMastery:
             else:
                 raise NameError("Unknow car")
 
-            # Get back to menu
-            common.press("esc", 2)
-            common.press("esc", 1.5)
-            common.press("right", .125)
-            self.count += 1
-            common.debug("Car done! [" + str(self.count) + "/" + str(self.max_try) + " in " + self.ht.stringify() + "]",
-                         DebugLevel.INFO)
+            if self.running:
+                # Get back to menu
+                common.press("esc", 2)
+                common.press("esc", 1.5)
+                common.press("right", .125)
+                self.count += 1
+                common.debug(
+                    "Car done! [" + str(self.count) + "/" + str(self.max_try) + " in " + self.ht.stringify() + "]",
+                    DebugLevel.INFO)
+
         common.debug("Done AutoCarMastery", DebugLevel.FUNCTIONS)

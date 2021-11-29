@@ -26,7 +26,7 @@ class Advance:
         common.debug("AutoCarBuy + AutoCarMastery for " + str(nbcar) + " cars", DebugLevel.INFO)
         acb.run(nbcar)
         common.press("left")
-        acm.run(nbcar)
+        acm.run(nbcar + 1)  # 1rst car is "always" already done
 
     @staticmethod
     def AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc: GameCommon, acb: AutoCarBuy, acm: AutoCarMastery):

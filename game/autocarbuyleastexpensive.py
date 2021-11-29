@@ -25,8 +25,8 @@ class AutoCarBuyLeastExpensive:
         Need to be run from home buy/sell tab
         :param max_try:
         """
-        self.max_try = max_try
         common.debug("Start AutoCarBuyLeastExpensive (after 5 secs)", DebugLevel.FUNCTIONS)
+        self.max_try = max_try
         common.sleep(5)
         self.running = True
         self.ht.start()
@@ -64,7 +64,7 @@ class AutoCarBuyLeastExpensive:
             common.press("enter", 1)
             common.press("enter", 1)
             if self.hcv2.check_match(self.images["insufficient_cr"], True):
-                raise NameError("Not Enaugh CR [insufficient_cr]")
+                raise NameError("Not enough CR [insufficient_cr]")
             common.press("enter", 20)
             common.press("esc", 3)
 

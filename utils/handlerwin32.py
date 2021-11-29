@@ -92,6 +92,9 @@ class HandlerWin32:
 
     @staticmethod
     def list_window_names():
+        """
+        List all process
+        """
         def winEnumHandler(hwnd, ctx):
             if win32gui.IsWindowVisible(hwnd):
                 print(hex(hwnd), win32gui.GetWindowText(hwnd))

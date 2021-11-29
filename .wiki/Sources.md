@@ -2,6 +2,8 @@
 - Sentdex: <https://github.com/Sentdex/pygta5>
 - Stoodjarguar6577: <https://youtu.be/VcoNpBTnuSg> & <https://youtu.be/OvAPc2LiDi0>
 - `strfdelta`: <https://stackoverflow.com/a/63198084>
+- `get_keyboard_language`: <https://stackoverflow.com/a/66756115>
+- `fps`: <https://stackoverflow.com/a/279586>
 
 <hr>
 

@@ -145,15 +145,16 @@ Can be started from esc menu in race or race preparation.
 - Launch the script
 - Set focus on Forza
 
-Example of codes from <https://youtu.be/oBFlEdrj8Ec?t=16>:
+Example of codes:
 
-- Piniata: 10sp in 30 secs | 743 324 179
+- 10sp in 30 secs | 743 324 179 | < <https://youtu.be/oBFlEdrj8Ec?t=16>>
+- 10 sp in 30 sec straight road | 497 519 560 
 
 ### AutoPhotoAllMyCars
 
 Can be used with `80` to quit game after done.
 
-Need to be started from esc menu outside of the house.
+Need to be started from esc menu outside the house.
 
 - Launch the script
 - Set focus on Forza
@@ -213,16 +214,16 @@ Your choice:
 98
 
 List of images:
-0_spins_remaining                         999_mastery                              999_super_wheelspins                     accolades                               
-already_done                              autoshow                                 buy_car                                  cannot_afford_perk                      
-car_already_owned                         collect_prize_and_spin_again             colors                                   ford                                    
-ford_name                                 ford_name_selected                       insufficient_cr                          lamborghini_name                        
-lamborghini_name_selected                 last_car_manufacturer_selected           loading_please_wait                      my_cars                                 
-not_owned                                 pontiac                                  pontiac_name                             pontiac_name_selected                   
-porsche                                   porsche_name                             porsche_name_selected                    processing_photo                        
-race_continue                             race_quit                                race_reward                              race_skip                               
-race_start                                race_type                                skip                                     value                                   
-value_menu                                value_selected                   
+0_spins_remaining                        999_mastery                              999_super_wheelspins                     accolades                               
+already_done                             autoshow                                 buy_car                                  cannot_afford_perk                      
+car_already_owned                        collect_prize_and_spin_again             colors                                   ford                                    
+ford_name                                ford_name_selected                       home                                     insufficient_cr                         
+lamborghini_name                         lamborghini_name_selected                last_car_manufacturer_selected           loading_please_wait                     
+my_cars                                  not_owned                                pontiac                                  pontiac_name                            
+pontiac_name_selected                    porsche                                  porsche_name                             porsche_name_selected                   
+processing_photo                         race_continue                            race_quit                                race_reward                             
+race_skip                                race_start                               race_type                                skip                                    
+value                                    value_menu                               value_selected
 
 Choose image to search:
 car_already_owned
