@@ -62,7 +62,7 @@ class AutoPhotoAllMyCars:
 
             # Take photo
             common.press("p", 2)  # Enter photo mode
-            self.wait_not("loading_please_wait", "Loading didn't end?")
+            self.wait("loading_please_wait", "Loading didn't end?")
             common.sleep(1)
             common.press("enter")  # Take photo
             self.wait("processing_photo", "Processing didn't end?")
@@ -70,18 +70,19 @@ class AutoPhotoAllMyCars:
             common.press("esc")  # Exit horizon promo
             common.press("esc")  # Exit photo
             common.press("enter", 2)  # Exit photo mode > Yes
-            self.wait_not("loading_please_wait", "Loading didn't end?")
+            self.wait("loading_please_wait", "Loading didn't end?")
             self.wait_not("home", "Not outside home")
 
             count += 1
-            common.debug("Photo taken! [" + str(count) + " in " + self.ht.stringify() + "]", DebugLevel.INFO)
+            common.debug("Photo taken! [" + str(count) + " (" + str(nb_right) + "/" + str(
+                count_try) + ") in " + self.ht.stringify() + " ]", DebugLevel.INFO)
 
         common.debug("Done AutoPhotoAllMyCars", DebugLevel.FUNCTIONS)
 
     def wait(self, image_name: str, err_msg: str):
         cnt = 0
         while self.hcv2.check_match(self.images[image_name], True):
-            common.sleep(1)
+            common.sleep(2)
             cnt += 1
             if cnt > 10:
                 raise NameError(err_msg + " [" + image_name + "]")
@@ -89,7 +90,7 @@ class AutoPhotoAllMyCars:
     def wait_not(self, image_name: str, err_msg: str):
         cnt = 0
         while not self.hcv2.check_match(self.images[image_name], True):
-            common.sleep(1)
+            common.sleep(2)
             cnt += 1
             if cnt > 10:
                 raise NameError(err_msg + " [" + image_name + "]")
