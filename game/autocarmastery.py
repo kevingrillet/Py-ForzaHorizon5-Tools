@@ -25,40 +25,7 @@ class AutoCarMastery:
             ["already_done", "cannot_afford_perk", "my_cars", self.car, self.car + "_name",
              self.car + "_name_selected"])
 
-    @staticmethod
-    def _delete():
-        for _ in range(4):
-            common.press("down", .125)
-        common.press("enter")
-        common.press("enter", 2)
-
-    def _go_to_manufacturer(self):
-        common.press("backspace", 1)
-        if self.hcv2.check_match(self.images[self.car + "_name_selected"], True):
-            common.press("enter", 1)
-        else:
-            if not self.hcv2.check_match(self.images[self.car + "_name"], True):
-                common.press("up", 1)
-                if not self.hcv2.check_match(self.images[self.car + "_name"], True):
-                    raise NameError(self.car + " name not found")
-            common.click(self.hcv2.random_find(), .125)
-            if self.hcv2.check_match(self.images[self.car + "_name_selected"], True):
-                common.press("enter", 1)
-        common.sleep(1)
-
-    @staticmethod
-    def _go_to_mastery():
-        # Boost
-        common.press("left", .125)
-        common.press("enter", 1.5)
-        # Mastery
-        common.press("right", .125)
-        common.press("right", .125)
-        common.press("down", .125)
-        common.press("enter", 2.5)
-
-    def car_ford(self):
-        fast_sleep = .125
+    def car_ford(self, fast_sleep: float = .125):
         # Filter B & HotHatch
         common.press("y", 1)
         for _ in range(6):
@@ -69,22 +36,10 @@ class AutoCarMastery:
         common.press("enter", fast_sleep)
         common.press("esc", 1)
 
-        self._go_to_manufacturer()
-
-        # Find car to delete
-        if self.count > 1:  # Need to skip it 2 times to begin
-            if not self.hcv2.check_match(self.images[self.car], True):
-                raise NameError("Ford to delete not found")
-            common.press("enter")
-            self._delete()
-            common.press("up", fast_sleep)
-            common.press("right", fast_sleep)
-        # Find car to use
-        if not self.hcv2.check_match(self.images[self.car], True):
-            raise NameError("Ford to drive not found")
-
+        self.go_to_manufacturer()
+        self.find_car()
         self.gc.enter_car()
-        self._go_to_mastery()
+        self.go_to_mastery()
 
         if not self.hcv2.check_match(self.images["already_done"], True):
             # MASTERRR
@@ -97,47 +52,46 @@ class AutoCarMastery:
             common.press("enter", .75)
             self.checkBuy()
 
-    def car_pontiac(self):
-        self._go_to_manufacturer()
+    def car_pontiac(self, fast_sleep: float = .125):
+        self.go_to_manufacturer()
 
         # Find car to delete
         if self.count > 1:  # Need to skip it 2 times to begin
             if not self.hcv2.check_match(self.images[self.car], True):
-                raise NameError("Pontiac to delete not found")
-            common.press("right", .125)
+                raise NameError(self.car.capitalize() + " to delete not found [" + self.car + "]")
+            common.press("right", fast_sleep)
             common.press("enter")
-            self._delete()
+            self.delete()
         # Find car to use
         if not self.hcv2.check_match(self.images[self.car], True):
-            raise NameError("Pontiac to drive not found")
-        common.press("up", .125)
-        common.press("right", .125)
+            raise NameError(self.car.capitalize() + " to drive not found [" + self.car + "]")
+        common.press("up", fast_sleep)
+        common.press("right", fast_sleep)
 
         self.gc.enter_car()
-        self._go_to_mastery()
+        self.go_to_mastery()
 
         if not self.hcv2.check_match(self.images["already_done"], True):
             # MASTERRR
             common.press("enter", 1)
             self.checkBuy()
-            common.press("right", .125)
+            common.press("right", fast_sleep)
             common.press("enter", .75)
             self.checkBuy()
-            common.press("right", .125)
+            common.press("right", fast_sleep)
             common.press("enter", .75)
             self.checkBuy()
-            common.press("up", .125)
+            common.press("up", fast_sleep)
             common.press("enter", .75)
             self.checkBuy()
-            common.press("right", .125)
+            common.press("right", fast_sleep)
             common.press("enter", .75)
             self.checkBuy()
-            common.press("up", .125)
+            common.press("up", fast_sleep)
             common.press("enter", .75)
             self.checkBuy()
 
-    def car_porsche(self):
-        fast_sleep = .125
+    def car_porsche(self, fast_sleep: float = .125):
         # Filter A & HotHatch
         common.press("y", 1)
         for _ in range(7):
@@ -148,22 +102,10 @@ class AutoCarMastery:
         common.press("enter", fast_sleep)
         common.press("esc", 1)
 
-        self._go_to_manufacturer()
-
-        # Find car to delete
-        if self.count > 1:  # Need to skip it 2 times to begin
-            if not self.hcv2.check_match(self.images[self.car], True):
-                raise NameError("Porsche to delete not found")
-            common.press("enter")
-            self._delete()
-            common.press("up", fast_sleep)
-            common.press("right", fast_sleep)
-        # Find car to use
-        if not self.hcv2.check_match(self.images[self.car], True):
-            raise NameError("Porsche to drive not found")
-
+        self.go_to_manufacturer()
+        self.find_car()
         self.gc.enter_car()
-        self._go_to_mastery()
+        self.go_to_mastery()
 
         if not self.hcv2.check_match(self.images["already_done"], True):
             # MASTERRR
@@ -196,6 +138,51 @@ class AutoCarMastery:
             common.press("esc", 1.5)
             common.press("right", .125)
             raise NameError("Can't buy, not enaugh mastery points [cannot_afford_perk]")
+
+    @staticmethod
+    def delete():
+        for _ in range(4):
+            common.press("down", .125)
+        common.press("enter")
+        common.press("enter", 1)
+
+    def find_car(self, fast_sleep: float = .125):
+        # Find car to delete
+        if self.count > 1:  # Need to skip it 2 times to begin
+            if not self.hcv2.check_match(self.images[self.car], True):
+                raise NameError(self.car.capitalize() + " to delete not found [" + self.car + "]")
+            common.press("enter")
+            self.delete()
+            common.press("up", fast_sleep)
+            common.press("right", fast_sleep)
+        # Find car to use
+        if not self.hcv2.check_match(self.images[self.car], True):
+            raise NameError(self.car.capitalize() + " to drive not found [" + self.car + "]")
+
+    def go_to_manufacturer(self):
+        common.press("backspace")
+        if self.hcv2.check_match(self.images[self.car + "_name_selected"], True):
+            common.press("enter", 1)
+        else:
+            if not self.hcv2.check_match(self.images[self.car + "_name"], True):
+                common.press("up")
+                if not self.hcv2.check_match(self.images[self.car + "_name"], True):
+                    raise NameError(self.car.capitalize() + " name not found [" + self.car + "_name]")
+            common.click(self.hcv2.random_find(), .125)
+            if self.hcv2.check_match(self.images[self.car + "_name_selected"], True):
+                common.press("enter", 1)
+        common.sleep(1)
+
+    @staticmethod
+    def go_to_mastery(fast_sleep: float = .125):
+        # Boost
+        common.press("left", fast_sleep)
+        common.press("enter", 1.5)
+        # Mastery
+        common.press("right", fast_sleep)
+        common.press("right", fast_sleep)
+        common.press("down", fast_sleep)
+        common.press("enter", 2.5)
 
     def run(self, max_try: int = max_try):
         """

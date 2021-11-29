@@ -1,20 +1,19 @@
 ## High priority
 
-- Loop until 999 super wheelspins > *Missing capture 999 super wheelspins*
-
 ## Medium priority
 
-- AutoCarPhotoAll: Take a photo of every vehicules
-
-- Threshold in config?
+- Remove or find max? `GameCommon.check_super_wheelspins` and `999_super_wheelspins`because 999 is not the max :trollface:
 
 ## Low priority
 
+- Enable QWERTY layout
+- Rewrite logs
+  - <https://docs.python.org/3/howto/logging.html>
+- Rewrite function calls
+  - <https://stackoverflow.com/a/25828876>
 - Add tkinter label top left corner to show which step is running:
   - <https://www.youtube.com/watch?v=4pS-_etyjT0>
   - <https://www.tutorialspoint.com/python/tk_label.htm>
-
-- Rewrite function calls: <https://stackoverflow.com/a/25828876>
 
 <hr>
 

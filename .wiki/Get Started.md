@@ -1,23 +1,22 @@
 * [Basic](#basic)
-
     1. [AutoWheelSpins](#autowheelspins)
     2. [AutoGPSDestination](#autogpsdestination)
     3. [AutoLabReplay](#autolabreplay)
     4. [AutoCarBuy](#autocarbuy)
     5. [AutoCarMastery](#autocarmastery)
-
         - [`2014 Ford Fiesta ST`](#2014-ford-fiesta-st)
         - [`1987 Pontiac Firebird Trans Am GTA`](#1987-pontiac-firebird-trans-am-gta)
         - [`2014 Porsche 911 Turbo S`](#2014-porsche-911-turbo-s)
-        
     6. [AutoCarBuyLeastExpensive](#autocarbuyleastexpensive)
     7. [AutoRaceRestart](#autoracerestart)
-
+    8. [AutoPhotoAllMyCars](#autoracerestart)
 * [Advance](#advance)
-
     - [Just press z](#just-press-z)
     - [AutoCarBuy + AutoCarMastery + AutoLabReplay](#autocarbuy--autocarmastery--autolabreplay)
     - [AutoCarBuy + AutoCarMastery + AutoRaceRestart](#autocarbuy--autocarmastery--autoracerestart)
+* [Dev](#dev)
+    - [Dev tools](#dev-tools)
+    - [Image debug](#image-debug)
 
 ## Basic
 
@@ -56,7 +55,7 @@ Will redo the last lab race done.
 
 ![](https://user-images.githubusercontent.com/7203617/143293466-835bca70-004b-498b-853d-511cf2d6b6b7.jpg)
 
-Can be started from menu or race.
+Can be started from esc menu, esc menu in race or race preparation.
 
 - SetUp full assist
 - Launch the script
@@ -114,11 +113,13 @@ The `1987 Pontiac Firebird Trans Am GTA` needs to be the 3rd car of the `Pontiac
 
 #### `2014 Porsche 911 Turbo S`
 
-**Still half broken :/**
-
 Will get super wheelspins for 11 points: <https://youtu.be/s6z0FyguhrI?t=30>
 
-The `2014 Porsche 911 Turbo S` needs to be the 1rst car of the `Porsche` constructor with filter `A` and `Modern Sport Car`.
+![](https://user-images.githubusercontent.com/7203617/143869702-1dfd2708-8b98-4fa1-adbe-72cdb09b0181.jpg)
+
+The `2014 Porsche 911 Turbo S` needs to be the only car of the `Porsche` constructor with filter `A` and `Modern Sport Car`.
+
+![](https://user-images.githubusercontent.com/7203617/143869701-09accdd1-e904-4375-9551-de9c6ce643d1.jpg)
 
 - At the home page of the house
 - Launch the script
@@ -136,7 +137,9 @@ Can be used with `70` to quit game after 100 restart.
 
 Will restart the current race at the end.
 
-Can be started from menu or race.
+Can be started from esc menu in race or race preparation.
+
+![](https://user-images.githubusercontent.com/7203617/143869700-f018b844-598c-440f-9b48-56881decbe51.jpg)
 
 - SetUp full assist
 - Launch the script
@@ -145,6 +148,15 @@ Can be started from menu or race.
 Example of codes from <https://youtu.be/oBFlEdrj8Ec?t=16>:
 
 - Piniata: 10sp in 30 secs | 743 324 179
+
+### AutoPhotoAllMyCars
+
+Can be used with `80` to quit game after done.
+
+Need to be started from esc menu outside of the house.
+
+- Launch the script
+- Set focus on Forza
 
 ## Advance
 
@@ -158,9 +170,12 @@ Will alt tab, press `esc`, then hold `z`
 
 Choice `453`.
 
+**Require to have a Lamborghini as favorite car, and be in it at the start.**
+
 Need to be started from game default esc menu.
 
-Will alt tab, check if max mastery, then AutoCarBuy + AutoCarMastery
+Will alt tab, check if max mastery, if `true` then AutoCarBuy + AutoCarMastery
+
 Then loop
 - AutoLabReplay
 - Check mastery
@@ -170,13 +185,53 @@ Then loop
 
 Choice `457`.
 
+**Require to have a Lamborghini as favorite car, and be in it at the start.**
+
 Need to be started from game default esc menu.
 
-Will alt tab, check if max mastery, then AutoCarBuy + AutoCarMastery
+Will alt tab, check if max mastery, if `true` then AutoCarBuy + AutoCarMastery
+
 Then loop
 - AutoRaceRestart (will run the last lab race)
 - Check mastery
 - AutoCarBuy + AutoCarMastery
+
+## Dev
+
+### Dev tools
+
+Choice `0`.
+
+### Image debug
+
+Choice `98`.
+
+Then choose your image to find.
+
+```
+Your choice:
+98
+
+List of images:
+0_spins_remaining                         999_mastery                              999_super_wheelspins                     accolades                               
+already_done                              autoshow                                 buy_car                                  cannot_afford_perk                      
+car_already_owned                         collect_prize_and_spin_again             colors                                   ford                                    
+ford_name                                 ford_name_selected                       insufficient_cr                          lamborghini_name                        
+lamborghini_name_selected                 last_car_manufacturer_selected           loading_please_wait                      my_cars                                 
+not_owned                                 pontiac                                  pontiac_name                             pontiac_name_selected                   
+porsche                                   porsche_name                             porsche_name_selected                    processing_photo                        
+race_continue                             race_quit                                race_reward                              race_skip                               
+race_start                                race_type                                skip                                     value                                   
+value_menu                                value_selected                   
+
+Choose image to search:
+car_already_owned
+
+find:                True
+find_max_val:        0.9993559122085571
+find_start:          (1072, 248)
+find_end:            (1488, 301)
+```
 
 <hr>
 

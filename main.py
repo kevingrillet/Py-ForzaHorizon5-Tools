@@ -7,6 +7,7 @@ from game.autocarbuyleastexpensive import AutoCarBuyLeastExpensive
 from game.autocarmastery import AutoCarMastery
 from game.autogpsdestination import AutoGPSDestination
 from game.autolabreplay import AutoLabReplay
+from game.autophotoallmycars import AutoPhotoAllMyCars
 from game.autoracerestart import AutoRaceRestart
 from game.autowheelspins import AutoWheelspins
 from game.common import GameCommon
@@ -38,6 +39,7 @@ def show_menu():
     print(" ┃ 5 - ⚠ AutoCarMastery ⚠       ┃")
     print(" ┃ 6 - AutoCarBuyLeastExpensive ┃")
     print(" ┃ 7 - AutoRaceRestart          ┃")
+    print(" ┃ 8 - AutoPhotoAllMyCars (WIP) ┃")
     print(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛")
     print("Your choice:")
 
@@ -73,6 +75,12 @@ if __name__ == "__main__":
         AutoRaceRestart(hcv2).run()
         common.sleep(10)
         common.alt_f4()
+    elif intinput == 8:
+        AutoPhotoAllMyCars(hcv2).run()
+    elif intinput == 80:
+        AutoPhotoAllMyCars(hcv2).run()
+        common.sleep(10)
+        common.alt_f4()
 
     # Just press Z
     elif intinput == 99:
@@ -91,7 +99,7 @@ if __name__ == "__main__":
         acm = AutoCarMastery(hcv2, gc)
         alr = AutoLabReplay(hcv2, gc, True)
         common.alt_tab()
-        common.click((10, 10), .125)
+        common.moveTo((10, 10))
         common.press("esc", 2)
         if gc.check_mastery():
             Advance.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
@@ -109,7 +117,7 @@ if __name__ == "__main__":
         acm = AutoCarMastery(hcv2, gc)
         arr = AutoRaceRestart(hcv2)
         common.alt_tab()
-        common.click((10, 10), .125)
+        common.moveTo((10, 10))
         common.press("esc", 2)
         if gc.check_mastery():
             Advance.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
@@ -131,23 +139,22 @@ if __name__ == "__main__":
         hcv2.dev()
     elif intinput == 98:
         arr = os.listdir("./images/common/")
-        arr.extend(os.listdir("./images/en/"))
+        arr.extend(os.listdir("./images/" + constant.LANG.value + "/"))
+        arr = [s.replace(".jpg", "") for s in arr]
         arr.sort()
         print("\nList of images:")
-        for i in range(0, len(arr), 5):
-            s1 = arr[i].replace(".jpg", "") if i < len(arr) else ""
-            s2 = arr[i + 1].replace(".jpg", "") if i + 1 < len(arr) else ""
-            s3 = arr[i + 2].replace(".jpg", "") if i + 2 < len(arr) else ""
-            s4 = arr[i + 3].replace(".jpg", "") if i + 3 < len(arr) else ""
-            s5 = arr[i + 4].replace(".jpg", "") if i + 4 < len(arr) else ""
-            print('{0:30}  {1:30} {2:30} {3:30} {4:30}'.format(s1, s2, s3, s4, s5))
-
+        for i in range(0, len(arr), 4):
+            s1 = arr[i] if i < len(arr) else ""
+            s2 = arr[i + 1] if i + 1 < len(arr) else ""
+            s3 = arr[i + 2] if i + 2 < len(arr) else ""
+            s4 = arr[i + 3] if i + 3 < len(arr) else ""
+            print('{0:40} {1:40} {2:40} {3:40}'.format(s1, s2, s3, s4))
         print("\nChoose image to search:")
         img_name = input()
-        print("\nfind: " + str(hcv2.check_match(hcv2.load_images([img_name])[img_name]))
-              + " find_max_val: " + str(hcv2.find_max_val)
-              + " find_start: " + str(hcv2.find_start)
-              + " find_end: " + str(hcv2.find_end))
+        print('{0:21} {1}'.format("\nfind:", str(hcv2.check_match(hcv2.load_images([img_name])[img_name]))))
+        print('{0:20} {1}'.format("find_max_val:", str(hcv2.find_max_val)))
+        print('{0:20} {1}'.format("find_start:", str(hcv2.find_start)))
+        print('{0:20} {1}'.format("find_end:", str(hcv2.find_end)))
 
     else:
         raise NameError("Not an option")
