@@ -76,6 +76,17 @@ class GameCommon:
                      DebugLevel.FUNCTIONS)
         return ret
 
+    def enter_car(self):
+        common.press("enter")
+        common.press("enter", 3)
+        cnt = 0
+        while not self.hcv2.check_match(self.images["my_cars"], True):
+            common.press("esc", 1)
+            cnt += 1
+            if cnt > 10:
+                common.warn("My cars not found")
+                self.go_home_garage()
+
     def go_home_garage(self):
         """
         From game, go to home > garage
@@ -84,7 +95,7 @@ class GameCommon:
         if not self.hcv2.check_match(self.images["accolades"], True):
             common.press("esc", 2)
             if not self.hcv2.check_match(self.images["accolades"], True):
-                raise NameError("Not in menu")
+                raise NameError("Not in menu [accolades]")
         common.press("pagedown")
         common.press("pagedown")
         common.press("enter")
@@ -105,7 +116,7 @@ class GameCommon:
             if not self.hcv2.check_match(self.images[self.car + "_name"], True):
                 common.scroll(-10, (450, 450), .125, constant.SCALE)
                 if not self.hcv2.check_match(self.images[self.car + "_name"], True):
-                    raise NameError("Pontiac name not found")
+                    raise NameError(self.car + " name not found ["+self.car + "_name")
         common.click(self.hcv2.random_find(), .125)
         if self.hcv2.check_match(self.images[self.car + "_name_selected"], True):
             common.press("enter", 1)
@@ -124,7 +135,7 @@ class GameCommon:
             for _ in range(3):
                 common.press("right", .125)
         else:
-            NameError("Unknow car")
+            raise NameError("Unknow car")
 
         common.debug("End GameCommon.go_to_car_to_buy", DebugLevel.FUNCTIONS)
 
@@ -175,7 +186,7 @@ class GameCommon:
         """
         common.debug("Start GameCommon.home_goinmycars", DebugLevel.FUNCTIONS)
         if not self.hcv2.check_match(self.images["my_cars"], True):
-            raise NameError("Not in home")
+            raise NameError("Not in home [my_cars]")
         common.press("enter", 2)
         common.debug("End GameCommon.home_goinmycars", DebugLevel.FUNCTIONS)
 
@@ -191,19 +202,11 @@ class GameCommon:
         # Constructor
         common.press("backspace", 1)
         if not self.hcv2.check_match(self.images["lamborghini_name"], True):
-            raise NameError("No lambo in favorites")
+            raise NameError("No lambo in favorites [lamborghini_name]")
         common.click(self.hcv2.random_find(), .125)
         if self.hcv2.check_match(self.images["lamborghini_name_selected"], True):
             common.press("enter", 1)
-        # Get in car
-        common.press("enter")
-        common.press("enter", 1)
-        cnt = 0
-        while not self.hcv2.check_match(self.images["my_cars"], True):
-            common.press("esc", 1)
-            cnt += 1
-            if cnt > 10:
-                raise NameError("My cars not found")
+        self.enter_car()
         common.debug("End GameCommon.home_mycars_getinlambo", DebugLevel.FUNCTIONS)
 
     def quit_race(self):

@@ -89,4 +89,4 @@ class AutoRaceRestart:
         elif self.hcv2.check_match(self.images["race_start"]):
             self.next_step(RaceStep.PREPARING)
         else:
-            raise NameError("Not where I am supposed to be")
+            raise NameError("Not where I am supposed to be [race_quit, race_start]")

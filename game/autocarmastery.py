@@ -32,17 +32,6 @@ class AutoCarMastery:
         common.press("enter")
         common.press("enter", 2)
 
-    def _enter_car(self):
-        common.press("enter")
-        common.press("enter", 3)
-        cnt = 0
-        while not self.hcv2.check_match(self.images["my_cars"], True):
-            common.press("esc", 1)
-            cnt += 1
-            if cnt > 10:
-                common.warn("My cars not found")
-                self.gc.go_home_garage()
-
     def _go_to_manufacturer(self):
         common.press("backspace", 1)
         if self.hcv2.check_match(self.images[self.car + "_name_selected"], True):
@@ -94,7 +83,7 @@ class AutoCarMastery:
         if not self.hcv2.check_match(self.images[self.car], True):
             raise NameError("Ford to drive not found")
 
-        self._enter_car()
+        self.gc.enter_car()
         self._go_to_mastery()
 
         if not self.hcv2.check_match(self.images["already_done"], True):
@@ -124,7 +113,7 @@ class AutoCarMastery:
         common.press("up", .125)
         common.press("right", .125)
 
-        self._enter_car()
+        self.gc.enter_car()
         self._go_to_mastery()
 
         if not self.hcv2.check_match(self.images["already_done"], True):
@@ -173,7 +162,7 @@ class AutoCarMastery:
         if not self.hcv2.check_match(self.images[self.car], True):
             raise NameError("Porsche to drive not found")
 
-        self._enter_car()
+        self.gc.enter_car()
         self._go_to_mastery()
 
         if not self.hcv2.check_match(self.images["already_done"], True):
@@ -206,7 +195,7 @@ class AutoCarMastery:
             common.press("esc", 2)
             common.press("esc", 1.5)
             common.press("right", .125)
-            raise NameError("Can't buy, not enaugh mastery points")
+            raise NameError("Can't buy, not enaugh mastery points [cannot_afford_perk]")
 
     def run(self, max_try: int = max_try):
         """
@@ -221,7 +210,7 @@ class AutoCarMastery:
         self.ht.start()
         while self.running and self.count < self.max_try:
             if not self.hcv2.check_match(self.images["my_cars"], True):
-                raise NameError("Not in home")
+                raise NameError("Not in home [my_cars]")
             # My cars
             common.press("enter", 2)
             if self.car == constant.Car.FORD.value:
@@ -231,7 +220,7 @@ class AutoCarMastery:
             elif self.car == constant.Car.PORSCHE.value:
                 self.car_porsche()
             else:
-                NameError("Unknow car")
+                raise NameError("Unknow car")
 
             # Get back to menu
             common.press("esc", 2)

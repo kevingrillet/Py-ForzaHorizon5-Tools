@@ -33,29 +33,27 @@ class AutoCarBuyLeastExpensive:
         while self.running and self.count < self.max_try:
             # Enter salon
             if not self.hcv2.check_match(self.images["autoshow"], True):
-                raise NameError("Not at salon")
+                raise NameError("Not at autoshow [autoshow]")
             common.press("enter", 2)
             # Filter not buy
             common.press("y")
             if not self.hcv2.check_match(self.images["not_owned"], True):
-                raise NameError("Filter not found")
+                raise NameError("Filter not found [not_owned]")
             common.click(self.hcv2.random_find(), .125)
             common.press("esc", 2)
             # Sort
             common.press("x")
             if not self.hcv2.check_match(self.images["value"], True):
-                raise NameError("Sort not found")
+                raise NameError("Sort not found [value]")
             common.click(self.hcv2.random_find(), .125)
             if self.hcv2.check_match(self.images["value_selected"], True):
                 common.press("enter")
             common.sleep(1)
             # GoTo least expensive
             common.press("backspace")
-            if self.hcv2.check_match(self.images["value_menu"], True):
-                common.click((570, self.hcv2.find_end[2] + 54))
-            else:
-                raise NameError("Jump to value not found")
-
+            if not self.hcv2.check_match(self.images["value_menu"], True):
+                raise NameError("Jump to value not found [value_menu]")
+            common.click((570, self.hcv2.find_end[2] + 54))
             if self.hcv2.check_match(self.images["value_menu"], True):
                 common.press("enter", 2)
             # Buy
@@ -66,7 +64,7 @@ class AutoCarBuyLeastExpensive:
             common.press("enter", 1)
             common.press("enter", 1)
             if self.hcv2.check_match(self.images["insufficient_cr"], True):
-                raise NameError("Not Enaugh CR")
+                raise NameError("Not Enaugh CR [insufficient_cr]")
             common.press("enter", 20)
             common.press("esc", 3)
 

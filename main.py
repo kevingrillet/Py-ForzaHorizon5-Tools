@@ -83,10 +83,9 @@ if __name__ == "__main__":
     # Combination
     elif intinput == 45:
         common.alt_tab()
-        Advance.AutoCarBuy_Then_AutoCarMastery(AutoCarBuy(hcv2), AutoCarMastery(hcv2), 70)
+        Advance.AutoCarBuy_Then_AutoCarMastery(AutoCarBuy(hcv2), AutoCarMastery(hcv2))
     elif intinput == 453:
         common.debug("AutoCarBuy + AutoCarMastery + AutoLabReplay")
-        a = Advance()
         gc = GameCommon(hcv2)
         acb = AutoCarBuy(hcv2)
         acm = AutoCarMastery(hcv2, gc)
@@ -95,17 +94,16 @@ if __name__ == "__main__":
         common.click((10, 10), .125)
         common.press("esc", 2)
         if gc.check_mastery():
-            a.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
+            Advance.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
         running = True
         while running:
             alr.run()
-            a.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
+            Advance.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
             # running = gc.check_super_wheelspins()
         common.sleep(5)
         common.alt_f4()
     elif intinput == 457:
         common.debug("AutoCarBuy + AutoCarMastery + AutoRaceRestart")
-        a = Advance()
         gc = GameCommon(hcv2)
         acb = AutoCarBuy(hcv2)
         acm = AutoCarMastery(hcv2, gc)
@@ -114,13 +112,13 @@ if __name__ == "__main__":
         common.click((10, 10), .125)
         common.press("esc", 2)
         if gc.check_mastery():
-            a.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
+            Advance.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
         running = True
         while running:
             gc.go_to_last_lab_race()
             arr.run()
             gc.quit_race()
-            a.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
+            Advance.AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
             # running = gc.check_super_wheelspins()
         common.sleep(5)
         common.alt_f4()
