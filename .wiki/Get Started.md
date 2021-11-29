@@ -6,7 +6,7 @@
     5. [AutoCarMastery](#autocarmastery)
         - [`2014 Ford Fiesta ST`](#2014-ford-fiesta-st)
         - [`1987 Pontiac Firebird Trans Am GTA`](#1987-pontiac-firebird-trans-am-gta)
-        - [`2014 Porsche 911 Turbo S`](#2014-porsche-911-turbo-s)
+        - [`2015 Porsche Cayman GTS`](#2015-porsche-cayman-gts)
     6. [AutoCarBuyLeastExpensive](#autocarbuyleastexpensive)
     7. [AutoRaceRestart](#autoracerestart)
     8. [AutoPhotoAllMyCars](#autoracerestart)
@@ -111,13 +111,13 @@ The `1987 Pontiac Firebird Trans Am GTA` needs to be the 3rd car of the `Pontiac
 - Launch the script
 - Set focus on Forza
 
-#### `2014 Porsche 911 Turbo S`
+#### `2015 Porsche Cayman GTS`
 
 Will get super wheelspins for 11 points: <https://youtu.be/s6z0FyguhrI?t=30>
 
 ![](https://user-images.githubusercontent.com/7203617/143869702-1dfd2708-8b98-4fa1-adbe-72cdb09b0181.jpg)
 
-The `2014 Porsche 911 Turbo S` needs to be the only car of the `Porsche` constructor with filter `A` and `Modern Sport Car`.
+The `2015 Porsche Cayman GTS` needs to be the only car of the `Porsche` constructor with filter `A` and `Modern Sport Car`.
 
 ![](https://user-images.githubusercontent.com/7203617/143869701-09accdd1-e904-4375-9551-de9c6ce643d1.jpg)
 
