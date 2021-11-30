@@ -19,30 +19,31 @@ class AutoGPSDestination:
         Prepare to drive to destination
         :param hcv2:
         """
-        common.debug("Create AutoGPSDestination", DebugLevel.CLASS)
+        common.debug('Create AutoGPSDestination', DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
 
     def run(self):
         """
         Need to be run from game esc menu
         """
-        common.debug("Start AutoGPSDestination (after 5 secs)", DebugLevel.FUNCTIONS)
+        common.debug('Start AutoGPSDestination (after 5 secs)', DebugLevel.FUNCTIONS)
         common.sleep(5)
-        common.press("esc")
-        common.keyDown("z", 2)
+        common.moveTo((10, 10))
+        common.press('esc')
+        common.keyDown('z', 2)
         self.count = 0
         self.running = True
         while self.running:
             self.hcv2.require_new_capture = True
             if not self.hcv2.check_color(self.color_range_lower, self.color_range_upper, self.map_rect):
-                common.debug("Path not found: " + str(self.count), DebugLevel.INFO)
+                common.debug('Path not found: ' + str(self.count), DebugLevel.INFO)
                 self.count += 1
                 if self.count >= 2:
-                    common.debug("Stop")
+                    common.debug('Stop')
                     self.running = False
             else:
                 self.count = 0
             common.sleep(.25)
-        common.keyDown("z")
-        common.press("esc", 0)
-        common.debug("Done AutoGPSDestination", DebugLevel.FUNCTIONS)
+        common.keyDown('z')
+        common.press('esc', 0)
+        common.debug('Done AutoGPSDestination', DebugLevel.FUNCTIONS)

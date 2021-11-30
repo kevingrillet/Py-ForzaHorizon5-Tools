@@ -4,6 +4,7 @@
 - `strfdelta`: <https://stackoverflow.com/a/63198084>
 - `get_keyboard_language`: <https://stackoverflow.com/a/66756115>
 - `fps`: <https://stackoverflow.com/a/279586>
+- `scroll`: <https://stackoverflow.com/a/61436447>
 
 <hr>
 

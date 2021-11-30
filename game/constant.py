@@ -10,9 +10,9 @@ class AlreadyOwnedChoice(SuperIntEnum):
 
 
 class Car(Enum):
-    FORD = "ford"
-    PONTIAC = "pontiac"
-    PORSCHE = "porsche"
+    FORD = 'ford'
+    PONTIAC = 'pontiac'
+    PORSCHE = 'porsche'
 
 
 class RaceStep(SuperIntEnum):
@@ -30,4 +30,4 @@ DEV_MODE = False
 LANG = Lang.FRENCH
 SCALE = 1
 OWNED = AlreadyOwnedChoice.SELL
-WINDOW_NAME = "Forza Horizon 5"
+WINDOW_NAME = 'Forza Horizon 5'

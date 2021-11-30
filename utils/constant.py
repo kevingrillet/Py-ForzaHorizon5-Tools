@@ -12,5 +12,5 @@ class DebugLevel(SuperIntEnum):
 
 
 class Lang(Enum):
-    ENGLISH = "en"
-    FRENCH = "fr"
+    ENGLISH = 'en'
+    FRENCH = 'fr'

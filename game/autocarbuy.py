@@ -15,35 +15,36 @@ class AutoCarBuy:
         Prepare to auto buy cars
         :param hcv2:
         """
-        common.debug("Create AutoCarBuy", DebugLevel.CLASS)
+        common.debug('Create AutoCarBuy', DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
-        self.images = self.hcv2.load_images(["buy_car", "insufficient_cr"])
+        self.images = self.hcv2.load_images(['buy_car', 'insufficient_cr'])
 
     def run(self, max_try: int = max_try):
         """
         Buys the car where you are placed (in car collection)
         :param max_try:
         """
-        common.debug("Start AutoCarBuy (after 5 secs)", DebugLevel.FUNCTIONS)
+        common.debug('Start AutoCarBuy (after 5 secs)', DebugLevel.FUNCTIONS)
         self.count = 0
         self.max_try = max_try
         common.sleep(5)
+        common.moveTo((10, 10))
         self.running = True
         self.ht.start()
         while self.running and self.count < self.max_try:
-            if self.hcv2.check_match(self.images["insufficient_cr"], True):
-                common.press("esc")
-                common.press("esc")
+            if self.hcv2.check_match(self.images['insufficient_cr'], True):
+                common.press('esc')
+                common.press('esc')
                 self.running = False
-            elif self.hcv2.check_match(self.images["buy_car"]):
-                common.press("enter")
+            elif self.hcv2.check_match(self.images['buy_car']):
+                common.press('enter')
                 self.count += 1
                 common.debug(
-                    "Car bought! [" + str(self.count) + "/" + str(self.max_try) + " in " + self.ht.stringify() + "]",
+                    'Car bought! [' + str(self.count) + '/' + str(self.max_try) + ' in ' + self.ht.stringify() + ']',
                     DebugLevel.INFO)
             else:
-                common.press("y")
+                common.press('y')
             common.sleep(1)
 
-        common.press("esc", 2)
-        common.debug("Done AutoCarBuy", DebugLevel.FUNCTIONS)
+        common.press('esc', 2)
+        common.debug('Done AutoCarBuy', DebugLevel.FUNCTIONS)

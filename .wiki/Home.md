@@ -28,18 +28,19 @@
 Welcome to the Py-ForzaHorizon5-Tools wiki!
 
 ```cmd
- ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
- ┃  Py-ForzaHorizon5-Tools      ┃
- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
- ┃ 1 - AutoWheelspins           ┃
- ┃ 2 - AutoGPSDestination       ┃
- ┃ 3 - AutoLabReplay            ┃
- ┃ 4 - AutoCarBuy               ┃
- ┃ 5 - AutoCarMastery           ┃
- ┃ 6 - AutoCarBuyLeastExpensive ┃
- ┃ 7 - AutoRaceRestart          ┃
- ┃ 8 - AutoPhotoAllMyCars       ┃
- ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+ ┃                    Py-ForzaHorizon5-Tools                   ┃
+ ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+ ┃ Basic                         ┃ Advanced                    ┃
+ ┃  1 - AutoWheelspins           ┃  45  - AutoCarBuy           ┃
+ ┃  2 - AutoGPSDestination       ┃           + AutoCarMastery  ┃
+ ┃  3 - AutoLabReplay            ┃                             ┃
+ ┃  4 - AutoCarBuy               ┃  453 - 45 + AutoLabReplay   ┃
+ ┃  5 - AutoCarMastery           ┃                             ┃
+ ┃  6 - AutoCarBuyLeastExpensive ┃  457 - 45 + AutoRaceRestart ┃
+ ┃  7 - AutoRaceRestart          ┃                             ┃
+ ┃  8 - AutoPhotoAllMyCars       ┃  99  - Just press z         ┃
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 Your choice:
 ```
 

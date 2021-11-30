@@ -22,11 +22,11 @@ class AutoLabReplay:
         :param gc:
         :param stop_on_max_mastery: (False)
         """
-        common.debug("Create AutoLabReplay", DebugLevel.CLASS)
+        common.debug('Create AutoLabReplay', DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.gc = gc if gc else GameCommon(self.hcv2)
         self.images = self.hcv2.load_images(
-            ["accolades", "race_continue", "race_quit", "race_reward", "race_skip", "race_start"])
+            ['accolades', 'race_continue', 'race_quit', 'race_reward', 'race_skip', 'race_start'])
         self.stop_on_max_mastery = stop_on_max_mastery
 
     def esc_to_menu(self):
@@ -38,13 +38,13 @@ class AutoLabReplay:
         cnt = 0
         while lost:
             if cnt < 5:
-                common.press("esc", 2)
+                common.press('esc', 2)
                 cnt += 1
             else:
-                common.press("enter", 2)
+                common.press('enter', 2)
                 cnt = 0
-            if self.hcv2.check_match(self.images["accolades"], True) or self.hcv2.check_match(
-                    self.images["race_start"]):
+            if self.hcv2.check_match(self.images['accolades'], True) or self.hcv2.check_match(
+                    self.images['race_start']):
                 lost = False
 
     def next_step(self, step: RaceStep = None):
@@ -54,7 +54,7 @@ class AutoLabReplay:
         """
         next_step: RaceStep = step if step else self.step.next()
         common.debug(
-            "Step done: " + self.step.name + " [" + str(self.count) + " in " + self.ht.stringify() + "] -> next: " +
+            'Step done: ' + self.step.name + ' [' + str(self.count) + ' in ' + self.ht.stringify() + '] -> next: ' +
             next_step.name, DebugLevel.INFO)
         self.step = next_step
         self.count = 0
@@ -64,7 +64,7 @@ class AutoLabReplay:
         Need to be started from race, or esc menu, or race preparation menu
         :param max_try:
         """
-        common.debug("Start AutoLabReplay (after 5 secs)", DebugLevel.FUNCTIONS)
+        common.debug('Start AutoLabReplay (after 5 secs)', DebugLevel.FUNCTIONS)
         self.max_try = max_try
         common.sleep(5)
         common.moveTo((10, 10))
@@ -76,9 +76,9 @@ class AutoLabReplay:
             self.hcv2.require_new_capture = True
 
             if self.step == RaceStep.PREPARING:
-                if self.hcv2.check_match(self.images["race_start"]):
+                if self.hcv2.check_match(self.images['race_start']):
                     common.click(self.hcv2.random_find())
-                    common.keyDown("z")
+                    common.keyDown('z')
                     self.next_step()
                 else:
                     common.sleep(1)
@@ -89,25 +89,25 @@ class AutoLabReplay:
                         self.whereami()
 
             elif self.step == RaceStep.RACING:
-                if self.hcv2.check_match(self.images["race_continue"]) \
-                        or self.hcv2.check_match(self.images["race_skip"]) \
-                        or self.hcv2.check_match(self.images["race_reward"]):
-                    common.keyUp("z")
+                if self.hcv2.check_match(self.images['race_continue']) \
+                        or self.hcv2.check_match(self.images['race_skip']) \
+                        or self.hcv2.check_match(self.images['race_reward']):
+                    common.keyUp('z')
                     self.next_step()
 
             elif self.step == RaceStep.REWARDS:
                 common.sleep(1)
-                if self.hcv2.check_match(self.images["race_continue"]) \
-                        or self.hcv2.check_match(self.images["race_skip"]) \
-                        or self.hcv2.check_match(self.images["race_reward"]):
-                    common.press("enter")
+                if self.hcv2.check_match(self.images['race_continue']) \
+                        or self.hcv2.check_match(self.images['race_skip']) \
+                        or self.hcv2.check_match(self.images['race_reward']):
+                    common.press('enter')
                     self.gc.check_car_already_own()
                     self.count = 0
                 else:
                     self.count += 1
                     if self.count >= 3:
                         self.count_try += 1
-                        common.debug("Race done. [" + str(self.count_try) + "/" + str(self.max_try) + "]",
+                        common.debug('Race done. [' + str(self.count_try) + '/' + str(self.max_try) + ']',
                                      DebugLevel.INFO)
                         self.next_step()
 
@@ -122,18 +122,18 @@ class AutoLabReplay:
 
             common.sleep(1)
 
-        common.debug("Done AutoLabReplay", DebugLevel.FUNCTIONS)
+        common.debug('Done AutoLabReplay', DebugLevel.FUNCTIONS)
 
     def whereami(self):
         """
         Check where am i to set initial step
         """
-        if self.hcv2.check_match(self.images["race_quit"]):
-            common.press("esc")
-            common.keyDown("z")
+        if self.hcv2.check_match(self.images['race_quit']):
+            common.press('esc')
+            common.keyDown('z')
             self.next_step(RaceStep.RACING)
-        elif self.hcv2.check_match(self.images["race_start"]):
+        elif self.hcv2.check_match(self.images['race_start']):
             self.next_step(RaceStep.PREPARING)
         else:
-            common.press("esc")
+            common.press('esc')
             self.next_step(RaceStep.RESTART)

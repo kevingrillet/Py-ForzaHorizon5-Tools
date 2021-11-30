@@ -59,20 +59,20 @@ class HandlerCv2:
         """
         Run dev mode, showing the capture
         """
-        debug("dev > s to save, q to quit")
+        debug('dev > s to save, q to quit')
         while True:
             self.get_image(True)
-            cv2.namedWindow("dev", cv2.WINDOW_NORMAL)
-            cv2.resizeWindow("dev", 1600, 900)
-            cv2.imshow("dev", self.target_image)  # Show image in window
+            cv2.namedWindow('dev', cv2.WINDOW_NORMAL)
+            cv2.resizeWindow('dev', 1600, 900)
+            cv2.imshow('dev', self.target_image)  # Show image in window
             debug(str(fps()))  # Print FPS (crappy rate yeah)
             k = cv2.waitKey(25)  # Get key pressed every 25ms
-            if k == ord("s"):  # If "s" is pressed
+            if k == ord('s'):  # If 's' is pressed
                 # Save the image in .temp/
-                Path(".temp/").mkdir(parents=True, exist_ok=True)
-                cv2.imwrite(".temp/" + str(datetime.now()).replace(":", ".") + ".jpg", self.target_image)
-            elif k == ord("q"):  # If "q" is pressed
-                cv2.destroyWindow("dev")  # Destroy the window
+                Path('.temp/').mkdir(parents=True, exist_ok=True)
+                cv2.imwrite('.temp/' + str(datetime.now()).replace(':', '.') + '.jpg', self.target_image)
+            elif k == ord('q'):  # If 'q' is pressed
+                cv2.destroyWindow('dev')  # Destroy the window
                 break
 
     def draw_debug(self):
@@ -103,14 +103,14 @@ class HandlerCv2:
             images_list = []
         res = {}
         for image in images_list:
-            # common.debug("load_images > " + image, -1)
-            if os.path.isfile("./images/" + constant.LANG.value + "/" + image + ".jpg"):
-                img = cv2.imread("./images/" + constant.LANG.value + "/" + image + ".jpg", self.image_read_flag)
-            elif os.path.isfile("./images/common/" + image + ".jpg"):
-                img = cv2.imread("./images/common/" + image + ".jpg", self.image_read_flag)
+            # common.debug('load_images > ' + image, -1)
+            if os.path.isfile('./images/' + constant.LANG.value + '/' + image + '.jpg'):
+                img = cv2.imread('./images/' + constant.LANG.value + '/' + image + '.jpg', self.image_read_flag)
+            elif os.path.isfile('./images/common/' + image + '.jpg'):
+                img = cv2.imread('./images/common/' + image + '.jpg', self.image_read_flag)
             else:
-                common.warn("Image not found [" + image + "]")
-                img = cv2.imread("./images/default.jpg", self.image_read_flag)
+                common.warn('Image not found [' + image + ']')
+                img = cv2.imread('./images/default.jpg', self.image_read_flag)
             if self.scale != 1:
                 img = cv2.resize(img, (int(img.shape[1] * self.scale), int(img.shape[0] * self.scale)),
                                  interpolation=cv2.INTER_AREA)
@@ -158,7 +158,7 @@ class HandlerCv2:
         Save image in param or target_image
         :param image:
         """
-        cv2.imwrite(".temp/" + str(datetime.now()).replace(":", ".") + ".jpg", image if image else self.target_image)
+        cv2.imwrite('.temp/' + str(datetime.now()).replace(':', '.') + '.jpg', image if image else self.target_image)
 
     def show_image(self, image=None):
         """
@@ -168,10 +168,10 @@ class HandlerCv2:
         if not self.show_debug_image:
             return
         image = image if image else self.target_image_debug
-        cv2.namedWindow("show_image", cv2.WINDOW_NORMAL)
-        cv2.resizeWindow("show_image", 1600, 900)
-        cv2.imshow("show_image", image)
+        cv2.namedWindow('show_image', cv2.WINDOW_NORMAL)
+        cv2.resizeWindow('show_image', 1600, 900)
+        cv2.imshow('show_image', image)
         k = cv2.waitKey(0)
-        if k == ord("s"):
-            cv2.imwrite(".temp/" + str(datetime.now()).replace(":", ".") + ".jpg", self.target_image)
-        cv2.destroyWindow("show_image")
+        if k == ord('s'):
+            cv2.imwrite('.temp/' + str(datetime.now()).replace(':', '.') + '.jpg', self.target_image)
+        cv2.destroyWindow('show_image')

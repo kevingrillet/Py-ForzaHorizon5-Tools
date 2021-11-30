@@ -26,11 +26,11 @@ class HandlerTime:
         """
         timer = self.get_timer()
         if timer >= 3600:
-            fmt = "{H:02}h {M:2}m {S:02.02f}s"
+            fmt = '{H:02}h {M:2}m {S:02.02f}s'
         elif timer >= 60:
-            fmt = "{M:02}m {S:02.02f}s"
+            fmt = '{M:02}m {S:02.02f}s'
         else:
-            fmt = "{S:02.02f}s"
+            fmt = '{S:02.02f}s'
         ret = self.strfdelta(timedelta(seconds=self.get_timer()), fmt)
         self.start()
         return ret
@@ -38,7 +38,8 @@ class HandlerTime:
     @staticmethod
     # https://stackoverflow.com/questions/538666/format-timedelta-to-string/63198084#63198084
     def strfdelta(tdelta, fmt='{D:02}d {H:02}h {M:02}m {S:02.0f}s', inputtype='timedelta') -> str:
-        """Convert a datetime.timedelta object or a regular number to a custom-
+        """
+        Convert a datetime.timedelta object or a regular number to a custom-
         formatted string, just like the stftime() method does for datetime.datetime
         objects.
 

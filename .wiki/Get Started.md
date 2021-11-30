@@ -10,10 +10,11 @@
     6. [AutoCarBuyLeastExpensive](#autocarbuyleastexpensive)
     7. [AutoRaceRestart](#autoracerestart)
     8. [AutoPhotoAllMyCars](#autoracerestart)
-* [Advance](#advance)
-    - [Just press z](#just-press-z)
+* [Advanced](#advanced)
+    - [AutoCarBuy + AutoCarMastery](#autocarbuy--autocarmastery) 
     - [AutoCarBuy + AutoCarMastery + AutoLabReplay](#autocarbuy--autocarmastery--autolabreplay)
     - [AutoCarBuy + AutoCarMastery + AutoRaceRestart](#autocarbuy--autocarmastery--autoracerestart)
+    - [Just press z](#just-press-z)
 * [Dev](#dev)
     - [Dev tools](#dev-tools)
     - [Image debug](#image-debug)
@@ -21,6 +22,8 @@
 ## Basic
 
 ### AutoWheelSpins
+
+Choice `1`.
 
 Works fot WheelSpins and SuperWheelSpins!
 
@@ -37,6 +40,8 @@ Will sell duplicates cars.
 
 ### AutoGPSDestination
 
+Choice `2`.
+
 Will go to destination then press `esc`.
 
 - SetUp full assist
@@ -49,7 +54,9 @@ Will go to destination then press `esc`.
 
 ### AutoLabReplay
 
-Can be used with `30` to quit game after max mastery points.
+Choice `3`.
+
+Can be used with `30` to quit the game after max mastery points.
 
 Will redo the last lab race done.
 
@@ -70,6 +77,8 @@ Example of codes from <https://www.youtube.com/watch?v=HPS8Ubziu7U>:
 
 ### AutoCarBuy
 
+Choice `4`.
+
 Buys car from collection.
 
 - Place on the car you want to buy in car collection
@@ -80,6 +89,8 @@ Buys car from collection.
 - Set focus on Forza
 
 ### AutoCarMastery
+
+Choice `5`.
 
 Delete car after mastery, so it's **RISKY**!
 
@@ -127,13 +138,17 @@ The `2015 Porsche Cayman GTS` needs to be the only car of the `Porsche` construc
 
 ### AutoCarBuyLeastExpensive
 
+Choice `6`.
+
 - At the home page of the house
 - Launch the script
 - Set focus on Forza
 
 ### AutoRaceRestart
 
-Can be used with `70` to quit game after 100 restart.
+Choice `7`.
+
+Can be used with `70` to quit the game after 100 restart.
 
 Will restart the current race at the end.
 
@@ -147,25 +162,41 @@ Can be started from esc menu in race or race preparation.
 
 Example of codes:
 
-- 10sp in 30 secs | 743 324 179 | < <https://youtu.be/oBFlEdrj8Ec?t=16>>
+- 10sp in 30 secs | 743 324 179 | <https://youtu.be/oBFlEdrj8Ec?t=16>
 - 10 sp in 30 sec straight road | 497 519 560 
 
 ### AutoPhotoAllMyCars
 
-Can be used with `80` to quit game after done.
+Choice `8`.
+
+*It takes HOURS or even DAYS!*
+
+Can be used with `80` to quit the game after done. It's also letting you right the number of cars you want to skip, in parentheses if you already run the script.
+
+If I want to continue with this example, I need to write `120`.
+```
+Photo taken! [1 (120/0) in 01m 6.79s]
+```
 
 Need to be started from esc menu outside the house.
 
 - Launch the script
 - Set focus on Forza
 
-## Advance
+## Advanced
 
-### Just press z
+### AutoCarBuy + AutoCarMastery
 
-Choice `99`.
+Choice `45`.
 
-Will alt tab, press `esc`, then hold `z`
+*The car you buy "need" to correspond to the car chosen in config.*
+
+- Place on the car you want to buy in car collection
+
+  ![](https://user-images.githubusercontent.com/7203617/143294156-0c9c793d-3cbb-4f04-8396-8de6423ba5d0.jpg)
+
+- Launch the script
+- Set focus on Forza
 
 ### AutoCarBuy + AutoCarMastery + AutoLabReplay
 
@@ -196,6 +227,12 @@ Then loop
 - AutoRaceRestart (will run the last lab race)
 - Check mastery
 - AutoCarBuy + AutoCarMastery
+
+### Just press z
+
+Choice `99`.
+
+Will alt tab, press `esc`, then hold `z`
 
 ## Dev
 
