@@ -43,16 +43,27 @@ def click(location: (int, int) = (0, 0), secs: float = .5, scale: float = 1):
     moveTo((10, 10))
 
 
+def convert_layout(inpt: str) -> str:
+    """
+    If keyboard is not in AZERTY, switch input to QWERTY
+    :param inpt:
+    :return:
+    """
+    if not ('France' or 'Belgium') in HandlerWin32.get_keyboard_language():
+        inpt.translate(str.maketrans('z', 'w'))
+    return inpt
+
+
 def debug(msg: str = '', debug_level: int = DebugLevel.ALWAYS):
     """
     print debug if enough level
     :param msg:
     :param debug_level:
     """
+    msg = '[DEBUG] ' + str(datetime.now().strftime('%d/%m/%Y %H:%M:%S')) + ' - ' + msg
     if debug_level <= constant.DEBUG_LEVEL:
-        msg = '[DEBUG] ' + str(datetime.now().strftime('%d/%m/%Y %H:%M:%S')) + ' - ' + msg
         print(msg)
-        logging.debug(msg)
+    logging.debug(msg)
 
 
 def fps() -> float:
@@ -93,17 +104,6 @@ def keyUp(key: str):
     """
     # key = convert_layout(key)
     pyautogui.keyUp(key)
-
-
-def convert_layout(inpt: str) -> str:
-    """
-    If keyboard is not in AZERTY, switch input to QWERTY
-    :param inpt:
-    :return:
-    """
-    if not ('France' or 'Belgium') in HandlerWin32.get_keyboard_language():
-        inpt.translate(str.maketrans('z', 'w'))
-    return inpt
 
 
 def moveTo(location: (int, int) = (0, 0), secs: float = 0, scale: float = 1):
