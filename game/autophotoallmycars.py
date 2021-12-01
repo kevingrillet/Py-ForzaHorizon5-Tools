@@ -1,10 +1,10 @@
 from game.common import GameCommon
-from utils import common
-from utils.constant import DebugLevel
+from utils import common, superdecorator
 from utils.handlercv2 import HandlerCv2
 from utils.handlertime import HandlerTime
 
 
+@superdecorator.decorate_all_functions()
 class AutoPhotoAllMyCars:
     ht = HandlerTime()
     running = False
@@ -15,7 +15,6 @@ class AutoPhotoAllMyCars:
         :param hcv2:
         :param gc:
         """
-        common.debug('Create AutoPhotoAllMyCars', DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.gc = gc if gc else GameCommon(self.hcv2)
         self.images = self.hcv2.load_images(
@@ -26,8 +25,7 @@ class AutoPhotoAllMyCars:
         Take a photo of all my cars
         :param nb_right:
         """
-        common.debug('Start AutoPhotoAllMyCars (after 5 secs)', DebugLevel.FUNCTIONS)
-        common.sleep(5)
+        common.sleep(5, 'Waiting 5 secs, please focus Forza Horizon 5.')
         common.moveTo((10, 10))
         common.press('esc', 3)
         count = 0
@@ -57,8 +55,9 @@ class AutoPhotoAllMyCars:
             else:
                 count_try += 1
 
+            common.sleep(1)
             if self.hcv2.check_match(self.images['last_car_manufacturer_selected'], True):
-                common.debug('LAST!', DebugLevel.INFO)
+                common.info('LAST!')
                 self.running = False
 
             # Get in the car
@@ -81,10 +80,8 @@ class AutoPhotoAllMyCars:
             self.wait('home', 'Not outside home', False)
 
             count += 1
-            common.debug('Photo taken! [' + str(count) + ' (' + str(old_nb_right) + '/' + str(
-                old_count_try) + ') in ' + self.ht.stringify() + ']', DebugLevel.INFO)
-
-        common.debug('Done AutoPhotoAllMyCars', DebugLevel.FUNCTIONS)
+            common.info('Photo taken! [' + str(count) + ' (' + str(old_nb_right) + '/' + str(
+                old_count_try) + ') in ' + self.ht.stringify() + ']')
 
     def wait(self, image_name: str, err_msg: str, expected: bool = True):
         """

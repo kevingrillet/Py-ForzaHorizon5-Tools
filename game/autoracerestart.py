@@ -1,10 +1,10 @@
 from game.constant import RaceStep
-from utils import common
-from utils.constant import DebugLevel
+from utils import common, superdecorator
 from utils.handlercv2 import HandlerCv2
 from utils.handlertime import HandlerTime
 
 
+@superdecorator.decorate_all_functions()
 class AutoRaceRestart:
     count = 0
     count_try = 0
@@ -18,7 +18,6 @@ class AutoRaceRestart:
         Prepare for farming races
         :param hcv2:
         """
-        common.debug('Create AutoRaceRestart', DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
             ['race_continue', 'race_quit', 'race_start'])
@@ -29,9 +28,9 @@ class AutoRaceRestart:
         :param step:
         """
         next_step: RaceStep = step if step else self.step.next()
-        common.debug(
+        common.info(
             'Step done: ' + self.step.name + ' [' + str(self.count) + ' in ' + self.ht.stringify() + '] -> next: ' +
-            next_step.name, DebugLevel.INFO)
+            next_step.name)
         self.step = next_step
         self.count = 0
 
@@ -40,11 +39,10 @@ class AutoRaceRestart:
         Need to be started from race, or esc menu, or race preparation menu
         :param max_try:
         """
-        common.debug('Start AutoRaceRestart (after 5 secs)', DebugLevel.FUNCTIONS)
+        common.sleep(5, 'Waiting 5 secs, please focus Forza Horizon 5.')
+        common.moveTo((10, 10))
         self.count_try = 0
         self.max_try = max_try
-        common.sleep(5)
-        common.moveTo((10, 10))
         self.ht.start()
         self.whereami()
         self.running = True
@@ -71,12 +69,10 @@ class AutoRaceRestart:
                 common.sleep(1)
                 if self.hcv2.check_match(self.images['race_continue']):
                     self.count_try += 1
-                    common.debug('Race done. [' + str(self.count_try) + '/' + str(self.max_try) + ']', DebugLevel.INFO)
+                    common.info('Race done. [' + str(self.count_try) + '/' + str(self.max_try) + ']')
                     common.press('x')
                     common.press('enter', 5)
                     self.next_step(RaceStep.PREPARING)
-
-        common.debug('Done AutoRaceRestart', DebugLevel.FUNCTIONS)
 
     def whereami(self):
         """

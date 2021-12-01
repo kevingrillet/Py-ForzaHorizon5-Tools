@@ -1,10 +1,10 @@
 from game.common import GameCommon
-from utils import common
-from utils.constant import DebugLevel
+from utils import common, superdecorator
 from utils.handlercv2 import HandlerCv2
 from utils.handlertime import HandlerTime
 
 
+@superdecorator.decorate_all_functions()
 class AutoWheelspins:
     count = 0
     ht = HandlerTime()
@@ -15,7 +15,6 @@ class AutoWheelspins:
         Prepare to auto wheelspin
         :param hcv2:
         """
-        common.debug('Create AutoWheelspins', DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.gc = gc if gc else GameCommon(self.hcv2)
         self.images = self.hcv2.load_images(['0_spins_remaining', 'collect_prize_and_spin_again', 'skip'])
@@ -24,8 +23,7 @@ class AutoWheelspins:
         """
         Need to be run in the spin window
         """
-        common.debug('Start AutoWheelspins (after 5 secs)', DebugLevel.FUNCTIONS)
-        common.sleep(5)
+        common.sleep(5, 'Waiting 5 secs, please focus Forza Horizon 5.')
         common.moveTo((10, 10))
         self.running = True
         self.ht.start()
@@ -33,7 +31,7 @@ class AutoWheelspins:
             if self.hcv2.check_match(self.images['collect_prize_and_spin_again'], True):
                 common.press('enter')
                 self.count += 1
-                common.debug('Collect [' + str(self.count) + ' in ' + self.ht.stringify() + ']', DebugLevel.INFO)
+                common.info('Collect [' + str(self.count) + ' in ' + self.ht.stringify() + ']')
             elif self.hcv2.check_match(self.images['skip']):
                 common.press('enter')
             elif self.gc.check_car_already_own():
@@ -43,4 +41,3 @@ class AutoWheelspins:
                 if self.hcv2.check_match(self.images['0_spins_remaining'], True):
                     common.press('enter')
                     self.running = False
-        common.debug('Done AutoWheelspins', DebugLevel.FUNCTIONS)

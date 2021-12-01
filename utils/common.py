@@ -1,3 +1,4 @@
+import logging
 import time
 from datetime import datetime
 
@@ -49,7 +50,9 @@ def debug(msg: str = '', debug_level: int = DebugLevel.ALWAYS):
     :param debug_level:
     """
     if debug_level <= constant.DEBUG_LEVEL:
-        print('[DEBUG] ' + str(datetime.now().strftime('%d/%m/%Y %H:%M:%S')) + ' - ' + msg)
+        msg = '[DEBUG] ' + str(datetime.now().strftime('%d/%m/%Y %H:%M:%S')) + ' - ' + msg
+        print(msg)
+        logging.debug(msg)
 
 
 def fps() -> float:
@@ -60,6 +63,16 @@ def fps() -> float:
     timer = 1 / (new_frame - fps.frame)
     fps.frame = new_frame
     return timer
+
+
+def info(msg: str = ''):
+    """
+    print info
+    :param msg:
+    """
+    msg = '[INFO ] ' + str(datetime.now().strftime('%d/%m/%Y %H:%M:%S')) + ' - ' + msg
+    print(msg)
+    logging.info(msg)
 
 
 def keyDown(key: str, secs: float = 0):
@@ -135,11 +148,14 @@ def scroll(clicks: int = 1, location: (int, int) = (0, 0), secs: float = .5, sca
     moveTo((10, 10), secs)
 
 
-def sleep(secs: float = 0):
+def sleep(secs: float = 0, msg: str = ''):
     """
     sleep for x secs
+    :param msg:
     :param secs:
     """
+    if msg:
+        info(msg)
     time.sleep(secs)
 
 
@@ -148,7 +164,9 @@ def warn(msg: str = ''):
     print warn
     :param msg:
     """
-    print('[WARN ] ' + str(datetime.now().strftime('%d/%m/%Y %H:%M:%S')) + ' - ' + msg)
+    msg = '[WARN ] ' + str(datetime.now().strftime('%d/%m/%Y %H:%M:%S')) + ' - ' + msg
+    print(msg)
+    logging.warning(msg)
 
 
 # https://stackoverflow.com/questions/279561/what-is-the-python-equivalent-of-static-variables-inside-a-function

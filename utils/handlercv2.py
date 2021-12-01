@@ -158,6 +158,7 @@ class HandlerCv2:
         Save image in param or target_image
         :param image:
         """
+        Path('.temp/').mkdir(parents=True, exist_ok=True)
         cv2.imwrite('.temp/' + str(datetime.now()).replace(':', '.') + '.jpg', image if image else self.target_image)
 
     def show_image(self, image=None):
@@ -173,5 +174,6 @@ class HandlerCv2:
         cv2.imshow('show_image', image)
         k = cv2.waitKey(0)
         if k == ord('s'):
+            Path('.temp/').mkdir(parents=True, exist_ok=True)
             cv2.imwrite('.temp/' + str(datetime.now()).replace(':', '.') + '.jpg', self.target_image)
         cv2.destroyWindow('show_image')

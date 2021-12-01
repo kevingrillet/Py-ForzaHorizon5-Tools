@@ -1,9 +1,9 @@
-from utils import common
-from utils.constant import DebugLevel
+from utils import common, superdecorator
 from utils.handlercv2 import HandlerCv2
 from utils.handlertime import HandlerTime
 
 
+@superdecorator.decorate_all_functions()
 class AutoCarBuyLeastExpensive:
     count = 0
     ht = HandlerTime()
@@ -15,7 +15,6 @@ class AutoCarBuyLeastExpensive:
         Prepare to auto buy lest expensive car
         :param hcv2:
         """
-        common.debug('Create AutoCarBuyLeastExpensive', DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
             ['autoshow', 'colors', 'not_owned', 'insufficient_cr', 'value', 'value_menu', 'value_selected'])
@@ -25,10 +24,10 @@ class AutoCarBuyLeastExpensive:
         Need to be run from home buy/sell tab
         :param max_try:
         """
-        common.debug('Start AutoCarBuyLeastExpensive (after 5 secs)', DebugLevel.FUNCTIONS)
-        self.max_try = max_try
+        common.sleep(5, 'Waiting 5 secs, please focus Forza Horizon 5.')
         common.sleep(5)
         common.moveTo((10, 10))
+        self.max_try = max_try
         self.running = True
         self.ht.start()
         while self.running and self.count < self.max_try:
@@ -70,8 +69,6 @@ class AutoCarBuyLeastExpensive:
             common.press('esc', 3)
 
             self.count += 1
-            common.debug(
-                'Car bought! [' + str(self.count) + '/' + str(self.max_try) + ' in ' + self.ht.stringify() + ']',
-                DebugLevel.INFO)
+            common.info(
+                'Car bought! [' + str(self.count) + '/' + str(self.max_try) + ' in ' + self.ht.stringify() + ']')
             common.sleep(1)
-        common.debug('Done AutoCarBuyLeastExpensive', DebugLevel.FUNCTIONS)

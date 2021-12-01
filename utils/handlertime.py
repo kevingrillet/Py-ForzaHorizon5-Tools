@@ -13,6 +13,21 @@ class HandlerTime:
         """
         return time.time() - self.my_timer
 
+    @staticmethod
+    def handle_stringify(timer: float) -> str:
+        """
+        Beautify output
+        :param timer: time to beautify
+        :return: time formated
+        """
+        if timer >= 3600:
+            fmt = '{H:02}h {M:2}m {S:02.02f}s'
+        elif timer >= 60:
+            fmt = '{M:02}m {S:02.02f}s'
+        else:
+            fmt = '{S:02.02f}s'
+        return HandlerTime.strfdelta(timedelta(seconds=timer), fmt)
+
     def start(self):
         """
         Start timer
@@ -24,14 +39,7 @@ class HandlerTime:
         Beautify output
         :return: time formated
         """
-        timer = self.get_timer()
-        if timer >= 3600:
-            fmt = '{H:02}h {M:2}m {S:02.02f}s'
-        elif timer >= 60:
-            fmt = '{M:02}m {S:02.02f}s'
-        else:
-            fmt = '{S:02.02f}s'
-        ret = self.strfdelta(timedelta(seconds=self.get_timer()), fmt)
+        ret = self.handle_stringify(self.get_timer())
         self.start()
         return ret
 

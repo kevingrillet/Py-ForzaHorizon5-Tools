@@ -5,6 +5,11 @@
 - `get_keyboard_language`: <https://stackoverflow.com/a/66756115>
 - `fps`: <https://stackoverflow.com/a/279586>
 - `scroll`: <https://stackoverflow.com/a/61436447>
+- `logging`: <https://docs.python.org/3/howto/logging.html>
+- decorator:
+    - <https://stackoverflow.com/a/25828876>
+    - <https://stackoverflow.com/a/48056487>
+    - <https://stackoverflow.com/a/1594484>
 
 <hr>
 

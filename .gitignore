@@ -1,5 +1,6 @@
 # Project
 .temp/
+logs/
 config.ini
 
 # Byte-compiled / optimized / DLL files

@@ -1,11 +1,11 @@
 from game.common import GameCommon
 from game.constant import RaceStep, AlreadyOwnedChoice
-from utils import common
-from utils.constant import DebugLevel
+from utils import common, superdecorator
 from utils.handlercv2 import HandlerCv2
 from utils.handlertime import HandlerTime
 
 
+@superdecorator.decorate_all_functions()
 class AutoLabReplay:
     already_owned_choice = AlreadyOwnedChoice.SELL
     count = 0
@@ -22,7 +22,6 @@ class AutoLabReplay:
         :param gc:
         :param stop_on_max_mastery: (False)
         """
-        common.debug('Create AutoLabReplay', DebugLevel.CLASS)
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.gc = gc if gc else GameCommon(self.hcv2)
         self.images = self.hcv2.load_images(
@@ -53,9 +52,9 @@ class AutoLabReplay:
         :param step:
         """
         next_step: RaceStep = step if step else self.step.next()
-        common.debug(
+        common.info(
             'Step done: ' + self.step.name + ' [' + str(self.count) + ' in ' + self.ht.stringify() + '] -> next: ' +
-            next_step.name, DebugLevel.INFO)
+            next_step.name)
         self.step = next_step
         self.count = 0
 
@@ -64,10 +63,9 @@ class AutoLabReplay:
         Need to be started from race, or esc menu, or race preparation menu
         :param max_try:
         """
-        common.debug('Start AutoLabReplay (after 5 secs)', DebugLevel.FUNCTIONS)
-        self.max_try = max_try
-        common.sleep(5)
+        common.sleep(5, 'Waiting 5 secs, please focus Forza Horizon 5.')
         common.moveTo((10, 10))
+        self.max_try = max_try
         self.ht.start()
         self.whereami()
         self.count_try = 0
@@ -107,8 +105,7 @@ class AutoLabReplay:
                     self.count += 1
                     if self.count >= 3:
                         self.count_try += 1
-                        common.debug('Race done. [' + str(self.count_try) + '/' + str(self.max_try) + ']',
-                                     DebugLevel.INFO)
+                        common.info('Race done. [' + str(self.count_try) + '/' + str(self.max_try) + ']')
                         self.next_step()
 
             elif self.step == RaceStep.CHECK:
@@ -121,8 +118,6 @@ class AutoLabReplay:
                 self.next_step(RaceStep.PREPARING)
 
             common.sleep(1)
-
-        common.debug('Done AutoLabReplay', DebugLevel.FUNCTIONS)
 
     def whereami(self):
         """

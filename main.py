@@ -1,5 +1,9 @@
+import logging
 import math
 import os
+import time
+from datetime import datetime
+from pathlib import Path
 
 from game import constant
 from game.autocarbuy import AutoCarBuy
@@ -16,6 +20,7 @@ from utils import common
 from utils.constant import DebugLevel, Lang
 from utils.handlerconfig import HandlerConfig
 from utils.handlercv2 import HandlerCv2
+from utils.handlertime import HandlerTime
 from utils.handlerwin32 import HandlerWin32
 
 
@@ -33,7 +38,7 @@ def AutoCarBuy_Then_AutoCarMastery(_acb: AutoCarBuy, _acm: AutoCarMastery):
         nbcar = math.floor(999 / 11)
     else:
         raise NameError('Unknow car')
-    common.debug('AutoCarBuy + AutoCarMastery for ' + str(nbcar) + ' cars', DebugLevel.INFO)
+    common.info('AutoCarBuy + AutoCarMastery for ' + str(nbcar) + ' cars')
     _acb.run(nbcar)
     common.press('left')
     _acm.run(nbcar + 1)  # 1rst car is 'always' already done
@@ -81,6 +86,12 @@ def show_menu():
 
 
 if __name__ == '__main__':
+    Path('logs/').mkdir(parents=True, exist_ok=True)
+    logging.basicConfig(filename='logs/' + str(datetime.now().strftime('%d-%m-%Y %H.%M.%S')) + '.log',
+                        format='%(message)s', level=logging.DEBUG)
+    common.info('Started')
+    start_time = time.time()
+
     load_config()
     show_menu()
     intinput = int(input() or '-1')
@@ -200,3 +211,5 @@ if __name__ == '__main__':
 
     else:
         raise NameError('Not an option')
+
+    common.info('Finished ' + HandlerTime.handle_stringify(time.time() - start_time))

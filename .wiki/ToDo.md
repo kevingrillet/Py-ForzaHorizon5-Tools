@@ -7,10 +7,6 @@
 ## Low priority
 
 - Enable QWERTY layout
-- Rewrite logs
-  - <https://docs.python.org/3/howto/logging.html>
-- Rewrite function calls
-  - <https://stackoverflow.com/a/25828876>
 - Add tkinter label top left corner to show which step is running:
   - <https://www.youtube.com/watch?v=4pS-_etyjT0>
   - <https://www.tutorialspoint.com/python/tk_label.htm>

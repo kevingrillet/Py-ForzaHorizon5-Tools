@@ -1,11 +1,11 @@
 from game import constant
 from game.common import GameCommon
-from utils import common
-from utils.constant import DebugLevel
+from utils import common, superdecorator
 from utils.handlercv2 import HandlerCv2
 from utils.handlertime import HandlerTime
 
 
+@superdecorator.decorate_all_functions()
 class AutoCarMastery:
     count = 0
     ht = HandlerTime()
@@ -17,7 +17,6 @@ class AutoCarMastery:
         Prepare to auto master car
         :param hcv2:
         """
-        common.debug('Create AutoCarMastery', DebugLevel.CLASS)
         self.car = constant.CAR.value
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.gc = gc if gc else GameCommon(self.hcv2)
@@ -216,11 +215,10 @@ class AutoCarMastery:
         Need to be run from home garage
         :param max_try:
         """
-        common.debug('Start AutoCarMastery (after 5 secs)', DebugLevel.FUNCTIONS)
+        common.sleep(5, 'Waiting 5 secs, please focus Forza Horizon 5.')
+        common.moveTo((10, 10))
         self.count = 0
         self.max_try = max_try
-        common.sleep(5)
-        common.moveTo((10, 10))
         self.running = True
         self.ht.start()
         while self.running and self.count < self.max_try:
@@ -243,8 +241,5 @@ class AutoCarMastery:
                 common.press('esc', 1.5)
                 common.press('right', .125)
                 self.count += 1
-                common.debug(
-                    'Car done! [' + str(self.count) + '/' + str(self.max_try) + ' in ' + self.ht.stringify() + ']',
-                    DebugLevel.INFO)
-
-        common.debug('Done AutoCarMastery', DebugLevel.FUNCTIONS)
+                common.info(
+                    'Car done! [' + str(self.count) + '/' + str(self.max_try) + ' in ' + self.ht.stringify() + ']')
