@@ -131,7 +131,7 @@ class HandlerWin32:
         language_id = layout_id & (2 ** 16 - 1)
 
         # Convert the keyboard language id from decimal to hexadecimal
-        language_id_hex = hex(language_id)
+        language_id_hex = "0x{:04x}".format(int(hex(language_id), 16))
 
         # Check if the hex value is in the dictionary.
         if language_id_hex in languages.keys():

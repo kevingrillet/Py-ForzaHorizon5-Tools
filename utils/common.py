@@ -50,7 +50,7 @@ def convert_layout(inpt: str) -> str:
     :return:
     """
     if not ('France' or 'Belgium') in HandlerWin32.get_keyboard_language():
-        inpt.translate(str.maketrans('z', 'w'))
+        inpt = inpt.translate(str.maketrans('z', 'w'))
     return inpt
 
 
@@ -92,8 +92,7 @@ def keyDown(key: str, secs: float = 0):
     :param key:
     :param secs:
     """
-    # key = convert_layout(key)
-    pyautogui.keyDown(key)
+    pyautogui.keyDown(convert_layout(key))
     sleep(secs)
 
 
@@ -102,8 +101,7 @@ def keyUp(key: str):
     release key
     :param key:
     """
-    # key = convert_layout(key)
-    pyautogui.keyUp(key)
+    pyautogui.keyUp(convert_layout(key))
 
 
 def moveTo(location: (int, int) = (0, 0), secs: float = 0, scale: float = 1):
@@ -125,8 +123,7 @@ def press(key: str, secs: float = .5):
     :param key:
     :param secs:
     """
-    # key = convert_layout(key)
-    pyautogui.press(key)
+    pyautogui.press(convert_layout(key))
     sleep(secs)
 
 

@@ -6,7 +6,8 @@
 
 ## Low priority
 
-- Enable QWERTY layout
+## Bonus
+
 - Add tkinter label top left corner to show which step is running:
   - <https://www.youtube.com/watch?v=4pS-_etyjT0>
   - <https://www.tutorialspoint.com/python/tk_label.htm>
