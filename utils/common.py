@@ -62,8 +62,8 @@ def debug(msg: str = '', debug_level: int = DebugLevel.ALWAYS):
     """
     msg = '[DEBUG] ' + str(datetime.now().strftime('%d/%m/%Y %H:%M:%S')) + ' - ' + msg
     if debug_level <= constant.DEBUG_LEVEL:
-        print(msg)
-    logging.debug(msg)
+        # print(msg)
+        logging.debug(msg)
 
 
 def fps() -> float:
@@ -82,7 +82,7 @@ def info(msg: str = ''):
     :param msg:
     """
     msg = '[INFO ] ' + str(datetime.now().strftime('%d/%m/%Y %H:%M:%S')) + ' - ' + msg
-    print(msg)
+    # print(msg)
     logging.info(msg)
 
 
@@ -162,7 +162,7 @@ def warn(msg: str = ''):
     :param msg:
     """
     msg = '[WARN ] ' + str(datetime.now().strftime('%d/%m/%Y %H:%M:%S')) + ' - ' + msg
-    print(msg)
+    # print(msg)
     logging.warning(msg)
 
 
