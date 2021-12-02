@@ -17,8 +17,8 @@ class HandlerWin32:
         """
         Prepare for capture
         :param window_name: Name of window
-        :param fullscreen: Is it in fullscreen?
-        :param sos: Help if capture is black (instead of using window handler)
+        :param fullscreen: Is it in fullscreen
+        :param sos: Help if capture is black instead of using window handler
         :param region:
         """
         self.sos = sos

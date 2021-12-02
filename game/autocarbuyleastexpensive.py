@@ -49,7 +49,7 @@ class AutoCarBuyLeastExpensive:
             if self.hcv2.check_match(self.images['value_selected'], True):
                 common.press('enter')
             common.sleep(1)
-            # GoTo least expensive
+            # GoTo the least expensive
             common.press('backspace')
             if not self.hcv2.check_match(self.images['value_menu'], True):
                 raise NameError('Jump to value not found [value_menu]')

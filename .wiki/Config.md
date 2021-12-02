@@ -23,16 +23,15 @@ scale = 1
 | `owned`    | `int`   | Yes      | Set the action if car already owned.                                | `0`-`1`                      |
 | `scale`    | `float` | Yes      | Set scale.                                                          | `1`, `0.75`                  |
 
-
 ## More info
 
 ### Car
 
 Car enum can be found here: <https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/blob/main/game/constant.py>
 
-| Name      | Value     |
+|   Name    |   Value   |
 |:---------:|:---------:|
-| `FORD`    | `ford`    |
+|  `FORD`   |  `ford`   |
 | `PONTIAC` | `pontiac` |
 | `PORSCHE` | `porsche` |
 |           |           |
@@ -41,20 +40,20 @@ Car enum can be found here: <https://github.com/kevingrillet/Py-ForzaHorizon5-To
 
 Debug enum can be found here: <https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/blob/main/utils/constant.py>
 
-| Name        | Value |
+|    Name     | Value |
 |:-----------:|:-----:|
-| `ALWAYS`    | `0`   |
-| `INFO`      | `1`   |
-| `CLASS`     | `2`   |
-| `FUNCTIONS` | `3`   |
-| `DEBUG`     | `4`   |
+|  `ALWAYS`   |  `0`  |
+|   `INFO`    |  `1`  |
+|   `CLASS`   |  `2`  |
+| `FUNCTIONS` |  `3`  |
+|   `DEBUG`   |  `4`  |
 |             |       |
 
 ### Language
 
 Lang enum can be found here: <https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/blob/main/utils/constant.py>
 
-| Name      | Value |
+|   Name    | Value |
 |:---------:|:-----:|
 | `ENGLISH` | `en`  |
 | `FRENCH`  | `fr`  |
@@ -64,20 +63,20 @@ Lang enum can be found here: <https://github.com/kevingrillet/Py-ForzaHorizon5-T
 
 Owned enum can be found here: <https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/blob/main/game/constant.py>
 
-| Name            | Value |
+|      Name       | Value |
 |:---------------:|:-----:|
-| `ADD_TO_GARAGE` | `0`   |
-| `SELL`          | `1`   |
+| `ADD_TO_GARAGE` |  `0`  |
+|     `SELL`      |  `1`  |
 |                 |       |
 
 ### Scale
 
 Scale is based on mine: `QHD` which is: `2560x1440`.
 
-| Name                     | Resolution  | Scale  |
+|           Name           | Resolution  | Scale  |
 |:------------------------:|:-----------:|:------:|
-| `WQHD` / `QHD` / `1440p` | `2560x1440` | `1`    |
-| `HD 1080` / `1080p`      | `1920x1080` | `0.75` |
+| `WQHD` / `QHD` / `1440p` | `2560x1440` |  `1`   |
+|   `HD 1080` / `1080p`    | `1920x1080` | `0.75` |
 
 <hr>
 

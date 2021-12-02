@@ -29,7 +29,7 @@ def print_on_call(func):
                 common.debug(
                     '{} finished in {}{}'.format(name,
                                                  HandlerTime.handle_stringify(time.time() - start_time),
-                                                 ' [return: {}]'.format(str(res)) if res else ''),
+                                                 ' [return: {}]'.format(str(res)) if (res is not None) else ''),
                     debugLevel)
         return res
 

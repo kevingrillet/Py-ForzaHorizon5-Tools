@@ -82,6 +82,8 @@ class HandlerTime:
             remainder = float(tdelta) * 86400
         elif inputtype in ['w', 'weeks']:
             remainder = float(tdelta) * 604800
+        else:
+            remainder = 0
 
         f = Formatter()
         desired_fields = [field_tuple[1] for field_tuple in f.parse(fmt)]

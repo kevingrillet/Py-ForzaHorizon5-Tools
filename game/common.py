@@ -25,14 +25,15 @@ class GameCommon:
         """
         From anywhere where you can get a new car :)
         """
-        if self.hcv2.check_match(self.images['car_already_owned'], True):
+        ret = self.hcv2.check_match(self.images['car_already_owned'], True)
+        if ret:
             if constant.DEV_MODE:
                 self.hcv2.save_image()
             if aoc == AlreadyOwnedChoice.SELL:
                 common.press('down', .125)
                 common.press('down', .125)
             common.press('enter', 1)
-        return False
+        return ret
 
     def check_mastery(self) -> bool:
         """
@@ -81,7 +82,7 @@ class GameCommon:
 
     def go_home_garage(self):
         """
-        From game, go to home > garage
+        From game, to home > garage
         """
         if not self.hcv2.check_match(self.images['accolades'], True):
             common.press('esc', 2)

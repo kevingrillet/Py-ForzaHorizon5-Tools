@@ -25,7 +25,7 @@ class HandlerConfig:
             self.set_value('debug', str(constant.DEBUG_LEVEL.value))
             self.set_value('dev', str(constant.DEV_MODE))
             self.set_value('language', constant.LANG.value)
-            self.set_value('owned', constant.OWNED.value)
+            self.set_value('owned', str(constant.OWNED.value))
             self.set_value('scale', str(constant.SCALE))
 
     def get_value(self, key: str = None, default: str = None, section: str = 'main') -> str:

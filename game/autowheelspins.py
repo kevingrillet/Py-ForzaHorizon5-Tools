@@ -37,7 +37,7 @@ class AutoWheelspins:
             elif self.gc.check_car_already_own():
                 pass
             elif self.hcv2.check_match(self.images['0_spins_remaining']):
-                common.sleep(1)
+                common.sleep(2)
                 if self.hcv2.check_match(self.images['0_spins_remaining'], True):
                     common.press('enter')
                     self.running = False

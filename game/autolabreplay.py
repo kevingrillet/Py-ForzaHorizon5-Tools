@@ -121,7 +121,7 @@ class AutoLabReplay:
 
     def whereami(self):
         """
-        Check where am i to set initial step
+        Check where am I to set initial step
         """
         if self.hcv2.check_match(self.images['race_quit']):
             common.press('esc')

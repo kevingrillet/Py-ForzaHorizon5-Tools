@@ -212,4 +212,4 @@ if __name__ == '__main__':
     else:
         raise NameError('Not an option')
 
-    common.info('Finished ' + HandlerTime.handle_stringify(time.time() - start_time))
+    common.info('Finished after ' + HandlerTime.handle_stringify(time.time() - start_time))
