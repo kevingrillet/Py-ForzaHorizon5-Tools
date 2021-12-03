@@ -21,7 +21,7 @@ def print_on_call(func):
                                'kwargs: {}'.format(kwargs) if kwargs else ''
                                ) if my_args or kwargs else ''), debugLevel)
         start_time = time.time()
-        res = ''
+        res = None
         try:
             res = func(*args, **kwargs)
         finally:
