@@ -31,7 +31,8 @@ class AutoCarMastery:
         """
         # Filter B & HotHatch
         common.press('y', 1)
-        for _ in range(6):
+        # Warn: May change -> 4 or 6 here
+        for _ in range(4):
             common.press('down', fast_sleep / 2)
         common.press('enter', fast_sleep)
         for _ in range(16):
@@ -105,7 +106,8 @@ class AutoCarMastery:
         """
         # Filter A & HotHatch
         common.press('y', 1)
-        for _ in range(7):
+        # Warn: May change -> 5 or 7 here
+        for _ in range(5):
             common.press('down', fast_sleep / 2)
         common.press('enter', fast_sleep)
         for _ in range(10):
