@@ -114,7 +114,7 @@ class GameCommon:
         if self.car == constant.Car.FORD.value:
             for _ in range(5):
                 common.press('down', .125)
-            for _ in range(4):
+            for _ in range(5):
                 common.press('right', .125)
         elif self.car == constant.Car.PONTIAC.value:
             for _ in range(3):

@@ -60,6 +60,11 @@ def AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(_gc: GameCommon, _acb: Auto
 
 
 def load_config():
+    """
+    Load config from config file
+    Create it if not existing
+    :return:
+    """
     hcfg = HandlerConfig('config.ini')
     constant.CAR = Car(hcfg.get_value('car', constant.CAR.value))
     constant.DEBUG_LEVEL = DebugLevel(int(hcfg.get_value('debug', str(constant.DEBUG_LEVEL.value))))
@@ -69,7 +74,18 @@ def load_config():
     constant.SCALE = float(hcfg.get_value('scale', str(constant.SCALE)))
 
 
+def quit_game():
+    """
+    Quit game after 30 secs
+    """
+    common.sleep(30)
+    common.alt_f4()
+
+
 def show_menu():
+    """
+    Show menu
+    """
     print(' ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓')
     print(' ┃                    Py-ForzaHorizon5-Tools                   ┃')
     print(' ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫')
@@ -111,20 +127,27 @@ if __name__ == '__main__':
         elif intinput == 30:
             common.alt_tab()
             AutoLabReplay(hcv2, stop_on_max_mastery=True).run()
-            common.sleep(30)
-            common.alt_f4()
+            quit_game()
         elif intinput == 4:
             AutoCarBuy(hcv2).run()
+        elif intinput == 40:
+            AutoCarBuy(hcv2).run()
+            quit_game()
         elif intinput == 5:
             AutoCarMastery(hcv2).run()
+        elif intinput == 50:
+            AutoCarMastery(hcv2).run()
+            quit_game()
         elif intinput == 6:
             AutoCarBuyLeastExpensive(hcv2).run()
+        elif intinput == 60:
+            AutoCarBuyLeastExpensive(hcv2).run()
+            quit_game()
         elif intinput == 7:
             AutoRaceRestart(hcv2).run()
         elif intinput == 70:
             AutoRaceRestart(hcv2).run()
-            common.sleep(30)
-            common.alt_f4()
+            quit_game()
         elif intinput == 8:
             print('Continue at: (default: 1)')
             nb_right = int(input() or '1')
@@ -133,8 +156,7 @@ if __name__ == '__main__':
             print('Continue at: (default: 1)')
             nb_right = int(input() or '1')
             AutoPhotoAllMyCars(hcv2).run(nb_right)
-            common.sleep(30)
-            common.alt_f4()
+            quit_game()
 
         # Just press Z
         elif intinput == 99:
@@ -164,8 +186,7 @@ if __name__ == '__main__':
                 alr.run()
                 AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
                 # running = gc.check_super_wheelspins()
-            common.sleep(30)
-            common.alt_f4()
+            quit_game()
         elif intinput == 457:
             common.debug('AutoCarBuy + AutoCarMastery + AutoRaceRestart')
             gc = GameCommon(hcv2)
@@ -184,8 +205,7 @@ if __name__ == '__main__':
                 gc.quit_race()
                 AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
                 # running = gc.check_super_wheelspins()
-            common.sleep(30)
-            common.alt_f4()
+            quit_game()
 
         # Dev
         elif intinput == 0:
