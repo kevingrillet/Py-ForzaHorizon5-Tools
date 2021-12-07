@@ -15,7 +15,6 @@ class HandlerCv2:
     find_start = None
     find_max_val = None
     find_end = None
-    hwin32 = HandlerWin32(window_name=constant.WINDOW_NAME, fullscreen=True, sos=True)
     image_read_flag = cv2.IMREAD_COLOR
     method = cv2.TM_CCOEFF_NORMED
     require_new_capture = True
@@ -24,6 +23,7 @@ class HandlerCv2:
     threshold = 0.9
 
     def __init__(self, show_debug_image=False, scale=1):
+        self.hwin32 = HandlerWin32(window_name=constant.WINDOW_NAME, fullscreen=True, sos=True)
         self.scale = scale
         self.show_debug_image = show_debug_image
 

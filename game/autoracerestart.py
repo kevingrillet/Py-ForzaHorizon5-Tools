@@ -6,12 +6,6 @@ from utils.handlertime import HandlerTime
 
 @superdecorator.decorate_all_functions()
 class AutoRaceRestart:
-    count = 0
-    count_try = 0
-    ht = HandlerTime()
-    max_try = 100
-    running = False
-    step = RaceStep.INIT
 
     def __init__(self, hcv2: HandlerCv2 = None):
         """
@@ -19,8 +13,11 @@ class AutoRaceRestart:
         :param hcv2:
         """
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
-        self.images = self.hcv2.load_images(
-            ['race_continue', 'race_quit', 'race_start'])
+        self.images = self.hcv2.load_images(['race_continue', 'race_quit', 'race_start'])
+        self.ht = HandlerTime()
+        self.count = 0
+        self.running = False
+        self.step = RaceStep.INIT
 
     def next_step(self, step: RaceStep = None):
         """
@@ -34,19 +31,18 @@ class AutoRaceRestart:
         self.step = next_step
         self.count = 0
 
-    def run(self, max_try: int = max_try):
+    def run(self, max_try: int = 100):
         """
         Need to be started from race, or esc menu, or race preparation menu
         :param max_try:
         """
         common.sleep(5, 'Waiting 5 secs, please focus Forza Horizon 5.')
         common.moveTo((10, 10))
-        self.count_try = 0
-        self.max_try = max_try
+        count_try = 0
         self.ht.start()
         self.whereami()
         self.running = True
-        while self.running and self.count_try < max_try:
+        while self.running and count_try < max_try:
             self.hcv2.require_new_capture = True
 
             if self.step == RaceStep.PREPARING:
@@ -68,8 +64,8 @@ class AutoRaceRestart:
             elif self.step == RaceStep.REWARDS:
                 common.sleep(1)
                 if self.hcv2.check_match(self.images['race_continue']):
-                    self.count_try += 1
-                    common.info('Race done. [' + str(self.count_try) + '/' + str(self.max_try) + ']')
+                    count_try += 1
+                    common.info('Race done. [' + str(count_try) + '/' + str(max_try) + ']')
                     common.press('x')
                     common.press('enter', 5)
                     self.next_step(RaceStep.PREPARING)

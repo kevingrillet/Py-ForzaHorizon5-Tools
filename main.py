@@ -25,36 +25,40 @@ from utils.handlertime import HandlerTime
 from utils.handlerwin32 import HandlerWin32
 
 
-def AutoCarBuy_Then_AutoCarMastery(_acb: AutoCarBuy, _acm: AutoCarMastery):
+def AutoCarBuy_Then_AutoCarMastery(_acb: AutoCarBuy, _acm: AutoCarMastery, nbcar: int = None):
     """
     From main, used to do AutoCarBuy (already places on the pontiac) then AutoCarMastery
     :param _acb:
     :param _acm:
+    :param nbcar:
     """
-    if constant.CAR.value == Car.FORD.value:
-        nbcar = math.floor(999 / 5)
-    elif constant.CAR.value == Car.PONTIAC.value:
-        nbcar = math.floor(999 / 14)
-    elif constant.CAR.value == Car.PORSCHE.value:
-        nbcar = math.floor(999 / 11)
-    else:
-        raise NameError('Unknow car')
+    if nbcar is None:
+        if constant.CAR.value == Car.FORD.value:
+            nbcar = math.floor(999 / 5)
+        elif constant.CAR.value == Car.PONTIAC.value:
+            nbcar = math.floor(999 / 14)
+        elif constant.CAR.value == Car.PORSCHE.value:
+            nbcar = math.floor(999 / 11)
+        else:
+            raise NameError('Unknow car')
     common.info('AutoCarBuy + AutoCarMastery for ' + str(nbcar) + ' cars')
     _acb.run(nbcar)
     common.press('left')
-    _acm.run(nbcar + 1)  # 1rst car is 'always' already done
+    _acm.run(nbcar)  # 1rst car is 'always' already done
 
 
-def AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(_gc: GameCommon, _acb: AutoCarBuy, _acm: AutoCarMastery):
+def AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(_gc: GameCommon, _acb: AutoCarBuy, _acm: AutoCarMastery,
+                                                     nbcar: int = None):
     """
     From main, used to do AutoCarBuy (from game) then AutoCarMastery then get in my lambo :)
     :param _gc:
     :param _acb:
     :param _acm:
+    :param nbcar:
     """
     _gc.go_home_garage()
     _gc.go_to_car_to_buy()
-    AutoCarBuy_Then_AutoCarMastery(_acb, _acm)
+    AutoCarBuy_Then_AutoCarMastery(_acb, _acm, nbcar)
     _gc.home_getmycar()
     common.press('esc', 10)
 
@@ -144,9 +148,13 @@ if __name__ == '__main__':
             AutoCarBuyLeastExpensive(hcv2).run()
             quit_game()
         elif intinput == 7:
-            AutoRaceRestart(hcv2).run()
+            print('Number of restart: (default: 100)')
+            nb_restart = int(input() or '100')
+            AutoRaceRestart(hcv2).run(nb_restart)
         elif intinput == 70:
-            AutoRaceRestart(hcv2).run()
+            print('Number of restart: (default: 100)')
+            nb_restart = int(input() or '1')
+            AutoRaceRestart(hcv2).run(nb_restart)
             quit_game()
         elif intinput == 8:
             print('Continue at: (default: 1)')
@@ -189,6 +197,8 @@ if __name__ == '__main__':
             quit_game()
         elif intinput == 457:
             common.debug('AutoCarBuy + AutoCarMastery + AutoRaceRestart')
+            print('Number of restart: (default: 100)')
+            nb_restart = int(input() or '1')
             gc = GameCommon(hcv2)
             acb = AutoCarBuy(hcv2)
             acm = AutoCarMastery(hcv2, gc)
@@ -201,7 +211,7 @@ if __name__ == '__main__':
             running = True
             while running:
                 gc.go_to_last_lab_race()
-                arr.run()
+                arr.run(nb_restart)
                 gc.quit_race()
                 AutoCarBuy_Then_AutoCarMastery_from_menu_to_menu(gc, acb, acm)
                 # running = gc.check_super_wheelspins()

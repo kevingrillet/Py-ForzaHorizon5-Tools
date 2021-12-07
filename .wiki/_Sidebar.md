@@ -4,10 +4,12 @@
 2. [[Config]]
 3. [[Requirements]]
 4. [[Get Started]]
-5. [[Sources]]
+5. [[Advanced]]
+6. [[Sources]]
 
 ## Development
 
 - [[Contribute]]
+- [[Debug]]
 - [[Images]]
 - [[ToDo]]

@@ -7,11 +7,6 @@ from utils.handlertime import HandlerTime
 
 @superdecorator.decorate_all_functions()
 class AutoCarMastery:
-    count = 0
-    ht = HandlerTime()
-    max_try = 50
-    running = False
-
     def __init__(self, hcv2: HandlerCv2 = None, gc: GameCommon = None):
         """
         Prepare to auto master car
@@ -23,6 +18,9 @@ class AutoCarMastery:
         self.images = self.hcv2.load_images(
             ['already_done', 'cannot_afford_perk', 'my_cars', self.car, self.car + '_name',
              self.car + '_name_selected'])
+        self.count = 0
+        self.ht = HandlerTime()
+        self.running = False
 
     def car_ford(self, fast_sleep: float = .125):
         """
@@ -31,7 +29,7 @@ class AutoCarMastery:
         """
         # Filter B & HotHatch
         common.press('y', 1)
-        # Warn: May change -> 4 or 6 here
+        # Warn: May change during Winter -> 4 or 6 here
         for _ in range(4):
             common.press('down', fast_sleep / 2)
         common.press('enter', fast_sleep)
@@ -43,7 +41,7 @@ class AutoCarMastery:
         self.go_to_manufacturer()
         self.find_car()
         self.gc.enter_car()
-        self.go_to_mastery()
+        AutoCarMastery.go_to_mastery()
 
         if not self.hcv2.check_match(self.images['already_done'], True):
             # MASTERRR
@@ -69,7 +67,7 @@ class AutoCarMastery:
                 raise NameError(self.car.capitalize() + ' to delete not found [' + self.car + ']')
             common.press('right', fast_sleep)
             common.press('enter')
-            self.delete()
+            AutoCarMastery.delete()
         # Find car to use
         if not self.hcv2.check_match(self.images[self.car], True):
             raise NameError(self.car.capitalize() + ' to drive not found [' + self.car + ']')
@@ -77,7 +75,7 @@ class AutoCarMastery:
         common.press('right', fast_sleep)
 
         self.gc.enter_car()
-        self.go_to_mastery()
+        AutoCarMastery.go_to_mastery()
 
         if not self.hcv2.check_match(self.images['already_done'], True):
             # MASTERRR
@@ -106,7 +104,7 @@ class AutoCarMastery:
         """
         # Filter A & HotHatch
         common.press('y', 1)
-        # Warn: May change -> 5 or 7 here
+        # Warn: May change during Winter -> 5 or 7 here
         for _ in range(5):
             common.press('down', fast_sleep / 2)
         common.press('enter', fast_sleep)
@@ -118,7 +116,7 @@ class AutoCarMastery:
         self.go_to_manufacturer()
         self.find_car()
         self.gc.enter_car()
-        self.go_to_mastery()
+        AutoCarMastery.go_to_mastery()
 
         if not self.hcv2.check_match(self.images['already_done'], True):
             # MASTERRR
@@ -173,10 +171,11 @@ class AutoCarMastery:
             if not self.hcv2.check_match(self.images[self.car], True):
                 raise NameError(self.car.capitalize() + ' to delete not found [' + self.car + ']')
             common.press('enter')
-            self.delete()
+            AutoCarMastery.delete()
             common.press('up', fast_sleep)
             common.press('right', fast_sleep)
         # Find car to use
+        common.sleep(fast_sleep * 2)
         if not self.hcv2.check_match(self.images[self.car], True):
             raise NameError(self.car.capitalize() + ' to drive not found [' + self.car + ']')
 
@@ -212,7 +211,7 @@ class AutoCarMastery:
         common.press('down', fast_sleep)
         common.press('enter', 2.5)
 
-    def run(self, max_try: int = max_try):
+    def run(self, max_try: int = 50):
         """
         Need to be run from home garage
         :param max_try:
@@ -220,10 +219,9 @@ class AutoCarMastery:
         common.sleep(5, 'Waiting 5 secs, please focus Forza Horizon 5.')
         common.moveTo((10, 10))
         self.count = 0
-        self.max_try = max_try
         self.running = True
         self.ht.start()
-        while self.running and self.count < self.max_try:
+        while self.running and self.count < max_try:
             if not self.hcv2.check_match(self.images['my_cars'], True):
                 raise NameError('Not in home [my_cars]')
             # My cars
@@ -244,4 +242,4 @@ class AutoCarMastery:
                 common.press('right', .125)
                 self.count += 1
                 common.info(
-                    'Car done! [' + str(self.count) + '/' + str(self.max_try) + ' in ' + self.ht.stringify() + ']')
+                    'Car done! [' + str(self.count) + '/' + str(max_try) + ' in ' + self.ht.stringify() + ']')

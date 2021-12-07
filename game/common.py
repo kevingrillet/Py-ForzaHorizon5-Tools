@@ -7,8 +7,6 @@ from utils.handlertime import HandlerTime
 
 @superdecorator.decorate_all_functions()
 class GameCommon:
-    ht = HandlerTime()
-
     def __init__(self, hcv2: HandlerCv2 = None):
         """
         Game common things
@@ -20,6 +18,7 @@ class GameCommon:
             ['999_mastery', '999_super_wheelspins', 'accolades', 'car_already_owned', 'lamborghini_name',
              'lamborghini_name_selected', 'my_cars', self.car + '_name', self.car + '_name_selected', 'race_start',
              'race_type'])
+        self.ht = HandlerTime()
 
     def check_car_already_own(self, aoc: AlreadyOwnedChoice = constant.OWNED) -> bool:
         """

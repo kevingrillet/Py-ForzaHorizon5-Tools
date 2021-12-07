@@ -66,7 +66,7 @@ The script tries to load the image from `images/[LANG]`, then `images/common`. I
 <hr>
 
 <div align="center">
-<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Sources">Previous page</a>
+<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Debug">Previous page</a>
 |
 <a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/ToDo">Next page</a>
 </div>

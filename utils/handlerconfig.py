@@ -5,14 +5,13 @@ from game import constant
 
 
 class HandlerConfig:
-    path: str = None
-    config: SafeConfigParser = SafeConfigParser()
-
     def __init__(self, path: str):
         """
         Create handler and read config from path
         :param path:
         """
+        self.path = None
+        self.config: SafeConfigParser = SafeConfigParser()
         self.set_path(path)
         self.create_default()
 

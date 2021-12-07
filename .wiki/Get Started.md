@@ -1,27 +1,18 @@
-* [Basic](#basic)
-    1. [AutoWheelSpins](#autowheelspins)
-    2. [AutoGPSDestination](#autogpsdestination)
-    3. [AutoLabReplay](#autolabreplay)
-    4. [AutoCarBuy](#autocarbuy)
-    5. [AutoCarMastery](#autocarmastery)
-        - [`2014 Ford Fiesta ST`](#2014-ford-fiesta-st)
-        - [`1987 Pontiac Firebird Trans Am GTA`](#1987-pontiac-firebird-trans-am-gta)
-        - [`2015 Porsche Cayman GTS`](#2015-porsche-cayman-gts)
-    6. [AutoCarBuyLeastExpensive](#autocarbuyleastexpensive)
-    7. [AutoRaceRestart](#autoracerestart)
-    8. [AutoPhotoAllMyCars](#autoracerestart)
-* [Advanced](#advanced)
-    - [AutoCarBuy + AutoCarMastery](#autocarbuy--autocarmastery) 
-    - [AutoCarBuy + AutoCarMastery + AutoLabReplay](#autocarbuy--autocarmastery--autolabreplay)
-    - [AutoCarBuy + AutoCarMastery + AutoRaceRestart](#autocarbuy--autocarmastery--autoracerestart)
-    - [Just press z](#just-press-z)
-* [Dev](#dev)
-    - [Dev tools](#dev-tools)
-    - [Image debug](#image-debug)
+*:construction: means probably broken...*
 
-## Basic
-
-### AutoWheelSpins
+1. [AutoWheelSpins](#autowheelspins)
+2. [AutoGPSDestination :construction:](#autogpsdestination-construction)
+3. [AutoLabReplay :construction:](#autolabreplay-construction)
+4. [AutoCarBuy](#autocarbuy)
+5. [AutoCarMastery](#autocarmastery)
+   * [`2014 Ford Fiesta ST`](#2014-ford-fiesta-st)
+   * [`1987 Pontiac Firebird Trans Am GTA`](#1987-pontiac-firebird-trans-am-gta)
+   * [`2015 Porsche Cayman GTS`](#2015-porsche-cayman-gts)
+6. [AutoCarBuyLeastExpensive](#autocarbuyleastexpensive)
+7. [AutoRaceRestart](#autoracerestart)
+8. [AutoPhotoAllMyCars](#autoracerestart)    
+ 
+## AutoWheelSpins
 
 Choice `1`.
 
@@ -38,7 +29,7 @@ Will sell duplicates cars.
 - Launch the script
 - Set focus on Forza
 
-### AutoGPSDestination
+## AutoGPSDestination :construction:
 
 Choice `2`.
 
@@ -52,7 +43,7 @@ Will go to destination then press `esc`.
 - Launch the script
 - Set focus on Forza
 
-### AutoLabReplay
+## AutoLabReplay :construction:
 
 Choice `3`.
 
@@ -70,12 +61,12 @@ Can be started from esc menu, esc menu in race or race preparation.
 
 Example of codes from <https://www.youtube.com/watch?v=HPS8Ubziu7U>:
 
-- 1 Lap | 206 340 638
-- 15 Laps | 127 405 648
-- 50 Laps | 430 730 853
-- 50 Laps WITH MAX AI FOR CREDITS! | 473 350 397 
+- :construction: 1 Lap | 206 340 638
+- :construction: 15 Laps | 127 405 648
+- :construction: 50 Laps | 430 730 853
+- :construction: 50 Laps WITH MAX AI FOR CREDITS! | 473 350 397 
 
-### AutoCarBuy
+## AutoCarBuy
 
 Choice `4`.
 
@@ -88,13 +79,13 @@ Buys car from collection.
 - Launch the script
 - Set focus on Forza
 
-### AutoCarMastery
+## AutoCarMastery
 
 Choice `5`.
 
 Delete car after mastery, so it's **RISKY**!
 
-#### `2014 Ford Fiesta ST`
+### `2014 Ford Fiesta ST`
 
 Will get 10 Forzathon Points for 5 points: <https://youtu.be/zI3Sm7q34bs?t=13>
 
@@ -108,7 +99,7 @@ The `2014 Ford Fiesta ST` needs to be the only car of the `Ford` constructor wit
 - Launch the script
 - Set focus on Forza
 
-#### `1987 Pontiac Firebird Trans Am GTA`
+### `1987 Pontiac Firebird Trans Am GTA`
 
 Will get super wheelspins for 14 points: <https://youtu.be/HPS8Ubziu7U?t=140>
 
@@ -122,7 +113,7 @@ The `1987 Pontiac Firebird Trans Am GTA` needs to be the 3rd car of the `Pontiac
 - Launch the script
 - Set focus on Forza
 
-#### `2015 Porsche Cayman GTS`
+### `2015 Porsche Cayman GTS`
 
 Will get super wheelspins for 11 points: <https://youtu.be/s6z0FyguhrI?t=30>
 
@@ -136,7 +127,7 @@ The `2015 Porsche Cayman GTS` needs to be the only car of the `Porsche` construc
 - Launch the script
 - Set focus on Forza
 
-### AutoCarBuyLeastExpensive
+## AutoCarBuyLeastExpensive
 
 Choice `6`.
 
@@ -144,7 +135,7 @@ Choice `6`.
 - Launch the script
 - Set focus on Forza
 
-### AutoRaceRestart
+## AutoRaceRestart
 
 Choice `7`.
 
@@ -162,10 +153,10 @@ Can be started from esc menu in race or race preparation.
 
 Example of codes:
 
-- 10sp in 30 secs | 743 324 179 | <https://youtu.be/oBFlEdrj8Ec?t=16>
+- :construction: 10sp in 30 secs | 743 324 179 | <https://youtu.be/oBFlEdrj8Ec?t=16>
 - 10 sp in 30 sec straight road | 497 519 560 
 
-### AutoPhotoAllMyCars
+## AutoPhotoAllMyCars
 
 Choice `8`.
 
@@ -183,98 +174,10 @@ Need to be started from esc menu outside the house.
 - Launch the script
 - Set focus on Forza
 
-## Advanced
-
-### AutoCarBuy + AutoCarMastery
-
-Choice `45`.
-
-*The car you buy "need" to correspond to the car chosen in config.*
-
-- Place on the car you want to buy in car collection
-
-  ![](https://user-images.githubusercontent.com/7203617/143294156-0c9c793d-3cbb-4f04-8396-8de6423ba5d0.jpg)
-
-- Launch the script
-- Set focus on Forza
-
-### AutoCarBuy + AutoCarMastery + AutoLabReplay
-
-Choice `453`.
-
-**Require to have a Lamborghini as favorite car, and be in it at the start.**
-
-Need to be started from game default esc menu.
-
-Will alt tab, check if max mastery, if `true` then AutoCarBuy + AutoCarMastery
-
-Then loop
-- AutoLabReplay
-- Check mastery
-- AutoCarBuy + AutoCarMastery
-
-### AutoCarBuy + AutoCarMastery + AutoRaceRestart
-
-Choice `457`.
-
-**Require to have a Lamborghini as favorite car, and be in it at the start.**
-
-Need to be started from game default esc menu.
-
-Will alt tab, check if max mastery, if `true` then AutoCarBuy + AutoCarMastery
-
-Then loop
-- AutoRaceRestart (will run the last lab race)
-- Check mastery
-- AutoCarBuy + AutoCarMastery
-
-### Just press z
-
-Choice `99`.
-
-Will alt tab, press `esc`, then hold `z`
-
-## Dev
-
-### Dev tools
-
-Choice `0`.
-
-### Image debug
-
-Choice `98`.
-
-Then choose your image to find.
-
-```
-Your choice:
-98
-
-List of images:
-0_spins_remaining                        999_mastery                              999_super_wheelspins                     accolades                               
-already_done                             autoshow                                 buy_car                                  cannot_afford_perk                      
-car_already_owned                        collect_prize_and_spin_again             colors                                   ford                                    
-ford_name                                ford_name_selected                       home                                     insufficient_cr                         
-lamborghini_name                         lamborghini_name_selected                last_car_manufacturer_selected           loading_please_wait                     
-my_cars                                  not_owned                                pontiac                                  pontiac_name                            
-pontiac_name_selected                    porsche                                  porsche_name                             porsche_name_selected                   
-processing_photo                         race_continue                            race_quit                                race_reward                             
-race_skip                                race_start                               race_type                                skip                                    
-value                                    value_menu                               value_selected
-
-Choose image to search:
-car_already_owned
-
-find:                True
-find_max_val:        0.9993559122085571
-find_start:          (1072, 248)
-find_end:            (1488, 301)
-```
-
 <hr>
 
 <div align="center">
 <a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Requirements">Previous page</a>
 |
-<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Sources">Next page</a>
+<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Advanced">Next page</a>
 </div>

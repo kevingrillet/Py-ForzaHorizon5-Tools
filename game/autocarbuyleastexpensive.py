@@ -5,11 +5,6 @@ from utils.handlertime import HandlerTime
 
 @superdecorator.decorate_all_functions()
 class AutoCarBuyLeastExpensive:
-    count = 0
-    ht = HandlerTime()
-    max_try = 25
-    running = False
-
     def __init__(self, hcv2: HandlerCv2 = None):
         """
         Prepare to auto buy lest expensive car
@@ -18,8 +13,10 @@ class AutoCarBuyLeastExpensive:
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
             ['autoshow', 'colors', 'not_owned', 'insufficient_cr', 'value', 'value_menu', 'value_selected'])
+        self.ht = HandlerTime()
+        self.running = False
 
-    def run(self, max_try: int = max_try):
+    def run(self, max_try: int = 25):
         """
         Need to be run from home buy/sell tab
         :param max_try:
@@ -27,10 +24,10 @@ class AutoCarBuyLeastExpensive:
         common.sleep(5, 'Waiting 5 secs, please focus Forza Horizon 5.')
         common.sleep(5)
         common.moveTo((10, 10))
-        self.max_try = max_try
         self.running = True
+        count = 0
         self.ht.start()
-        while self.running and self.count < self.max_try:
+        while self.running and count < max_try:
             # Enter salon
             if not self.hcv2.check_match(self.images['autoshow'], True):
                 raise NameError('Not at autoshow [autoshow]')
@@ -68,7 +65,6 @@ class AutoCarBuyLeastExpensive:
             common.press('enter', 20)
             common.press('esc', 3)
 
-            self.count += 1
-            common.info(
-                'Car bought! [' + str(self.count) + '/' + str(self.max_try) + ' in ' + self.ht.stringify() + ']')
+            count += 1
+            common.info('Car bought! [' + str(count) + '/' + str(max_try) + ' in ' + self.ht.stringify() + ']')
             common.sleep(1)

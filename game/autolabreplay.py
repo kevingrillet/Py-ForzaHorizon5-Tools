@@ -7,13 +7,6 @@ from utils.handlertime import HandlerTime
 
 @superdecorator.decorate_all_functions()
 class AutoLabReplay:
-    already_owned_choice = AlreadyOwnedChoice.SELL
-    count = 0
-    count_try = 0
-    ht = HandlerTime()
-    max_try = 10
-    running = False
-    step = RaceStep.INIT
 
     def __init__(self, hcv2: HandlerCv2 = None, gc: GameCommon = None, stop_on_max_mastery: bool = False):
         """
@@ -27,6 +20,11 @@ class AutoLabReplay:
         self.images = self.hcv2.load_images(
             ['accolades', 'race_continue', 'race_quit', 'race_reward', 'race_skip', 'race_start'])
         self.stop_on_max_mastery = stop_on_max_mastery
+        self.ht = HandlerTime()
+        self.already_owned_choice = AlreadyOwnedChoice.SELL
+        self.count = 0
+        self.running = False
+        self.step = RaceStep.INIT
 
     def esc_to_menu(self):
         """
@@ -58,19 +56,18 @@ class AutoLabReplay:
         self.step = next_step
         self.count = 0
 
-    def run(self, max_try: int = max_try):
+    def run(self, max_try: int = 10):
         """
         Need to be started from race, or esc menu, or race preparation menu
         :param max_try:
         """
         common.sleep(5, 'Waiting 5 secs, please focus Forza Horizon 5.')
         common.moveTo((10, 10))
-        self.max_try = max_try
         self.ht.start()
         self.whereami()
-        self.count_try = 0
+        count_try = 0
         self.running = True
-        while self.running and self.count_try < max_try:
+        while self.running and count_try < max_try:
             self.hcv2.require_new_capture = True
 
             if self.step == RaceStep.PREPARING:
@@ -104,8 +101,8 @@ class AutoLabReplay:
                 else:
                     self.count += 1
                     if self.count >= 3:
-                        self.count_try += 1
-                        common.info('Race done. [' + str(self.count_try) + '/' + str(self.max_try) + ']')
+                        count_try += 1
+                        common.info('Race done. [' + str(count_try) + '/' + str(max_try) + ']')
                         self.next_step()
 
             elif self.step == RaceStep.CHECK:

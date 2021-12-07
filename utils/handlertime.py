@@ -4,7 +4,8 @@ from string import Formatter
 
 
 class HandlerTime:
-    my_timer = time.time()
+    def __init__(self):
+        self.my_timer = time.time()
 
     def get_timer(self) -> float:
         """
@@ -39,7 +40,7 @@ class HandlerTime:
         Beautify output
         :return: time formated
         """
-        ret = self.handle_stringify(self.get_timer())
+        ret = HandlerTime.handle_stringify(self.get_timer())
         self.start()
         return ret
 

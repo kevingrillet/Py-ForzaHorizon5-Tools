@@ -9,5 +9,5 @@ I'm using `PyCharm` to dev this tool.
 <div align="center">
 <a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Sources">Previous page</a>
 |
-<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Images">Next page</a>
+<a href="https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Debug">Next page</a>
 </div>

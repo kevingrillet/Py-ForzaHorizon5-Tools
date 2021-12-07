@@ -27,6 +27,20 @@
 
 Welcome to the **Py-ForzaHorizon5-Tools**
 
+## Information :pushpin:
+
+> :warning: Since the last game [update (December 3rd, 2021)](https://support.forzamotorsport.net/hc/en-us/articles/4411898144659-FH5-Release-Notes-December-3rd-2021),
+> the script has been working less effectively, I'm trying to fix it, but it seems that `AutoLabReplay` will is beyond
+> repair since they did something to auto-steering... sames goes for `AutoGPSDestination` and `AutoRaceRestart`...
+> If it's not a straight line, the assist is just driving too badly... :see_no_evil:
+> 
+> I think they did also change the number of mastery points won by destroying objectects, with 100 run I'm "only"
+> getting 850 points instead of 1000, and it's taking more time :wheelchair:
+
+> In Winter, it's required to change 2 values in `AutoCarMastery`.
+
+## Description
+
 ```cmd
  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
  ┃                    Py-ForzaHorizon5-Tools                   ┃
@@ -47,6 +61,8 @@ Your choice:
 For more info, please check the [wiki](https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki) :goberserk:
 
 If you still have a problem, please contact me on [Discord](https://discord.gg/scdUu3SUQm).
+
+## Licence
 
 ```
 /*

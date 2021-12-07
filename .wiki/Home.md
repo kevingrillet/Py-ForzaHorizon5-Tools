@@ -23,9 +23,9 @@
    <hr>
 </div>
 
-## Description
-
 Welcome to the Py-ForzaHorizon5-Tools wiki!
+
+## Description
 
 ```cmd
  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -44,11 +44,11 @@ Welcome to the Py-ForzaHorizon5-Tools wiki!
 Your choice:
 ```
 
-Before starting to use it, please have a look at the [Requirements](https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Requirements).
-
-Please look at [Get Started](https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/Get-Started) to get more info about how to use the script.
+For more info, please check the [wiki](https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki) :goberserk:
 
 If you still have a problem, please contact me on [Discord](https://discord.gg/scdUu3SUQm).
+
+## Licence
 
 ```
 /*
@@ -60,6 +60,7 @@ If you still have a problem, please contact me on [Discord](https://discord.gg/s
  * ----------------------------------------------------------------------------
  */
 ```
+
 <!-- Footer -->
 <div align="center">
    <a href="https://github.com/kyechan99/capsule-render">

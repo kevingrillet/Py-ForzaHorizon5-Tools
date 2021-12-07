@@ -6,8 +6,6 @@ from utils.handlertime import HandlerTime
 
 @superdecorator.decorate_all_functions()
 class AutoPhotoAllMyCars:
-    ht = HandlerTime()
-    running = False
 
     def __init__(self, hcv2: HandlerCv2 = None, gc: GameCommon = None):
         """
@@ -19,6 +17,8 @@ class AutoPhotoAllMyCars:
         self.gc = gc if gc else GameCommon(self.hcv2)
         self.images = self.hcv2.load_images(
             ['home', 'last_car_manufacturer_selected', 'loading_please_wait', 'processing_photo'])
+        self.ht = HandlerTime()
+        self.running = False
 
     def run(self, nb_right: int = 1):
         """
