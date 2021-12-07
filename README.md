@@ -36,6 +36,9 @@ Welcome to the **Py-ForzaHorizon5-Tools**
 > 
 > I think they did also change the number of mastery points won by destroying objectects, with 100 run I'm "only"
 > getting 850 points instead of 1000, and it's taking more time :wheelchair:
+> 
+> They also broke something in `AutoCarMastery`, sometimes it will remove cars that are not down because filter then
+> sort is not working properly...
 
 > In Winter, it's required to change 2 values in `AutoCarMastery`.
 

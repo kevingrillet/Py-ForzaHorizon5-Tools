@@ -38,7 +38,7 @@ def AutoCarBuy_Then_AutoCarMastery(_acb: AutoCarBuy, _acm: AutoCarMastery, nbcar
         elif constant.CAR.value == Car.PONTIAC.value:
             nbcar = math.floor(999 / 14)
         elif constant.CAR.value == Car.PORSCHE.value:
-            nbcar = math.floor(999 / 11)
+            nbcar = math.floor(999 / 14)  # 11
         else:
             raise NameError('Unknow car')
     common.info('AutoCarBuy + AutoCarMastery for ' + str(nbcar) + ' cars')
@@ -133,14 +133,22 @@ if __name__ == '__main__':
             AutoLabReplay(hcv2, stop_on_max_mastery=True).run()
             quit_game()
         elif intinput == 4:
-            AutoCarBuy(hcv2).run()
+            print('Number of cars to buy: (default: 50)')
+            nb_buy = int(input() or '50')
+            AutoCarBuy(hcv2).run(nb_buy)
         elif intinput == 40:
-            AutoCarBuy(hcv2).run()
+            print('Number of cars to buy: (default: 50)')
+            nb_buy = int(input() or '50')
+            AutoCarBuy(hcv2).run(nb_buy)
             quit_game()
         elif intinput == 5:
-            AutoCarMastery(hcv2).run()
+            print('Number of cars to master: (default: 50)')
+            nb_mastery = int(input() or '50')
+            AutoCarMastery(hcv2).run(nb_mastery)
         elif intinput == 50:
-            AutoCarMastery(hcv2).run()
+            print('Number of cars to master: (default: 50)')
+            nb_mastery = int(input() or '50')
+            AutoCarMastery(hcv2).run(nb_mastery)
             quit_game()
         elif intinput == 6:
             AutoCarBuyLeastExpensive(hcv2).run()
@@ -153,17 +161,13 @@ if __name__ == '__main__':
             AutoRaceRestart(hcv2).run(nb_restart)
         elif intinput == 70:
             print('Number of restart: (default: 100)')
-            nb_restart = int(input() or '1')
+            nb_restart = int(input() or '100')
             AutoRaceRestart(hcv2).run(nb_restart)
             quit_game()
         elif intinput == 8:
-            print('Continue at: (default: 1)')
-            nb_right = int(input() or '1')
-            AutoPhotoAllMyCars(hcv2).run(nb_right)
+            AutoPhotoAllMyCars(hcv2).run()
         elif intinput == 80:
-            print('Continue at: (default: 1)')
-            nb_right = int(input() or '1')
-            AutoPhotoAllMyCars(hcv2).run(nb_right)
+            AutoPhotoAllMyCars(hcv2).run()
             quit_game()
 
         # Just press Z
@@ -175,9 +179,11 @@ if __name__ == '__main__':
 
         # Advanced
         elif intinput == 45:
+            print('Number of cars to buy & master: (default: None)')
+            nb_cars = int(input() or None)
             common.alt_tab()
             common.moveTo((10, 10))
-            AutoCarBuy_Then_AutoCarMastery(AutoCarBuy(hcv2), AutoCarMastery(hcv2))
+            AutoCarBuy_Then_AutoCarMastery(AutoCarBuy(hcv2), AutoCarMastery(hcv2), nb_cars)
         elif intinput == 453:
             common.debug('AutoCarBuy + AutoCarMastery + AutoLabReplay')
             gc = GameCommon(hcv2)
@@ -198,7 +204,7 @@ if __name__ == '__main__':
         elif intinput == 457:
             common.debug('AutoCarBuy + AutoCarMastery + AutoRaceRestart')
             print('Number of restart: (default: 100)')
-            nb_restart = int(input() or '1')
+            nb_restart = int(input() or '100')
             gc = GameCommon(hcv2)
             acb = AutoCarBuy(hcv2)
             acm = AutoCarMastery(hcv2, gc)
