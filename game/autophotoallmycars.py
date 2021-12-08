@@ -6,7 +6,6 @@ from utils.handlertime import HandlerTime
 
 @superdecorator.decorate_all_functions()
 class AutoPhotoAllMyCars:
-
     def __init__(self, hcv2: HandlerCv2 = None, gc: GameCommon = None):
         """
         Prepare to AutoPhotoAllMyCars
