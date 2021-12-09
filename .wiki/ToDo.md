@@ -1,5 +1,8 @@
 ## High priority
 
+- Add in `AutoCarMastery.delete()` a check on the fact that the car is not new.
+- Add in `AutoCarMastery.master_***` a system of path instead of writing all the steps.
+
 ## Medium priority
 
 - Remove or find max? `GameCommon.check_super_wheelspins` and `999_super_wheelspins`because 999 is not the max :trollface:

@@ -247,6 +247,19 @@ if __name__ == '__main__':
             print('{0:20} {1}'.format('find_max_val:', str(hcv2.find_max_val)))
             print('{0:20} {1}'.format('find_start:', str(hcv2.find_start)))
             print('{0:20} {1}'.format('find_end:', str(hcv2.find_end)))
+        elif intinput == 97:
+            print('Number of mastery points: (default: 999)')
+            nb_mastery = int(input() or '999')
+            print('Number of race until 999: ' + str(math.ceil((999-nb_mastery) / 10)))
+            if constant.CAR.value == Car.FORD.value:
+                cost_per_car = 5
+            elif constant.CAR.value == Car.PONTIAC.value:
+                cost_per_car = 14
+            elif constant.CAR.value == Car.PORSCHE.value:
+                cost_per_car = 14  # 11
+            else:
+                raise NameError('Unknow car')
+            print('Number of car mastery intil 0: ' + str(math.floor(nb_mastery / cost_per_car)))
 
         else:
             raise NameError('Not an option')
