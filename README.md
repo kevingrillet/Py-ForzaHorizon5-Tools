@@ -33,10 +33,10 @@ Welcome to the **Py-ForzaHorizon5-Tools**
 > the script has been working less effectively, I'm trying to fix it, but it seems that `AutoLabReplay` will is beyond
 > repair since they did something to auto-steering... sames goes for `AutoGPSDestination` and `AutoRaceRestart`...
 > If it's not a straight line, the assist is just driving too badly... :see_no_evil:
-> 
+>
 > I think they did also change the number of mastery points won by destroying objectects, with 100 run I'm "only"
 > getting 800 points instead of 1000, and it's taking more time (2h30 instead of 1h30) :wheelchair:
-> 
+>
 > They also broke something in `AutoCarMastery`, sometimes it will remove cars that are not down because filter then
 > sort is not working properly...
 

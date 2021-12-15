@@ -17,14 +17,14 @@ class AutoCarMastery:
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.gc = gc if gc else GameCommon(self.hcv2)
         self.images = self.hcv2.load_images(
-            ['already_done', 'cannot_afford_perk', 'my_cars', self.car, self.car + '_name',
+            ['already_done', 'cannot_afford_perk', 'my_cars', 'new_common', 'new_rare', self.car, self.car + '_name',
              self.car + '_name_selected'])
         self.count = 0
         self.count_done = 0
         self.ht = HandlerTime()
         self.running = False
 
-    def checkBuy(self):
+    def check_buy(self):
         """
         Check if the mastery had been bought
         """
@@ -36,17 +36,27 @@ class AutoCarMastery:
             common.warn("Can't buy, not enough mastery points [cannot_afford_perk]")
             self.running = False
 
-    @staticmethod
-    def delete(fast_sleep: float = .125):
+    def delete(self, fast_sleep: float = .125) -> bool:
         """
         Delete car after selecting it
         :param fast_sleep:
+        :return: If car has been deleted
         """
-        common.press('enter')
-        for _ in range(4):
-            common.press('down', fast_sleep)
-        common.press('enter')
-        common.press('enter', 1)
+        if constant.CAR == Car.FORD or Car.PONTIAC:
+            result = not self.hcv2.check_match(self.images['new_common'], True)
+        elif constant.CAR == Car.PORSCHE:
+            result = not self.hcv2.check_match(self.images['new_rare'], True)
+        else:
+            raise NameError('Unknow car')
+
+        if result:
+            common.press('enter')
+            for _ in range(4):
+                common.press('down', fast_sleep)
+            common.press('enter')
+            common.press('enter', 1)
+
+        return result
 
     @staticmethod
     def filter(fast_sleep: float = .125):
@@ -74,32 +84,67 @@ class AutoCarMastery:
                 common.press('enter', fast_sleep)
             common.press('esc', 1)
 
+    def do_path(self, path: str = ''):
+        """
+        Do the path in mastery.
+        Example: _erereuerel_ue
+        Equivalent to: Enter, Right Enter, Right Enter, Up Enter, Right Enter, Left Up Enter
+        :param path:
+        """
+        path = list(path)
+        while len(str) > 0 and self.running:
+            step = path.pop(0)
+            enter = path.pop(0) == 'e'
+            self.do_step(step, enter)
+
+    def do_step(self, step: str = '', enter: bool = True, fast_sleep: float = .125):
+        """
+        Do step, then enter if required, then check if buy did work
+        :param step: _, l, r, u, d
+        :param enter: True, False
+        :param fast_sleep: .125
+        """
+        if step == 'l':
+            common.press('left', fast_sleep)
+        elif step == 'r':
+            common.press('right', fast_sleep)
+        elif step == 'u':
+            common.press('up', fast_sleep)
+        elif step == 'd':
+            common.press('down', fast_sleep)
+
+        if enter:
+            common.press('enter', .75)
+            self.check_buy()
+
     def find_car(self, fast_sleep: float = .125):
         """
         Look for the car
         :param fast_sleep:
         """
         if constant.CAR == Car.PONTIAC:
+            deleted = True
             # Find car to delete
             if self.count > 1:  # Need to skip it 2 times to begin
                 if not self.hcv2.check_match(self.images[self.car], True):
                     raise NameError(self.car.capitalize() + ' to delete not found [' + self.car + ']')
                 common.press('right', fast_sleep)
-                AutoCarMastery.delete()
+                deleted = self.delete()
             # Find car to use
             if not self.hcv2.check_match(self.images[self.car], True):
                 raise NameError(self.car.capitalize() + ' to drive not found [' + self.car + ']')
-            common.press('up', fast_sleep)
-            common.press('right', fast_sleep)
+            if deleted:
+                common.press('up', fast_sleep)
+                common.press('right', fast_sleep)
 
         elif constant.CAR == Car.FORD or Car.PORSCHE:
             # Find car to delete
             if self.count > 1:  # Need to skip it 2 times to begin
                 if not self.hcv2.check_match(self.images[self.car], True):
                     raise NameError(self.car.capitalize() + ' to delete not found [' + self.car + ']')
-                AutoCarMastery.delete()
-                common.press('up', fast_sleep)
-                common.press('right', fast_sleep)
+                if self.delete():
+                    common.press('up', fast_sleep)
+                    common.press('right', fast_sleep)
             # Find car to use
             common.sleep(fast_sleep * 2)
             if not self.hcv2.check_match(self.images[self.car], True):
@@ -137,79 +182,6 @@ class AutoCarMastery:
         common.press('down', fast_sleep)
         common.press('enter', 2.5)
 
-    def master_ford(self, fast_sleep: float = .125):
-        """
-        master for Ford
-        :param fast_sleep:
-        """
-        if not self.hcv2.check_match(self.images['already_done'], True):
-            # MASTERRR
-            common.press('enter', 1)
-            self.checkBuy()
-            common.press('right', fast_sleep)
-            common.press('enter', .75)
-            self.checkBuy()
-            common.press('up', fast_sleep)
-            common.press('enter', .75)
-            self.checkBuy()
-            if self.running:
-                self.count_done += 1
-
-    def master_pontiac(self, fast_sleep: float = .125):
-        """
-        master for Pontiac
-        :param fast_sleep:
-        """
-        if not self.hcv2.check_match(self.images['already_done'], True):
-            # MASTERRR
-            common.press('enter', 1)
-            self.checkBuy()
-            common.press('right', fast_sleep)
-            common.press('enter', .75)
-            self.checkBuy()
-            common.press('right', fast_sleep)
-            common.press('enter', .75)
-            self.checkBuy()
-            common.press('up', fast_sleep)
-            common.press('enter', .75)
-            self.checkBuy()
-            common.press('right', fast_sleep)
-            common.press('enter', .75)
-            self.checkBuy()
-            common.press('up', fast_sleep)
-            common.press('enter', .75)
-            self.checkBuy()
-            if self.running:
-                self.count_done += 1
-
-    def master_porsche(self, fast_sleep: float = .125):
-        """
-        master for Porsche
-        :param fast_sleep:
-        """
-        if not self.hcv2.check_match(self.images['already_done'], True):
-            # MASTERRR
-            common.press('enter', 1)
-            self.checkBuy()
-            common.press('right', fast_sleep)
-            common.press('enter', .75)
-            self.checkBuy()
-            common.press('right', fast_sleep)
-            common.press('enter', .75)
-            self.checkBuy()
-            common.press('up', fast_sleep)
-            common.press('enter', .75)
-            self.checkBuy()
-            common.press('right', fast_sleep)
-            common.press('enter', .75)
-            self.checkBuy()
-            common.press('left', fast_sleep)
-            common.press('up', fast_sleep)
-            common.press('enter', .75)
-            self.checkBuy()
-            if self.running:
-                self.count_done += 1
-
     def run(self, max_try: int = 50):
         """
         Need to be run from home garage
@@ -231,14 +203,18 @@ class AutoCarMastery:
             self.find_car()
             self.gc.enter_car()
             AutoCarMastery.go_to_mastery()
-            if constant.CAR == Car.FORD:
-                self.master_ford()
-            elif constant.CAR == Car.PONTIAC:
-                self.master_pontiac()
-            elif constant.CAR == Car.PORSCHE:
-                self.master_porsche()
-            else:
-                raise NameError('Unknow car')
+            if not self.hcv2.check_match(self.images['already_done'], True):
+                if constant.CAR == Car.FORD:
+                    self.do_path('_ereue')
+                elif constant.CAR == Car.PONTIAC:
+                    self.do_path('_erereuereue')
+                elif constant.CAR == Car.PORSCHE:
+                    self.do_path('_erereuerel_ue')
+                else:
+                    raise NameError('Unknow car')
+
+                if self.running:
+                    self.count_done += 1
 
             if self.running:
                 # Get back to menu

@@ -1,10 +1,10 @@
 *:construction: means probably broken...*
 
-- [AutoCarBuy + AutoCarMastery](#autocarbuy--autocarmastery) 
+- [AutoCarBuy + AutoCarMastery](#autocarbuy--autocarmastery)
 - [AutoCarBuy + AutoCarMastery + AutoLabReplay :construction:](#autocarbuy--autocarmastery--autolabreplay-construction)
 - [AutoCarBuy + AutoCarMastery + AutoRaceRestart](#autocarbuy--autocarmastery--autoracerestart)
 - [Just press z](#just-press-z)
- 
+
 ## AutoCarBuy + AutoCarMastery
 
 Choice `45`.
@@ -29,6 +29,7 @@ Need to be started from game default esc menu.
 Will alt tab, check if max mastery, if `true` then AutoCarBuy + AutoCarMastery
 
 Then loop
+
 - AutoLabReplay
 - Check mastery
 - AutoCarBuy + AutoCarMastery
@@ -44,6 +45,7 @@ Need to be started from game default esc menu.
 Will alt tab, check if max mastery, if `true` then AutoCarBuy + AutoCarMastery
 
 Then loop
+
 - AutoRaceRestart (will run the last lab race)
 - Check mastery
 - AutoCarBuy + AutoCarMastery

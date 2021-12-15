@@ -5,13 +5,13 @@
 3. [AutoLabReplay :construction:](#autolabreplay-construction)
 4. [AutoCarBuy](#autocarbuy)
 5. [AutoCarMastery](#autocarmastery)
-   * [`2014 Ford Fiesta ST`](#2014-ford-fiesta-st)
-   * [`1987 Pontiac Firebird Trans Am GTA`](#1987-pontiac-firebird-trans-am-gta)
-   * [`2015 Porsche Cayman GTS`](#2015-porsche-cayman-gts)
+    * [`2014 Ford Fiesta ST`](#2014-ford-fiesta-st)
+    * [`1987 Pontiac Firebird Trans Am GTA`](#1987-pontiac-firebird-trans-am-gta)
+    * [`2015 Porsche Cayman GTS`](#2015-porsche-cayman-gts)
 6. [AutoCarBuyLeastExpensive](#autocarbuyleastexpensive)
 7. [AutoRaceRestart](#autoracerestart)
-8. [AutoPhotoAllMyCars](#autoracerestart)    
- 
+8. [AutoPhotoAllMyCars](#autoracerestart)
+
 ## AutoWheelSpins
 
 Choice `1`.
@@ -64,7 +64,7 @@ Example of codes from <https://www.youtube.com/watch?v=HPS8Ubziu7U>:
 - :construction: 1 Lap | 206 340 638
 - :construction: 15 Laps | 127 405 648
 - :construction: 50 Laps | 430 730 853
-- :construction: 50 Laps WITH MAX AI FOR CREDITS! | 473 350 397 
+- :construction: 50 Laps WITH MAX AI FOR CREDITS! | 473 350 397
 
 ## AutoCarBuy
 
@@ -119,7 +119,8 @@ Will get super wheelspins for 11 points: <https://youtu.be/s6z0FyguhrI?t=30>
 
 ![](https://user-images.githubusercontent.com/7203617/143869702-1dfd2708-8b98-4fa1-adbe-72cdb09b0181.jpg)
 
-The `2015 Porsche Cayman GTS` needs to be the only car of the `Porsche` constructor with filter `A` and `Modern Sport Car`.
+The `2015 Porsche Cayman GTS` needs to be the only car of the `Porsche` constructor with filter `A`
+and `Modern Sport Car`.
 
 ![](https://user-images.githubusercontent.com/7203617/143869701-09accdd1-e904-4375-9551-de9c6ce643d1.jpg)
 
@@ -154,7 +155,7 @@ Can be started from esc menu in race or race preparation.
 Example of codes:
 
 - :construction: 10sp in 30 secs | 743 324 179 | <https://youtu.be/oBFlEdrj8Ec?t=16>
-- 10 sp in 30 sec straight road | 497 519 560 
+- 10 sp in 30 sec straight road | 497 519 560
 
 ## AutoPhotoAllMyCars
 
@@ -162,9 +163,11 @@ Choice `8`.
 
 *It takes HOURS or even DAYS!*
 
-Can be used with `80` to quit the game after done. It's also letting you right the number of cars you want to skip, in parentheses if you already run the script.
+Can be used with `80` to quit the game after done. It's also letting you right the number of cars you want to skip, in
+parentheses if you already run the script.
 
 If I want to continue with this example, I need to write `120`.
+
 ```
 Photo taken! [1 (120/0) in 01m 6.79s]
 ```

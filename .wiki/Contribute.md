@@ -1,4 +1,5 @@
-If you want to contribute, please pick an [issue](https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/issues) and send a PR :feelsgood:
+If you want to contribute, please pick an [issue](https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/issues) and
+send a PR :feelsgood:
 
 You can also look at the [ToDo](https://github.com/kevingrillet/Py-ForzaHorizon5-Tools/wiki/ToDo).
 

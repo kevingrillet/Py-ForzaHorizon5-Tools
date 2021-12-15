@@ -1,13 +1,13 @@
 - Forza Horizon 5 running in fullscreen
 - Keyboard layout:
-  - English 
-  - **French**
+    - English
+    - **French**
 - Language:
-  - English
-  - **French**
-- Resolution: 
-  - **QHD: `2560x1440`**
-  - HD 1080p: `1920x1080`
+    - English
+    - **French**
+- Resolution:
+    - **QHD: `2560x1440`**
+    - HD 1080p: `1920x1080`
 
 ## Other language
 
