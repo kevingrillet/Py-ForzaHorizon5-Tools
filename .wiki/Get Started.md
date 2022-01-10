@@ -11,6 +11,7 @@
 6. [AutoCarBuyLeastExpensive](#autocarbuyleastexpensive)
 7. [AutoRaceRestart](#autoracerestart)
 8. [AutoPhotoAllMyCars](#autoracerestart)
+9. [AutoCarBuyAuction](#autocarbuyauction)
 
 ## AutoWheelSpins
 
@@ -176,6 +177,15 @@ Need to be started from esc menu outside the house.
 
 - Launch the script
 - Set focus on Forza
+
+## AutoCarBuyAuction
+
+Need to be started at auction house after setting the filter.
+
+![](https://user-images.githubusercontent.com/7203617/148805292-5ef02640-9e34-4c5d-9d4e-befbf36a4f0b.png)
+Choice `9` buy 1 car.
+
+Choice `90` ask how many cars you want to buy.
 
 <hr>
 

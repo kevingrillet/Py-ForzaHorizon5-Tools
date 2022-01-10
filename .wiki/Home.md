@@ -40,6 +40,7 @@ Welcome to the Py-ForzaHorizon5-Tools wiki!
  ┃  6 - AutoCarBuyLeastExpensive ┃  457 - 45 + AutoRaceRestart ┃
  ┃  7 - AutoRaceRestart          ┃                             ┃
  ┃  8 - AutoPhotoAllMyCars       ┃  99  - Just press z         ┃
+ ┃  9 - AutoCarBuyAuction        ┃                             ┃
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 Your choice:
 ```

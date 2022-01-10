@@ -8,6 +8,7 @@ from pathlib import Path
 
 from game import constant
 from game.autocarbuy import AutoCarBuy
+from game.autocarbuyauction import AutoCarBuyAuction
 from game.autocarbuyleastexpensive import AutoCarBuyLeastExpensive
 from game.autocarmastery import AutoCarMastery
 from game.autogpsdestination import AutoGPSDestination
@@ -102,6 +103,7 @@ def show_menu():
     print(' ┃  6 - AutoCarBuyLeastExpensive ┃  457 - 45 + AutoRaceRestart ┃')
     print(' ┃  7 - AutoRaceRestart          ┃                             ┃')
     print(' ┃  8 - AutoPhotoAllMyCars       ┃  99  - Just press z         ┃')
+    print(' ┃  9 - AutoCarBuyAuction        ┃                             ┃')
     print(' ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛')
     print('Your choice:')
 
@@ -169,6 +171,12 @@ if __name__ == '__main__':
         elif intinput == 80:
             AutoPhotoAllMyCars(hcv2).run()
             quit_game()
+        elif intinput == 9:
+            AutoCarBuyAuction(hcv2).run()
+        elif intinput == 90:
+            print('Number of cars to buy: (default: 1)')
+            nb_car_to_buy = int(input() or '1')
+            AutoCarBuyAuction(hcv2).run(nb_car_to_buy)
 
         # Just press Z
         elif intinput == 99:
