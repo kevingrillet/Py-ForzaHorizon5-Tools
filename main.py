@@ -258,7 +258,7 @@ if __name__ == '__main__':
         elif intinput == 97:
             print('Number of mastery points: (default: 999)')
             nb_mastery = int(input() or '999')
-            print('Number of race until 999: ' + str(math.ceil((999-nb_mastery) / 10)))
+            print('Number of race until 999: ' + str(math.ceil((999 - nb_mastery) / 10)))
             if constant.CAR.value == Car.FORD.value:
                 cost_per_car = 5
             elif constant.CAR.value == Car.PONTIAC.value:
