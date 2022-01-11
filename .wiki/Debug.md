@@ -17,7 +17,8 @@ Your choice:
 
 List of images:
 0_spins_remaining                        999_mastery                              999_super_wheelspins                     accolades                               
-already_done                             autoshow                                 buy_car                                  cannot_afford_perk                      
+already_done                             auction_house_waiting                    auction_house_won                        auctions_options                        
+autoshow                                 buy_car                                  buyout_successful                        cannot_afford_perk                      
 car_already_owned                        collect_prize_and_spin_again             colors                                   ford                                    
 ford_name                                ford_name_selected                       home                                     insufficient_cr                         
 lamborghini_name                         lamborghini_name_selected                last_car_manufacturer_selected           loading_please_wait                     
@@ -25,8 +26,8 @@ my_cars                                  new_common                             
 pontiac                                  pontiac_name                             pontiac_name_selected                    porsche                                 
 porsche_name                             porsche_name_selected                    processing_photo                         race_continue                           
 race_quit                                race_reward                              race_skip                                race_start                              
-race_type                                skip                                     value                                    value_menu                              
-value_selected
+race_type                                search                                   skip                                     value                                   
+value_menu                               value_selected
 
 Choose image to search:
 car_already_owned
