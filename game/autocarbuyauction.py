@@ -13,7 +13,8 @@ class AutoCarBuyAuction:
         """
         self.hcv2 = hcv2 if hcv2 else HandlerCv2()
         self.images = self.hcv2.load_images(
-            ['auction_house_won', 'auctions_options', 'auction_house_waiting', 'buyout_successful', 'search'])
+            ['auction_complete', 'auction_house_won', 'auctions_options', 'auction_house_waiting', 'buyout_successful',
+             'search'])
         self.ht = HandlerTime()
         self.running = False
 
@@ -32,18 +33,24 @@ class AutoCarBuyAuction:
             if not self.hcv2.check_match(self.images['search'], True):
                 raise NameError('Not in auction house search [search]')
             common.press('enter', 2)
-            # While not seeing an already owned car, or bought all
-            while not self.hcv2.check_match(self.images['auction_house_won'], True) and count < nb_car_to_buy:
+            # While not bought all
+            while count < nb_car_to_buy:
                 # Wait for cars to appear
                 while self.hcv2.check_match(self.images['auction_house_waiting'], True):
                     common.sleep(1)
+                # If seeing an already sold car or auction complete
+                if self.hcv2.check_match(self.images['auction_complete'], True) or self.hcv2.check_match(
+                        self.images['auction_house_won'], True):
+                    common.info('Car already sold, refresh! [' + str(count) + '/' + str(
+                        nb_car_to_buy) + ' in ' + self.ht.stringify() + ']')
+                    break
                 # Check if Auctions Options available
                 if not self.hcv2.check_match(self.images['auctions_options'], True):
                     # If not, there is no car, just escape
-                    common.info(
-                        'No car to buy! [' + str(count) + '/' + str(nb_car_to_buy) + ' in ' + self.ht.stringify() + ']')
-                    common.info('Waiting 30 secs...')
-                    common.sleep(30)
+                    common.info('No car to buy, refresh! [' + str(count) + '/' + str(
+                        nb_car_to_buy) + ' in ' + self.ht.stringify() + ']')
+                    # common.info('Waiting 30 secs...')
+                    # common.sleep(30)
                     # Exit parent loop to quit Auction House
                     break
                 # Auction Options
