@@ -119,6 +119,19 @@ class HandlerCv2:
                 res[image] = (img, h, w)
         return res
 
+    def log(self) -> str:
+        """
+        Return logs
+        :return:
+        """
+        ret = ('{0:20} {1}'.format('\nfind:', str(self.find_max_val >= self.threshold)))
+        ret += ('{0:20} {1}'.format('\nfind_max_val:', str(self.find_max_val)))
+        if self.find_start:
+            ret += ('{0:20} {1}'.format('\nfind_start:', str(self.find_start)))
+        if self.find_end:
+            ret += ('{0:20} {1}'.format('\nfind_end:', str(self.find_end)))
+        return ret
+
     def match_template(self, find_image) -> bool:
         """
         return true if image match

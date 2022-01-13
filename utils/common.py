@@ -104,6 +104,15 @@ def keyUp(key: str):
     pyautogui.keyUp(convert_layout(key))
 
 
+def log(msg: str = ''):
+    """
+    print log
+    :param msg:
+    """
+    # print(msg)
+    logging.info(''.join([i if ord(i) < 128 else ' ' for i in msg]))
+
+
 def moveTo(location: (int, int) = (0, 0), secs: float = 0, scale: float = 1):
     """
     move mouse to location then sleep

@@ -48,8 +48,6 @@ Will go to destination then press `esc`.
 
 Choice `3`.
 
-Can be used with `30` to quit the game after max mastery points.
-
 Will redo the last lab race done.
 
 ![](https://user-images.githubusercontent.com/7203617/143293466-835bca70-004b-498b-853d-511cf2d6b6b7.jpg)
@@ -141,8 +139,6 @@ Choice `6`.
 
 Choice `7`.
 
-Can be used with `70` to quit the game after 100 restart.
-
 Will restart the current race at the end.
 
 Can be started from esc menu in race or race preparation.
@@ -163,9 +159,6 @@ Example of codes:
 Choice `8`.
 
 *It takes HOURS or even DAYS!*
-
-Can be used with `80` to quit the game after done. It's also letting you right the number of cars you want to skip, in
-parentheses if you already run the script.
 
 If I want to continue with this example, I need to write `120`.
 

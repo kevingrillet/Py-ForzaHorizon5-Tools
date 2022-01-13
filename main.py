@@ -105,7 +105,7 @@ def show_menu():
     print(' ┃  8 - AutoPhotoAllMyCars       ┃  99  - Just press z         ┃')
     print(' ┃  9 - AutoCarBuyAuction        ┃                             ┃')
     print(' ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛')
-    print('Your choice:')
+    common.log('Your choice:')
 
 
 if __name__ == '__main__':
@@ -120,6 +120,7 @@ if __name__ == '__main__':
         load_config()
         show_menu()
         intinput = int(input() or '-1')
+        common.log(str(intinput))
         hcv2 = HandlerCv2(scale=constant.SCALE)
         hcv2.threshold = 0.9 if constant.SCALE == 1 else 0.8
 
@@ -130,51 +131,28 @@ if __name__ == '__main__':
             AutoGPSDestination(hcv2).run()
         elif intinput == 3:
             AutoLabReplay(hcv2).run()
-        elif intinput == 30:
-            common.alt_tab()
-            AutoLabReplay(hcv2, stop_on_max_mastery=True).run()
-            quit_game()
         elif intinput == 4:
-            print('Number of cars to buy: (default: 50)')
+            common.log('Number of cars to buy: (default: 50)')
             nb_buy = int(input() or '50')
             AutoCarBuy(hcv2).run(nb_buy)
-        elif intinput == 40:
-            print('Number of cars to buy: (default: 50)')
-            nb_buy = int(input() or '50')
-            AutoCarBuy(hcv2).run(nb_buy)
-            quit_game()
         elif intinput == 5:
-            print('Number of cars to master: (default: 50)')
+            common.log('Number of cars to master: (default: 50)')
             nb_mastery = int(input() or '50')
             AutoCarMastery(hcv2).run(nb_mastery)
-        elif intinput == 50:
-            print('Number of cars to master: (default: 50)')
-            nb_mastery = int(input() or '50')
-            AutoCarMastery(hcv2).run(nb_mastery)
-            quit_game()
         elif intinput == 6:
-            AutoCarBuyLeastExpensive(hcv2).run()
-        elif intinput == 60:
-            AutoCarBuyLeastExpensive(hcv2).run()
-            quit_game()
+            common.log('Number of cars to buy: (default: 50)')
+            nb_buy = int(input() or '50')
+            AutoCarBuyLeastExpensive(hcv2).run(nb_buy)
         elif intinput == 7:
-            print('Number of restart: (default: 100)')
+            common.log('Number of restart: (default: 100)')
             nb_restart = int(input() or '100')
             AutoRaceRestart(hcv2).run(nb_restart)
-        elif intinput == 70:
-            print('Number of restart: (default: 100)')
-            nb_restart = int(input() or '100')
-            AutoRaceRestart(hcv2).run(nb_restart)
-            quit_game()
         elif intinput == 8:
-            AutoPhotoAllMyCars(hcv2).run()
-        elif intinput == 80:
-            AutoPhotoAllMyCars(hcv2).run()
-            quit_game()
+            common.log('Where to start: (default: 1)')
+            nb_start = int(input() or '1')
+            AutoPhotoAllMyCars(hcv2).run(nb_start)
         elif intinput == 9:
-            AutoCarBuyAuction(hcv2).run()
-        elif intinput == 90:
-            print('Number of cars to buy: (default: 1)')
+            common.log('Number of cars to buy: (default: 1)')
             nb_car_to_buy = int(input() or '1')
             AutoCarBuyAuction(hcv2).run(nb_car_to_buy)
 
@@ -187,7 +165,7 @@ if __name__ == '__main__':
 
         # Advanced
         elif intinput == 45:
-            print('Number of cars to buy & master: (default: None)')
+            common.log('Number of cars to buy & master: (default: None)')
             nb_cars = int(input() or None)
             common.alt_tab()
             common.moveTo((10, 10))
@@ -211,7 +189,7 @@ if __name__ == '__main__':
             quit_game()
         elif intinput == 457:
             common.debug('AutoCarBuy + AutoCarMastery + AutoRaceRestart')
-            print('Number of restart: (default: 100)')
+            common.log('Number of restart: (default: 100)')
             nb_restart = int(input() or '100')
             gc = GameCommon(hcv2)
             acb = AutoCarBuy(hcv2)
@@ -233,8 +211,8 @@ if __name__ == '__main__':
 
         # Dev
         elif intinput == 0:
-            print(HandlerWin32.get_keyboard_language())
-            print(common.convert_layout('z'))
+            common.log(HandlerWin32.get_keyboard_language())
+            common.log(common.convert_layout('z'))
             hcv2.hwin32.list_window_names()
             hcv2.dev()
         elif intinput == 98:
@@ -242,23 +220,32 @@ if __name__ == '__main__':
             arr.extend(os.listdir('./images/' + constant.LANG.value + '/'))
             arr = [s.replace('.jpg', '') for s in arr]
             arr.sort()
-            print('\nList of images:')
+            common.log('\nList of images:')
             for i in range(0, len(arr), 4):
                 s1 = arr[i] if i < len(arr) else ''
                 s2 = arr[i + 1] if i + 1 < len(arr) else ''
                 s3 = arr[i + 2] if i + 2 < len(arr) else ''
                 s4 = arr[i + 3] if i + 3 < len(arr) else ''
-                print('{0:40} {1:40} {2:40} {3:40}'.format(s1, s2, s3, s4))
-            print('\nChoose image to search:')
+                common.log('{0:40} {1:40} {2:40} {3:40}'.format(s1, s2, s3, s4))
+            common.log('\nChoose image to search:')
             img_name = input() or 'default'
-            print('{0:21} {1}'.format('\nfind:', str(hcv2.check_match(hcv2.load_images([img_name])[img_name]))))
-            print('{0:20} {1}'.format('find_max_val:', str(hcv2.find_max_val)))
-            print('{0:20} {1}'.format('find_start:', str(hcv2.find_start)))
-            print('{0:20} {1}'.format('find_end:', str(hcv2.find_end)))
+            common.log(img_name)
+            common.log('How many times?')
+            repeat = int(input() or '1')
+            common.log(str(repeat))
+            cnt = 0
+            for i in range(repeat):
+                found = hcv2.check_match(hcv2.load_images([img_name])[img_name], True)
+                if found:
+                    cnt += 1
+                common.log(hcv2.log())
+            if repeat > 1:
+                common.log('\nFound: ' + str(cnt) + '/' + str(repeat))
         elif intinput == 97:
-            print('Number of mastery points: (default: 999)')
+            common.log('Number of mastery points: (default: 999)')
             nb_mastery = int(input() or '999')
-            print('Number of race until 999: ' + str(math.ceil((999 - nb_mastery) / 10)))
+            common.log(str(nb_mastery))
+            common.log('Number of race until 999: ' + str(math.ceil((999 - nb_mastery) / 10)))
             if constant.CAR.value == Car.FORD.value:
                 cost_per_car = 5
             elif constant.CAR.value == Car.PONTIAC.value:
@@ -267,7 +254,7 @@ if __name__ == '__main__':
                 cost_per_car = 14  # 11
             else:
                 raise NameError('Unknow car')
-            print('Number of car mastery intil 0: ' + str(math.floor(nb_mastery / cost_per_car)))
+            common.log('Number of car mastery intil 0: ' + str(math.floor(nb_mastery / cost_per_car)))
 
         else:
             raise NameError('Not an option')
