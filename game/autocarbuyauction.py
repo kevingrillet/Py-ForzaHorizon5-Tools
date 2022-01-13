@@ -31,6 +31,7 @@ class AutoCarBuyAuction:
         while self.running and count < nb_car_to_buy:
             # Search
             if not self.hcv2.check_match(self.images['search'], True):
+                self.hcv2.save_image(None, 'logs')
                 raise NameError('Not in auction house search [search]')
             common.press('enter', 2)
             # While not bought all
@@ -64,6 +65,7 @@ class AutoCarBuyAuction:
                     attempt += 1
                     common.sleep(1)
                     if attempt > 30:
+                        self.hcv2.save_image(None, 'logs')
                         raise NameError('Failed to buy! [buyout_successful]')
                 common.press('enter', 1)
                 # Get back to Auction List

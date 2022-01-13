@@ -166,13 +166,15 @@ class HandlerCv2:
         x2, y2 = self.find_end
         return random.randint(x1, x2), random.randint(y1, y2)
 
-    def save_image(self, image=None):
+    def save_image(self, image=None, folder: str = '.temp'):
         """
         Save image in param or target_image
         :param image:
+        :param folder: path to save image
         """
-        Path('.temp/').mkdir(parents=True, exist_ok=True)
-        cv2.imwrite('.temp/' + str(datetime.now()).replace(':', '.') + '.jpg', image if image else self.target_image)
+        Path(folder + '/').mkdir(parents=True, exist_ok=True)
+        cv2.imwrite(folder + '/' + str(datetime.now()).replace(':', '.') + '.jpg',
+                    image if image else self.target_image)
 
     def show_image(self, image=None):
         """

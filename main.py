@@ -111,8 +111,8 @@ def show_menu():
 if __name__ == '__main__':
     try:
         Path('logs/').mkdir(parents=True, exist_ok=True)
-        logging.basicConfig(handlers=[logging.StreamHandler(sys.stdout), logging.FileHandler(
-            'logs/' + str(datetime.now().strftime('%d-%m-%Y %H.%M.%S')) + '.log')],
+        logging.basicConfig(handlers=[logging.StreamHandler(sys.stdout),
+                                      logging.FileHandler('logs/' + str(datetime.now()).replace(':', '.') + '.log')],
                             format='%(message)s', level=logging.DEBUG)
         common.info('Started')
         start_time = time.time()
