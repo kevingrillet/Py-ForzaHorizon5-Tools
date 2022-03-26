@@ -115,6 +115,8 @@ class GameCommon:
                 common.press('down', .125)
             for _ in range(5):
                 common.press('right', .125)
+        elif self.car == constant.Car.MG.value:
+            common.press('right', .125)
         elif self.car == constant.Car.PONTIAC.value:
             for _ in range(3):
                 common.press('right', .125)

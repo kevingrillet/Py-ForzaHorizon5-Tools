@@ -42,9 +42,9 @@ class AutoCarMastery:
         :param fast_sleep:
         :return: If car has been deleted
         """
-        if constant.CAR == Car.FORD or Car.PONTIAC:
+        if constant.CAR == Car.FORD or constant.CAR == Car.PONTIAC:
             result = not self.hcv2.check_match(self.images['new_common'], True)
-        elif constant.CAR == Car.PORSCHE:
+        elif constant.CAR == Car.PORSCHE:  # or constant.CAR == Car.MG
             result = not self.hcv2.check_match(self.images['new_rare'], True)
         else:
             raise NameError('Unknow car')
@@ -64,7 +64,7 @@ class AutoCarMastery:
         Apply filter to find the car
         :param fast_sleep:
         """
-        if constant.CAR == Car.FORD or Car.PORSCHE:
+        if constant.CAR == Car.FORD or constant.CAR == Car.PORSCHE:
             common.press('y', 1)
             if constant.CAR == Car.FORD:
                 # Filter B & HotHatch
@@ -92,7 +92,7 @@ class AutoCarMastery:
         :param path:
         """
         path = list(path)
-        while len(str) > 0 and self.running:
+        while len(path) > 0 and self.running:
             step = path.pop(0)
             enter = path.pop(0) == 'e'
             self.do_step(step, enter)
@@ -137,7 +137,7 @@ class AutoCarMastery:
                 common.press('up', fast_sleep)
                 common.press('right', fast_sleep)
 
-        elif constant.CAR == Car.FORD or Car.PORSCHE:
+        elif constant.CAR == Car.FORD or constant.CAR == Car.PORSCHE:
             # Find car to delete
             if self.count > 1:  # Need to skip it 2 times to begin
                 if not self.hcv2.check_match(self.images[self.car], True):
@@ -206,6 +206,8 @@ class AutoCarMastery:
             if not self.hcv2.check_match(self.images['already_done'], True):
                 if constant.CAR == Car.FORD:
                     self.do_path('_ereue')
+                elif constant.CAR == Car.MG:
+                    self.do_path('_ereuereued_re')
                 elif constant.CAR == Car.PONTIAC:
                     self.do_path('_erereuereue')
                 elif constant.CAR == Car.PORSCHE:

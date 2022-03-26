@@ -11,6 +11,7 @@ class AlreadyOwnedChoice(SuperIntEnum):
 
 class Car(Enum):
     FORD = 'ford'
+    MG = 'mg'
     PONTIAC = 'pontiac'
     PORSCHE = 'porsche'
 

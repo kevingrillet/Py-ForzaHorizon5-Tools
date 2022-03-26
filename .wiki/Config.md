@@ -14,14 +14,14 @@ scale = 1
 
 ## Description
 
-| Options    | Type    | Nullable | Description                                                         | Values                       |
-|------------|---------|----------|---------------------------------------------------------------------|------------------------------|
-| `car`      | `str`   | Yes      | Set the car to buy / master.                                        | `ford`, `pontiac`, `porsche` |
-| `debug`    | `int`   | Yes      | Set the verbosity of the script. Higher values will have more text. | `0`-`4`                      |
-| `dev`      | `bool`  | Yes      | Set dev mode. Will save images in `.temp/` folder.                  | `True`, `False`              |
-| `language` | `str`   | Yes      | Set language for the image folder.                                  | `en`, `fr`                   |
-| `owned`    | `int`   | Yes      | Set the action if car already owned.                                | `0`-`1`                      |
-| `scale`    | `float` | Yes      | Set scale.                                                          | `1`, `0.75`                  |
+| Options    | Type    | Nullable | Description                                                         | Values                             |
+|------------|---------|----------|---------------------------------------------------------------------|------------------------------------|
+| `car`      | `str`   | Yes      | Set the car to buy / master.                                        | `ford`, `mg`, `pontiac`, `porsche` |
+| `debug`    | `int`   | Yes      | Set the verbosity of the script. Higher values will have more text. | `0`-`4`                            |
+| `dev`      | `bool`  | Yes      | Set dev mode. Will save images in `.temp/` folder.                  | `True`, `False`                    |
+| `language` | `str`   | Yes      | Set language for the image folder.                                  | `en`, `fr`                         |
+| `owned`    | `int`   | Yes      | Set the action if car already owned.                                | `0`-`1`                            |
+| `scale`    | `float` | Yes      | Set scale.                                                          | `1`, `0.75`                        |
 
 ## More info
 
@@ -32,6 +32,7 @@ Car enum can be found here: <https://github.com/kevingrillet/Py-ForzaHorizon5-To
 |   Name    |   Value   |
 |:---------:|:---------:|
 |  `FORD`   |  `ford`   |
+|   `MG`    |   `mg`    |
 | `PONTIAC` | `pontiac` |
 | `PORSCHE` | `porsche` |
 |           |           |
