@@ -23,7 +23,7 @@ class HandlerConfig:
             self.set_value('car', str(constant.CAR.value))
             self.set_value('debug', str(constant.DEBUG_LEVEL.value))
             self.set_value('dev', str(constant.DEV_MODE))
-            self.set_value('language', constant.LANG.value)
+            self.set_value('language', str(constant.LANG.value))
             self.set_value('owned', str(constant.OWNED.value))
             self.set_value('scale', str(constant.SCALE))
 

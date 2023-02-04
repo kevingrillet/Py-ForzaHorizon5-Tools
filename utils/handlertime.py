@@ -49,7 +49,7 @@ class HandlerTime:
     def strfdelta(tdelta, fmt='{D:02}d {H:02}h {M:02}m {S:02.0f}s', inputtype='timedelta') -> str:
         """
         Convert a datetime.timedelta object or a regular number to a custom-
-        formatted string, just like the stftime() method does for datetime.datetime
+        formated string, just like the stftime() method does for datetime.datetime
         objects.
 
         The fmt argument allows custom formatting to be specified.  Fields can

@@ -104,8 +104,8 @@ class HandlerCv2:
         res = {}
         for image in images_list:
             # common.debug('load_images > ' + image, -1)
-            if os.path.isfile('./images/' + constant.LANG.value + '/' + image + '.jpg'):
-                img = cv2.imread('./images/' + constant.LANG.value + '/' + image + '.jpg', self.image_read_flag)
+            if os.path.isfile('./images/' + str(constant.LANG.value) + '/' + image + '.jpg'):
+                img = cv2.imread('./images/' + str(constant.LANG.value) + '/' + image + '.jpg', self.image_read_flag)
             elif os.path.isfile('./images/common/' + image + '.jpg'):
                 img = cv2.imread('./images/common/' + image + '.jpg', self.image_read_flag)
             else:

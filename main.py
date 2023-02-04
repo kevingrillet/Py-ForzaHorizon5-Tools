@@ -71,10 +71,10 @@ def load_config():
     :return:
     """
     hcfg = HandlerConfig('config.ini')
-    constant.CAR = Car(hcfg.get_value('car', constant.CAR.value))
+    constant.CAR = Car(hcfg.get_value('car', str(constant.CAR.value)))
     constant.DEBUG_LEVEL = DebugLevel(int(hcfg.get_value('debug', str(constant.DEBUG_LEVEL.value))))
     constant.DEV_MODE = hcfg.get_value('dev', str(constant.DEV_MODE)) == 'True'
-    constant.LANG = Lang(hcfg.get_value('language', constant.LANG.value))
+    constant.LANG = Lang(hcfg.get_value('language', str(constant.LANG.value)))
     constant.OWNED = AlreadyOwnedChoice(int(hcfg.get_value('owned', str(constant.OWNED.value))))
     constant.SCALE = float(hcfg.get_value('scale', str(constant.SCALE)))
 
@@ -217,7 +217,7 @@ if __name__ == '__main__':
             hcv2.dev()
         elif intinput == 98:
             arr = os.listdir('./images/common/')
-            arr.extend(os.listdir('./images/' + constant.LANG.value + '/'))
+            arr.extend(os.listdir('./images/' + str(constant.LANG.value) + '/'))
             arr = [s.replace('.jpg', '') for s in arr]
             arr.sort()
             common.log('\nList of images:')
